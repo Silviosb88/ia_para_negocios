@@ -1,0 +1,66 @@
+{
+  "galeria_projetos": [
+    {
+      "codigo": "PRJ001",
+      "autor": "Ana Carolina Silva",
+      "modalidade": "imagem",
+      "titulo_obra": "Paisagem Futurista Corporativa",
+      "resumo": "Ambiente de escritório do futuro com elementos de realidade aumentada e hologramas",
+      "arquivo_preview": "https://picsum.photos/seed/proj1/400/300",
+      "timestamp": "2026-01-15",
+      "stack_ia": ["MidJourney", "Photoshop AI"]
+    },
+    {
+      "codigo": "PRJ002",
+      "autor": "Roberto Mendes",
+      "modalidade": "video",
+      "titulo_obra": "Apresentação Comercial Animada",
+      "resumo": "Vídeo explicativo sobre soluções de IA para varejo usando avatares digitais",
+      "arquivo_preview": "https://picsum.photos/seed/proj2/400/300",
+      "link_streaming": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "timestamp": "2026-01-20",
+      "stack_ia": ["Runway ML", "Synthesia"]
+    },
+    {
+      "codigo": "PRJ003",
+      "autor": "Mariana Costa",
+      "modalidade": "avatar",
+      "titulo_obra": "Assistente Virtual Corporativo",
+      "resumo": "Avatar digital para atendimento ao cliente com IA conversacional integrada",
+      "arquivo_preview": "https://picsum.photos/seed/proj3/400/300",
+      "timestamp": "2026-01-25",
+      "stack_ia": ["D-ID", "ElevenLabs"]
+    },
+    {
+      "codigo": "PRJ004",
+      "autor": "Carlos Eduardo Santos",
+      "modalidade": "imagem",
+      "titulo_obra": "Logotipo com IA Generativa",
+      "resumo": "Série de propostas de identidade visual criadas com prompts especializados",
+      "arquivo_preview": "https://picsum.photos/seed/proj4/400/300",
+      "timestamp": "2026-02-01",
+      "stack_ia": ["DALL-E 3", "Adobe Firefly"]
+    },
+    {
+      "codigo": "PRJ005",
+      "autor": "Juliana Oliveira",
+      "modalidade": "video",
+      "titulo_obra": "Tutorial Interativo com IA",
+      "resumo": "Conteúdo educacional automatizado para treinamento corporativo",
+      "arquivo_preview": "https://picsum.photos/seed/proj5/400/300",
+      "link_streaming": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "timestamp": "2026-02-03",
+      "stack_ia": ["HeyGen", "ChatGPT"]
+    },
+    {
+      "codigo": "PRJ006",
+      "autor": "Fernando Almeida",
+      "modalidade": "avatar",
+      "titulo_obra": "Porta-voz Digital Institucional",
+      "resumo": "Representante virtual para comunicados corporativos com sincronização labial realista",
+      "arquivo_preview": "https://picsum.photos/seed/proj6/400/300",
+      "timestamp": "2026-02-05",
+      "stack_ia": ["Synthesia", "Murf AI"]
+    }
+  ]
+}

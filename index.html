@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBA IA para Negócios - Galeria de Trabalhos</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="estrutura-principal">
+        <header class="cabecalho-institucional">
+            <div class="recipiente-conteudo">
+                <h1 class="titulo-programa">MBA IA para Negócios</h1>
+                <h2 class="subtitulo-secao">Galeria de Trabalhos dos Estudantes</h2>
+                <p class="descricao-programa">Explore os projetos inovadores desenvolvidos pelos nossos alunos utilizando ferramentas de Inteligência Artificial</p>
+            </div>
+        </header>
+
+        <nav class="barra-controles">
+            <div class="recipiente-conteudo">
+                <div class="grupo-filtros">
+                    <button class="botao-categoria ativo" data-filtro="todos">
+                        <span class="icone-categoria">🎨</span>
+                        Todos os Trabalhos
+                    </button>
+                    <button class="botao-categoria" data-filtro="imagem">
+                        <span class="icone-categoria">🖼️</span>
+                        Imagens
+                    </button>
+                    <button class="botao-categoria" data-filtro="video">
+                        <span class="icone-categoria">🎬</span>
+                        Vídeos
+                    </button>
+                    <button class="botao-categoria" data-filtro="avatar">
+                        <span class="icone-categoria">🤖</span>
+                        Avatares
+                    </button>
+                </div>
+                
+                <div class="caixa-pesquisa">
+                    <input 
+                        type="text" 
+                        id="campo-busca-estudante" 
+                        class="entrada-pesquisa" 
+                        placeholder="Buscar por nome do estudante..."
+                        aria-label="Campo de busca por nome do estudante"
+                    >
+                    <span class="icone-busca">🔍</span>
+                </div>
+            </div>
+        </nav>
+
+        <main class="secao-principal">
+            <div class="recipiente-conteudo">
+                <div id="contador-resultados" class="info-resultados"></div>
+                <div id="painel-obras-mba" class="grade-projetos">
+                    <div class="indicador-carregamento">
+                        <div class="animacao-rotacao"></div>
+                        <p>Carregando trabalhos...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside id="janela-ampliacao" class="modal-visualizacao" aria-hidden="true">
+            <div class="fundo-escurecido"></div>
+            <div class="conteiner-modal">
+                <button class="botao-fechar-modal" aria-label="Fechar visualização">&times;</button>
+                
+                <div class="corpo-modal">
+                    <div class="secao-midia">
+                        <img id="imagem-ampliada" class="midia-visualizacao" alt="" style="display: none;">
+                        <iframe id="video-incorporado" class="midia-visualizacao" allowfullscreen style="display: none;"></iframe>
+                    </div>
+                    
+                    <div class="secao-detalhes">
+                        <span id="etiqueta-modalidade" class="emblema-tipo"></span>
+                        <h3 id="titulo-projeto-modal" class="nome-obra"></h3>
+                        <p id="autor-projeto-modal" class="nome-estudante"></p>
+                        <p id="codigo-projeto-modal" class="identificador-trabalho"></p>
+                        <p id="descricao-projeto-modal" class="texto-resumo"></p>
+                        <div id="ferramentas-utilizadas" class="container-tecnologias"></div>
+                        <p id="data-projeto-modal" class="info-temporal"></p>
+                    </div>
+                </div>
+
+                <div class="controles-navegacao">
+                    <button id="botao-anterior" class="botao-navegar" aria-label="Projeto anterior">
+                        ← Anterior
+                    </button>
+                    <button id="botao-proximo" class="botao-navegar" aria-label="Próximo projeto">
+                        Próximo →
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <footer class="rodape-institucional">
+            <div class="recipiente-conteudo">
+                <div class="informacoes-rodape">
+                    <div class="coluna-info">
+                        <h4>Sobre o Programa</h4>
+                        <p>MBA em Inteligência Artificial para Negócios - Formando líderes na era da transformação digital</p>
+                    </div>
+                    <div class="coluna-info">
+                        <h4>Tecnologias IA</h4>
+                        <p>Nossos alunos trabalham com as principais ferramentas: MidJourney, DALL-E, Runway ML, Synthesia, D-ID e muito mais</p>
+                    </div>
+                    <div class="coluna-info">
+                        <h4>Contato</h4>
+                        <p>Entre em contato para saber mais sobre o programa e as próximas turmas</p>
+                    </div>
+                </div>
+                <div class="direitos-autorais">
+                    <p>&copy; 2026 MBA IA para Negócios. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
