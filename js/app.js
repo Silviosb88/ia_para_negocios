@@ -171,6 +171,16 @@ function construirCartaoProjeto(projeto, indice) {
     artigo.className = 'cartao-trabalho-estudante';
     artigo.setAttribute('data-indice', indice);
     artigo.addEventListener('click', () => abrirModal(indice));
+    // Tornar o cartão acessível via teclado
+    artigo.tabIndex = 0;
+    artigo.setAttribute('role', 'button');
+    artigo.addEventListener('keydown', (event) => {
+        const key = event.key;
+        if (key === 'Enter' || key === ' ' || key === 'Spacebar') {
+            event.preventDefault();
+            abrirModal(indice);
+        }
+    });
     
     const containerImagem = document.createElement('div');
     containerImagem.className = 'container-imagem-cartao';
