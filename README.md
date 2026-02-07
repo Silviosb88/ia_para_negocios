@@ -38,7 +38,7 @@ npx http-server -p 8080
 
 1. Acesse as configurações do repositório no GitHub
 2. Vá em **Settings** > **Pages**
-3. Em **Source**, selecione a branch `main` ou `copilot/create-responsive-gallery-page`
+3. Em **Source**, selecione a branch padrão do repositório (por exemplo, `main`)
 4. Selecione a pasta `/ (root)`
 5. Clique em **Save**
 6. Aguarde alguns minutos e acesse: `https://silviosb88.github.io/ia_para_negocios/`
@@ -162,8 +162,7 @@ git push origin main
 
 - **HTML5**: Estrutura semântica
 - **CSS3**: Flexbox, Grid, Animações, Variáveis CSS
-- **JavaScript ES6+**: Módulos, Fetch API, Manipulação do DOM
-- **Font Awesome 6**: Ícones vetoriais
+- **JavaScript ES6+**: Fetch API, Manipulação do DOM
 - **JSON**: Armazenamento de dados
 
 ## 👥 Como Contribuir

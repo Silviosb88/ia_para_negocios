@@ -1,7 +1,6 @@
 // ===== CONFIGURAÇÃO INICIAL E VARIÁVEIS GLOBAIS =====
 const configuracaoApp = {
     caminhoArquivoDados: 'data/trabalhos.json',
-    tempoAnimacaoMs: 300,
     mensagemErroCarregamento: 'Não foi possível carregar os projetos. Tente novamente mais tarde.',
     mensagemNenhumResultado: 'Nenhum trabalho encontrado com os filtros aplicados.'
 };
@@ -250,19 +249,81 @@ function abrirModal(indice) {
     atualizarBotoesNavegacao();
 }
 
+// ===== VALIDAÇÃO DE URL =====
+function validarURL(url) {
+    if (!url || typeof url !== 'string') {
+        return false;
+    }
+    
+    try {
+        const urlObj = new URL(url);
+        // Permitir apenas HTTPS e URLs de hosts confiáveis
+        const hostPermitidos = [
+            'picsum.photos',
+            'youtube.com',
+            'www.youtube.com',
+            'youtu.be',
+            'vimeo.com',
+            'player.vimeo.com',
+            'imgur.com',
+            'i.imgur.com',
+            'drive.google.com',
+            'raw.githubusercontent.com',
+            'user-images.githubusercontent.com'
+        ];
+        
+        // Bloquear esquemas perigosos
+        if (urlObj.protocol !== 'https:' && urlObj.protocol !== 'http:') {
+            return false;
+        }
+        
+        // Verificar se o host está na lista de permitidos
+        const hostValido = hostPermitidos.some(host => 
+            urlObj.hostname === host || urlObj.hostname.endsWith('.' + host)
+        );
+        
+        return hostValido;
+    } catch (e) {
+        return false;
+    }
+}
+
 function preencherDadosModal(projeto) {
     const imagemModal = document.getElementById('imagem-ampliada');
     const videoModal = document.getElementById('video-incorporado');
     
+    // Limpar iframe anterior para evitar vídeos em segundo plano
+    videoModal.src = '';
+    
     if (projeto.modalidade === 'video' && projeto.link_streaming) {
-        imagemModal.style.display = 'none';
-        videoModal.style.display = 'block';
-        videoModal.src = projeto.link_streaming;
+        const urlValida = validarURL(projeto.link_streaming);
+        
+        if (urlValida) {
+            imagemModal.style.display = 'none';
+            videoModal.style.display = 'block';
+            videoModal.src = projeto.link_streaming;
+        } else {
+            // Exibir mensagem de erro se URL inválida
+            console.error('URL de vídeo inválida ou não confiável:', projeto.link_streaming);
+            videoModal.style.display = 'none';
+            imagemModal.style.display = 'block';
+            imagemModal.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect fill="%23f0f0f0" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="18" fill="%23999" text-anchor="middle" dominant-baseline="middle"%3EConteúdo indisponível%3C/text%3E%3C/svg%3E';
+            imagemModal.alt = 'Conteúdo de vídeo indisponível';
+        }
     } else {
+        const urlValida = validarURL(projeto.arquivo_preview);
+        
         videoModal.style.display = 'none';
         imagemModal.style.display = 'block';
-        imagemModal.src = projeto.arquivo_preview;
-        imagemModal.alt = projeto.titulo_obra;
+        
+        if (urlValida) {
+            imagemModal.src = projeto.arquivo_preview;
+            imagemModal.alt = projeto.titulo_obra;
+        } else {
+            console.error('URL de imagem inválida ou não confiável:', projeto.arquivo_preview);
+            imagemModal.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect fill="%23f0f0f0" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="18" fill="%23999" text-anchor="middle" dominant-baseline="middle"%3EImagem indisponível%3C/text%3E%3C/svg%3E';
+            imagemModal.alt = 'Imagem indisponível';
+        }
     }
     
     const etiqueta = document.getElementById('etiqueta-modalidade');

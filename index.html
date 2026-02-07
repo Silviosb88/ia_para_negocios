@@ -62,7 +62,7 @@
             </div>
         </main>
 
-        <aside id="janela-ampliacao" class="modal-visualizacao" aria-hidden="true">
+        <aside id="janela-ampliacao" class="modal-visualizacao" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="titulo-projeto-modal">
             <div class="fundo-escurecido"></div>
             <div class="conteiner-modal">
                 <button class="botao-fechar-modal" aria-label="Fechar visualização">&times;</button>
@@ -70,7 +70,7 @@
                 <div class="corpo-modal">
                     <div class="secao-midia">
                         <img id="imagem-ampliada" class="midia-visualizacao" alt="" style="display: none;">
-                        <iframe id="video-incorporado" class="midia-visualizacao" allowfullscreen style="display: none;"></iframe>
+                        <iframe id="video-incorporado" class="midia-visualizacao" title="Vídeo do projeto" allowfullscreen style="display: none;"></iframe>
                     </div>
                     
                     <div class="secao-detalhes">
