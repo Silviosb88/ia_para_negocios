@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Documentação completa do Clube do Foco - Aprenda a criar projetos com IA">
+    <title>Documentação - Clube do Foco</title>
+    <link rel="stylesheet" href="assets/docs.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-brain"></i> Clube do Foco
+            </a>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Galeria</a>
+                <a href="index.html" class="active"><i class="fas fa-book"></i> Documentação</a>
+                <a href="changelog/index.html"><i class="fas fa-history"></i> Changelog</a>
+                <a href="dialogos/index.html"><i class="fas fa-comments"></i> Diálogos IA</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <h1><i class="fas fa-graduation-cap"></i> Documentação Completa</h1>
+            <p class="subtitle">Aprenda a criar projetos web do zero usando IA como seu copiloto</p>
+        </div>
+    </header>
+
+    <!-- Trail Selector -->
+    <section class="trail-selector">
+        <div class="container">
+            <h2>👋 Escolha sua Trilha de Aprendizado</h2>
+            <p class="trail-description">Selecione o nível que melhor se adapta à sua experiência</p>
+            
+            <div class="trails">
+                <!-- Beginner Trail -->
+                <div class="trail-card beginner" data-trail="beginner">
+                    <div class="trail-icon">🟢</div>
+                    <h3>Iniciante</h3>
+                    <p class="trail-subtitle">Nunca programei ou usei GitHub</p>
+                    <ul class="trail-features">
+                        <li><i class="fas fa-check"></i> Explicações detalhadas</li>
+                        <li><i class="fas fa-check"></i> Cada clique documentado</li>
+                        <li><i class="fas fa-check"></i> Prints e exemplos visuais</li>
+                        <li><i class="fas fa-check"></i> Glossário de termos</li>
+                        <li><i class="fas fa-check"></i> Suporte passo a passo</li>
+                    </ul>
+                    <button class="btn btn-beginner" onclick="selectTrail('beginner')">
+                        <i class="fas fa-rocket"></i> Começar do Zero
+                    </button>
+                </div>
+
+                <!-- Intermediate Trail -->
+                <div class="trail-card intermediate" data-trail="intermediate">
+                    <div class="trail-icon">🔵</div>
+                    <h3>Intermediário</h3>
+                    <p class="trail-subtitle">Já conheço Git, HTML e CSS básico</p>
+                    <ul class="trail-features">
+                        <li><i class="fas fa-check"></i> Conteúdo direto ao ponto</li>
+                        <li><i class="fas fa-check"></i> Foco em conceitos avançados</li>
+                        <li><i class="fas fa-check"></i> Otimizações e boas práticas</li>
+                        <li><i class="fas fa-check"></i> Integração com IA</li>
+                        <li><i class="fas fa-check"></i> Troubleshooting avançado</li>
+                    </ul>
+                    <button class="btn btn-intermediate" onclick="selectTrail('intermediate')">
+                        <i class="fas fa-bolt"></i> Ir Direto ao Ponto
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flowchart -->
+    <section class="flowchart-section">
+        <div class="container">
+            <h2>🗺️ Mapa Visual do Projeto</h2>
+            <p class="section-description">Entenda a estrutura completa e onde você está em cada etapa</p>
+            
+            <div class="flowchart">
+                <div class="flow-level level-1">
+                    <div class="flow-box main">
+                        <i class="fas fa-home"></i>
+                        <h4>Clube do Foco</h4>
+                        <p>Galeria + Plataforma Educacional</p>
+                    </div>
+                </div>
+
+                <div class="flow-connector"></div>
+
+                <div class="flow-level level-2">
+                    <div class="flow-box">
+                        <i class="fas fa-images"></i>
+                        <h4>Galeria</h4>
+                        <p>Trabalhos dos estudantes</p>
+                    </div>
+                    <div class="flow-box active">
+                        <i class="fas fa-book"></i>
+                        <h4>Documentação</h4>
+                        <p>Guias e tutoriais</p>
+                    </div>
+                    <div class="flow-box">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>Ajuda</h4>
+                        <p>FAQ e suporte</p>
+                    </div>
+                </div>
+
+                <div class="flow-connector"></div>
+
+                <div class="flow-level level-3">
+                    <div class="flow-box">
+                        <i class="fas fa-book-open"></i>
+                        <h4>Guia Completo</h4>
+                        <p>5 fases detalhadas</p>
+                    </div>
+                    <div class="flow-box">
+                        <i class="fas fa-comments"></i>
+                        <h4>Diálogos IA</h4>
+                        <p>Exemplos reais</p>
+                    </div>
+                    <div class="flow-box">
+                        <i class="fas fa-history"></i>
+                        <h4>Changelog</h4>
+                        <p>Timeline do projeto</p>
+                    </div>
+                </div>
+
+                <div class="flow-connector"></div>
+
+                <div class="flow-level level-4">
+                    <div class="flow-phases">
+                        <div class="phase-box">
+                            <span class="phase-number">1</span>
+                            <p>Fundamentos</p>
+                        </div>
+                        <div class="phase-box">
+                            <span class="phase-number">2</span>
+                            <p>Preparação</p>
+                        </div>
+                        <div class="phase-box">
+                            <span class="phase-number">3</span>
+                            <p>Desenvolvimento</p>
+                        </div>
+                        <div class="phase-box">
+                            <span class="phase-number">4</span>
+                            <p>Deploy</p>
+                        </div>
+                        <div class="phase-box">
+                            <span class="phase-number">5</span>
+                            <p>Manutenção</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="quick-links">
+        <div class="container">
+            <h2>🚀 Acesso Rápido</h2>
+            <div class="links-grid">
+                <a href="guia/fundamentos.html" class="link-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Fundamentos</h3>
+                    <p>O básico para começar</p>
+                </a>
+                <a href="guia/preparacao.html" class="link-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Preparação</h3>
+                    <p>Configure seu ambiente</p>
+                </a>
+                <a href="guia/desenvolvimento.html" class="link-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Desenvolvimento</h3>
+                    <p>Criando com IA</p>
+                </a>
+                <a href="guia/deploy.html" class="link-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Deploy</h3>
+                    <p>Publicando seu projeto</p>
+                </a>
+                <a href="guia/manutencao.html" class="link-card">
+                    <i class="fas fa-wrench"></i>
+                    <h3>Manutenção</h3>
+                    <p>Atualizações e melhorias</p>
+                </a>
+                <a href="dialogos/index.html" class="link-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>Diálogos com IA</h3>
+                    <p>Exemplos práticos</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Copilot Can Do -->
+    <section class="copilot-capabilities">
+        <div class="container">
+            <h2>🤖 O que o GitHub Copilot Pode Fazer?</h2>
+            <p class="section-description">Muito além de criar sites! Veja as possibilidades:</p>
+            
+            <div class="capabilities-grid">
+                <div class="capability-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Aplicações Web</h3>
+                    <p>Sites, dashboards, SPAs, PWAs</p>
+                </div>
+                <div class="capability-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Apps Mobile</h3>
+                    <p>React Native, Flutter, Ionic</p>
+                </div>
+                <div class="capability-card">
+                    <i class="fas fa-server"></i>
+                    <h3>APIs e Backend</h3>
+                    <p>Node.js, Python, REST, GraphQL</p>
+                </div>
+                <div class="capability-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>Bots e Automações</h3>
+                    <p>Discord, Telegram, scripts</p>
+                </div>
+                <div class="capability-card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Jogos</h3>
+                    <p>Unity, Godot, jogos web</p>
+                </div>
+                <div class="capability-card">
+                    <i class="fas fa-database"></i>
+                    <h3>Análise de Dados</h3>
+                    <p>Python, R, visualizações</p>
+                </div>
+                <div class="capability-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Machine Learning</h3>
+                    <p>TensorFlow, PyTorch, modelos</p>
+                </div>
+                <div class="capability-card">
+                    <i class="fas fa-cog"></i>
+                    <h3>DevOps</h3>
+                    <p>Docker, CI/CD, infraestrutura</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Clube do Foco - MBA IA para Negócios</p>
+            <p>Em Desenvolvimento com <i class="fas fa-heart"></i> pelos estudantes</p>
+        </div>
+    </footer>
+
+    <script src="assets/docs.js"></script>
+</body>
+</html>
