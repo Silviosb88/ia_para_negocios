@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Interface</title>
+    <link rel="stylesheet" href="css/upload.css">
+</head>
+<body>
+    <header>
+        <h1>Upload Your Work</h1>
+        <p>Welcome to the upload interface. Below you will find the necessary fields to submit your project. Please ensure all fields are filled out correctly.</p>
+    </header>
+    <section id="authentication">
+        <h2>Authentication</h2>
+        <p>Please log in to upload your project.</p>
+        <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </section>
+    <section id="upload-form">
+        <h2>Upload Form</h2>
+        <form id="form-upload" enctype="multipart/form-data">
+            <label for="student-name">Student Name:</label>
+            <input type="text" id="student-name" name="student-name" required>
+
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="type">Type:</label>
+            <select id="type" name="type" required>
+                <option value="project">Project</option>
+                <option value="essay">Essay</option>
+                <option value="report">Report</option>
+            </select>
+
+            <label for="ai-tools">AI Tools Used:</label>
+            <input type="text" id="ai-tools" name="ai-tools">
+
+            <label for="file-upload">Upload File:</label>
+            <input type="file" id="file-upload" name="file-upload" accept="*" required>
+
+            <button type="submit">Upload</button>
+            <div id="progress-bar" style="width: 100%; background-color: #f3f3f3;">
+                <div id="progress" style="width: 0%; height: 20px; background-color: #4caf50;"></div>
+            </div>
+            <p id="success-message" style="display:none;">Upload successful!</p>
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2026 Your Organization. All rights reserved.</p>
+    </footer>
+    <script src="js/upload.js"></script>
+</body>
+</html>
