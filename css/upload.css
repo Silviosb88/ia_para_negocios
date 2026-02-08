@@ -1,0 +1,529 @@
+/* Upload System Styles */
+:root {
+    --primary-color: #6a1b9a;
+    --secondary-color: #8b5cf6;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --dark-bg: #1a1a2e;
+    --card-bg: #16213e;
+    --text-light: #e0e0e0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #0f0f1e 100%);
+    color: var(--text-light);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Header */
+.upload-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 40px 20px;
+}
+
+.upload-header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.upload-header p {
+    font-size: 1.1em;
+    color: #a0a0a0;
+}
+
+/* Back Link */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--secondary-color);
+    text-decoration: none;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    gap: 12px;
+    color: var(--primary-color);
+}
+
+/* Upload Card */
+.upload-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+/* Auth Section */
+.auth-section {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.auth-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.auth-section p {
+    color: #a0a0a0;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+.github-login-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #333, #24292e);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.github-login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.github-login-btn i {
+    font-size: 1.5em;
+}
+
+/* User Info */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--secondary-color);
+}
+
+.user-details h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.user-details p {
+    color: #a0a0a0;
+    font-size: 0.9em;
+}
+
+.logout-btn {
+    margin-left: auto;
+    background: transparent;
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: var(--danger-color);
+    color: white;
+}
+
+/* Form */
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group label {
+    font-size: 1.1em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-group label i {
+    color: var(--secondary-color);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    border-radius: 12px;
+    color: var(--text-light);
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: inherit;
+}
+
+/* Radio Group */
+.radio-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.radio-option {
+    flex: 1;
+    min-width: 150px;
+}
+
+.radio-option input[type="radio"] {
+    display: none;
+}
+
+.radio-option label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.radio-option input[type="radio"]:checked + label {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: var(--secondary-color);
+}
+
+.radio-option label:hover {
+    border-color: var(--secondary-color);
+}
+
+/* File Upload */
+.file-upload {
+    position: relative;
+    padding: 40px;
+    border: 3px dashed rgba(139, 92, 246, 0.5);
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(139, 92, 246, 0.05);
+}
+
+.file-upload:hover {
+    border-color: var(--secondary-color);
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.file-upload input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file-upload i {
+    font-size: 3em;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.file-upload p {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.file-upload small {
+    color: #a0a0a0;
+    font-size: 0.9em;
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 2px solid var(--success-color);
+    border-radius: 12px;
+    margin-top: 15px;
+}
+
+.file-info i {
+    font-size: 2em;
+    color: var(--success-color);
+}
+
+.file-info .file-details h4 {
+    margin-bottom: 5px;
+}
+
+.file-info .file-details p {
+    color: #a0a0a0;
+    font-size: 0.9em;
+}
+
+.remove-file {
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: var(--danger-color);
+    cursor: pointer;
+    font-size: 1.5em;
+    transition: transform 0.2s ease;
+}
+
+.remove-file:hover {
+    transform: scale(1.2);
+}
+
+/* Progress Bar */
+.progress-section {
+    display: none;
+    margin-top: 30px;
+}
+
+.progress-section.active {
+    display: block;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    width: 0%;
+    transition: width 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.progress-status {
+    text-align: center;
+    color: #a0a0a0;
+}
+
+/* Submit Button */
+.submit-btn {
+    padding: 18px 40px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3);
+}
+
+.submit-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(106, 27, 154, 0.4);
+}
+
+.submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Success Message */
+.success-message {
+    display: none;
+    text-align: center;
+    padding: 40px;
+}
+
+.success-message.active {
+    display: block;
+}
+
+.success-icon {
+    font-size: 4em;
+    color: var(--success-color);
+    margin-bottom: 20px;
+}
+
+.success-message h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: var(--success-color);
+}
+
+.success-message p {
+    font-size: 1.1em;
+    color: #a0a0a0;
+    margin-bottom: 30px;
+}
+
+.success-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.success-actions a,
+.success-actions button {
+    padding: 12px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    transform: translateY(-2px);
+}
+
+/* Error Message */
+.error-message {
+    display: none;
+    padding: 15px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px solid var(--danger-color);
+    border-radius: 12px;
+    color: var(--danger-color);
+    margin-top: 20px;
+}
+
+.error-message.active {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.error-message i {
+    font-size: 1.5em;
+}
+
+/* Hidden */
+.hidden {
+    display: none !important;
+}
+
+/* Loading Spinner */
+.spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .upload-header h1 {
+        font-size: 2em;
+    }
+    
+    .upload-card {
+        padding: 25px;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+    }
+    
+    .radio-option {
+        min-width: 100%;
+    }
+    
+    .success-actions {
+        flex-direction: column;
+    }
+    
+    .success-actions a,
+    .success-actions button {
+        width: 100%;
+    }
+}
