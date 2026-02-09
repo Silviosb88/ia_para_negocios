@@ -1,40 +1,189 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Gallery</title>
+    <meta name="description" content="Galeria de trabalhos dos estudantes do MBA de IA para Negócios">
+    <title>MBA IA para Negócios - Galeria de Trabalhos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Add your styles here */
-        body { font-family: Arial, sans-serif; }
-        .navbar { font-size: 10px; background-color: #f3f3f3; padding: 10px; }
-        .navbar a { margin: 0 10px; text-decoration: none; }
+        /* Navigation Menu Styles */
+        .top-nav {
+            background: #1e293b;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .top-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .top-nav li {
+            position: relative;
+        }
+        .top-nav a {
+            display: block;
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 10px;
+            transition: background 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .top-nav a:hover {
+            background: #6366f1;
+        }
+        /* Dropdown Menu */
+        .top-nav .dropdown {
+            position: relative;
+        }
+        .top-nav .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #2d3748;
+            min-width: 200px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            z-index: 1001;
+        }
+        .top-nav .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .top-nav .dropdown-content a {
+            padding: 10px 20px;
+            border-bottom: 1px solid #1e293b;
+        }
+        .top-nav .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        @media (max-width: 768px) {
+            .top-nav ul {
+                flex-direction: column;
+            }
+            .top-nav .dropdown-content {
+                position: static;
+                box-shadow: none;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>My Gallery</h1>
-    <div class="navbar">
-        <a href="#">Home</a>
-        <div class="dropdown">
-            <a href="#">Quiz</a>
-            <div class="dropdown-content">
-                <a href="https://www.genspark.ai/api/files/s/Qc5ZSWc2">Aulas 15-27</a>
-                <a href="https://ctuwmeic.gensparkspace.com/">Quiz Genspark</a>
+    <!-- Professional Navigation Menu -->
+    <nav class="top-nav">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li class="dropdown">
+                <a href="#"><i class="fas fa-question-circle"></i> Quiz <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="https://www.genspark.ai/api/files/s/Qc5ZSWc2" target="_blank">Aulas 15-27</a>
+                    <a href="https://ctuwmeic.gensparkspace.com/" target="_blank">Quiz Genspark</a>
+                </div>
+            </li>
+            <li><a href="docs/"><i class="fas fa-book"></i> Documentação</a></li>
+            <li><a href="upload.html"><i class="fas fa-upload"></i> Upload</a></li>
+            <li><a href="versions/"><i class="fas fa-history"></i> Versões</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1><i class="fas fa-brain"></i> MBA IA para Negócios</h1>
+            <p class="subtitle">Galeria de Trabalhos dos Estudantes</p>
+        </div>
+    </header>
+
+    <!-- Controls -->
+    <section class="controls">
+        <div class="container">
+            <!-- Search -->
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar por nome do estudante...">
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <button class="filter-btn active" data-filter="todos">
+                    <i class="fas fa-th"></i> Todos
+                </button>
+                <button class="filter-btn" data-filter="imagem">
+                    <i class="fas fa-image"></i> Imagens
+                </button>
+                <button class="filter-btn" data-filter="video">
+                    <i class="fas fa-video"></i> Vídeos
+                </button>
+                <button class="filter-btn" data-filter="avatar">
+                    <i class="fas fa-user-circle"></i> Avatares
+                </button>
+            </div>
+
+            <!-- Counter -->
+            <div class="counter">
+                <span id="workCounter">0</span> trabalhos encontrados
             </div>
         </div>
-        <a href="docs/">Documentação</a>
-        <a href="upload.html">Upload</a>
-        <a href="versions/">Versões</a>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery">
+        <div class="container">
+            <div id="galleryGrid" class="gallery-grid">
+                <!-- Cards serão inseridos aqui via JavaScript -->
+            </div>
+            <div id="noResults" class="no-results" style="display: none;">
+                <i class="fas fa-search"></i>
+                <p>Nenhum trabalho encontrado</p>
+            </div>
+            <div id="loading" class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Carregando trabalhos...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="modal-nav modal-prev" id="modalPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="modal-nav modal-next" id="modalNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="modal-body">
+                <div id="modalMedia" class="modal-media"></div>
+                <div class="modal-info">
+                    <h2 id="modalTitle"></h2>
+                    <p class="modal-student"><i class="fas fa-user"></i> <span id="modalStudent"></span></p>
+                    <p class="modal-description" id="modalDescription"></p>
+                    <div class="modal-tools" id="modalTools"></div>
+                    <p class="modal-date"><i class="fas fa-calendar"></i> <span id="modalDate"></span></p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Gallery HTML goes here, retaining all functionality -->
-
-    <div id="gallery">
-        <!-- Existing gallery structure -->
-    </div>
-
-    <footer>
-        <p>Footer content here...</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 MBA IA para Negócios. Todos os direitos reservados.</p>
+            <p>Desenvolvido com <i class="fas fa-heart"></i> pelos estudantes</p>
+        </div>
     </footer>
+
+    <script src="js/app.js"></script>
 </body>
 </html>
