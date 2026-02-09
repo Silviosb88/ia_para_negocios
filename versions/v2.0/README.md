@@ -149,7 +149,7 @@ v2.0/
 ## 👥 **Créditos**
 
 **Desenvolvido por:** Estudantes do MBA IA para Negócios  
-**Professor:** Silvio Braga  
+**Professor:** Silvio  
 **IA Assistente:** GitHub Copilot  
 **Data:** 06-09 de Fevereiro de 2026  
 
