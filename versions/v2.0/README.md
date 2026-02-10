@@ -1,180 +1,143 @@
-# 📦 Versão 2.0 - Plataforma Educacional Completa
+# 🎓 MBA IA para Negócios - Galeria de Trabalhos
 
-**Data de Lançamento:** 09 de Fevereiro de 2026  
-**Status:** ✅ ESTÁVEL - PRODUÇÃO  
-**Commit:** 5bc711fdfa91372411c261e300edda4f8accb3ff
+![Badge](https://img.shields.io/badge/IA-Para%20Neg%C3%B3cios-blue)
+![Badge](https://img.shields.io/badge/Status-Ativo-success)
 
----
+Galeria interativa e moderna para exibir os trabalhos dos estudantes do MBA de Inteligência Artificial para Negócios. Apresenta imagens, vídeos e avatares criados com ferramentas de IA.
 
-## 🎯 **Sobre Esta Versão**
+## 🚀 Demo
 
-A v2.0 marca a **transformação completa** do Clube do Foco de uma simples galeria para uma **plataforma educacional profissional**.
+**Acesse a galeria ao vivo:** [https://silviosb88.github.io/ia_para_negocios/](https://silviosb88.github.io/ia_para_negocios/)
 
----
+## ✨ Funcionalidades
 
-## ✨ **Principais Funcionalidades**
+- 🎨 **Design Moderno e Responsivo** - Funciona perfeitamente em desktop, tablet e mobile
+- 🔍 **Busca em Tempo Real** - Encontre trabalhos por nome do estudante ou título
+- 🎯 **Filtros por Categoria** - Filtre por imagens, vídeos ou avatares
+- 🖼️ **Modal de Visualização** - Veja os trabalhos em tamanho maior com navegação
+- 📊 **Contador Dinâmico** - Veja quantos trabalhos estão sendo exibidos
+- ⚡ **Performance Otimizada** - Carregamento rápido e animações suaves
 
-### **1. Menu de Navegação Profissional**
-- 🎨 Design escuro (#1e293b) com hover roxo (#6366f1)
-- 📱 100% responsivo (desktop e mobile)
-- 🔤 Font-size 10px profissional
-- ⬇️ Dropdown animado no item "Quiz"
-- ✨ Ícones FontAwesome integrados
-
-### **2. Galeria Completa**
-- 🖼️ Sistema de cards responsivos
-- 🔍 Busca em tempo real por nome de estudante
-- 🏷️ Filtros por categoria (Todos, Imagens, Vídeos, Avatares)
-- 🔢 Contador dinâmico de resultados
-- 🖱️ Modal de visualização com navegação (anterior/próximo)
-
-### **3. Documentação Integrada**
-- 📚 Hub de documentação completo (`/docs/`)
-- 🎓 Trilhas de aprendizado (Iniciante/Intermediário)
-- 🗺️ Mapa visual do projeto
-- 📝 Guias das 5 fases de desenvolvimento
-- 🤖 Diálogos com IA documentados
-
-### **4. Sistema de Versionamento**
-- 🏛️ Museu de Versões (`/versions/`)
-- 📦 v1.0 preservada e acessível
-- 📋 Changelog detalhado
-- 🔄 Histórico de evolução do projeto
-
----
-
-## 🔗 **Links da V2.0**
-
-### **Menu Principal:**
-- 🏠 **Home:** Galeria principal
-- ❓ **Quiz:**
-  - [Aulas 15-27](https://www.genspark.ai/api/files/s/Qc5ZSWc2)
-  - [Quiz Genspark](https://ctuwmeic.gensparkspace.com/)
-- 📚 **Documentação:** Hub educacional completo
-- ⬆️ **Upload:** Sistema de envio de trabalhos
-- 🕐 **Versões:** Histórico e museu de versões
-
----
-
-## 📂 **Estrutura de Arquivos**
+## 📁 Estrutura do Projeto
 
 ```
-v2.0/
-├── index.html (Galeria principal com menu profissional)
+ia_para_negocios/
+├── index.html              # Página principal
 ├── css/
-│   ├── styles.css (Estilos da galeria)
-│   └── upload.css (Estilos do upload)
+│   └── styles.css         # Estilos da aplicação
 ├── js/
-│   ├── app.js (Lógica da galeria)
-│   └── upload.js (Lógica do upload)
-├── docs/ (Documentação completa)
-├── data/ (JSON dos trabalhos)
-└── versions/ (Histórico de versões)
+│   └── app.js            # Lógica e interatividade
+├── data/
+│   └── trabalhos.json    # Base de dados dos trabalhos
+└── README.md             # Este arquivo
 ```
 
----
+## 🎯 Como Adicionar Novos Trabalhos
 
-## 🚀 **Tecnologias Utilizadas**
+### Passo 1: Edite o arquivo JSON
 
-- ✅ HTML5 Semântico
-- ✅ CSS3 (Grid, Flexbox, Animations)
-- ✅ JavaScript Vanilla (ES6+)
-- ✅ FontAwesome 6.4.0
-- ✅ GitHub Pages
-- ✅ Domínio personalizado (clubedofoco.ia.br)
+Abra o arquivo `data/trabalhos.json` e adicione um novo objeto ao array `trabalhos`:
 
----
+```json
+{
+  "id": 7,
+  "estudante": "Seu Nome",
+  "tipo": "imagem",
+  "titulo": "Título do Seu Trabalho",
+  "descricao": "Descrição detalhada do trabalho",
+  "url": "URL_DA_SUA_IMAGEM",
+  "videoUrl": "URL_DO_VIDEO (apenas se tipo for 'video')",
+  "data": "2026-02-07",
+  "ferramentas": ["MidJourney", "ChatGPT"]
+}
+```
 
-## 🎨 **Design System**
+### Tipos Disponíveis:
+- "imagem" - Para imagens geradas por IA
+- "video" - Para vídeos
+- "avatar" - Para avatares digitais
 
-### **Cores:**
+### Passo 2: Hospede Suas Mídias
+
+Você pode usar:
+- **GitHub** - Faça upload na pasta `images/` do repositório
+- **Google Drive** - Compartilhe o link público
+- **YouTube/Vimeo** - Para vídeos
+
+### Passo 3: Commit e Push
+
+```bash
+git add data/trabalhos.json
+git commit -m "Adicionar trabalho de [Seu Nome]"
+git push origin main
+```
+
+A galeria será atualizada automaticamente! 🎉
+
+## 🌐 Como Ativar o GitHub Pages
+
+1. Acesse seu repositório no GitHub
+2. Vá em **Settings** (Configurações)
+3. No menu lateral, clique em **Pages**
+4. Em **Source**, selecione:
+   - Branch: `main`
+   - Folder: `/ (root)`
+5. Clique em **Save**
+6. Aguarde 2-3 minutos
+7. Sua página estará disponível em: `https://silviosb88.github.io/ia_para_negocios/`
+
+## 🛠️ Tecnologias Utilizadas
+
+- **HTML5** - Estrutura semântica
+- **CSS3** - Estilos modernos com Flexbox e Grid
+- **JavaScript (ES6+)** - Lógica e interatividade
+- **Font Awesome** - Ícones
+- **GitHub Pages** - Hospedagem gratuita
+
+## 📱 Compatibilidade
+
+- ✅ Chrome, Firefox, Safari, Edge (versões recentes)
+- ✅ Dispositivos móveis (iOS e Android)
+- ✅ Tablets
+- ✅ Desktops
+
+## 🎨 Customização
+
+### Alterar Cores
+
+Edite as variáveis CSS no arquivo `css/styles.css`:
+
 ```css
---primary-color: #6366f1 (Roxo principal)
---secondary-color: #8b5cf6 (Roxo secundário)
---dark-bg: #1e293b (Fundo escuro do menu)
---success-color: #10b981 (Verde de sucesso)
---danger-color: #ef4444 (Vermelho de erro)
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #8b5cf6;
+    /* Adicione suas cores aqui */
+}
 ```
 
-### **Tipografia:**
-- **Fonte Principal:** Segoe UI, Tahoma, Geneva
-- **Menu:** 10px, uppercase, letter-spacing 0.5px
-- **Títulos:** 2.5rem (desktop), 1.75rem (mobile)
+### Alterar Textos
+
+Edite diretamente o arquivo `index.html` para mudar:
+- Título do header
+- Textos dos botões
+- Mensagens do rodapé
+
+## 🤝 Como Contribuir
+
+1. Faça um Fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/NovaFuncionalidade`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/NovaFuncionalidade`)
+5. Abra um Pull Request
+
+## 📝 Exemplos de Ferramentas de IA Suportadas
+
+- **Imagens:** MidJourney, DALL-E, Stable Diffusion, Leonardo.ai
+- **Vídeos:** Runway, Synthesia, Pictory, InVideo
+- **Avatares:** D-ID, HeyGen, Synthesia, Hour One
+- **Edição:** Photoshop AI, Canva AI, Remove.bg
+- **Texto:** ChatGPT, Claude, Gemini
 
 ---
 
-## 📱 **Responsividade**
-
-- ✅ Desktop (1200px+)
-- ✅ Tablet (768px - 1199px)
-- ✅ Mobile (< 768px)
-- ✅ Menu colapsável em mobile
-- ✅ Grid adaptável (3 → 2 → 1 coluna)
-
----
-
-## ⚠️ **IMPORTANTE - NÃO MODIFICAR**
-
-**Esta versão está CONGELADA para preservação histórica.**
-
-✅ Funciona perfeitamente  
-✅ Está em produção  
-✅ Serve como backup de segurança  
-
-**Para novas implementações, use a pasta `/v2.1/`**
-
----
-
-## 🔄 **Migração de Versões**
-
-### **Da v1.0 para v2.0:**
-- ✅ Menu de navegação profissional adicionado
-- ✅ Dropdown do Quiz implementado
-- ✅ Links corretos do Genspark
-- ✅ Font-size padronizado em 10px
-- ✅ Responsividade melhorada
-
----
-
-## 📊 **Métricas de Sucesso**
-
-- ⚡ Tempo de carregamento: < 2s
-- 📱 Mobile-friendly: 100%
-- ♿ Acessibilidade: WCAG 2.1 Level A
-- 🔍 SEO: Meta tags completas
-- 🎯 Funcionalidade: 100% operacional
-
----
-
-## 👥 **Créditos**
-
-**Desenvolvido por:** Estudantes do MBA IA para Negócios  
-**Professor:** Silvio  
-**IA Assistente:** GitHub Copilot  
-**Data:** 06-09 de Fevereiro de 2026  
-
----
-
-## 📝 **Changelog Resumido**
-
-**v2.0 (09/02/2026):**
-- ✅ Menu de navegação profissional
-- ✅ Dropdown do Quiz funcionando
-- ✅ Links corretos (Genspark + Aulas)
-- ✅ Font-size 10px implementado
-- ✅ Sistema completo de galeria
-- ✅ Documentação integrada
-- ✅ Sistema de versionamento
-
----
-
-## 🔗 **Links Relacionados**
-
-- 🌐 **Site:** https://clubedofoco.ia.br/
-- 📦 **v1.0:** [Ver versão original](../v1.0/)
-- 🚧 **v2.1:** [Versão de trabalho](../../v2.1/)
-- 📚 **Documentação:** [Guias completos](../../docs/)
-
----
-
-**🎉 Esta é a versão ESTÁVEL da plataforma!**
+⭐ **Em Desenvolvimento pelo Clube do Foco com ❤️ - estudantes do MBA de IA para Negócios**

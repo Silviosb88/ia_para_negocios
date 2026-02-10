@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload - Clube do Foco</title>
+    <link rel="stylesheet" href="css/upload.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Auth Section -->
+    <section id="auth-section" class="auth-section">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h1>Sistema de Upload</h1>
+                <p class="subtitle">Envie seus trabalhos de IA para a galeria</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Upload direto para GitHub</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Autenticação segura OAuth 2.0</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-images"></i>
+                        <span>Suporte para imagens e vídeos</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-history"></i>
+                        <span>Histórico versionado</span>
+                    </div>
+                </div>
+
+                <button id="github-login-btn" class="github-btn">
+                    <i class="fab fa-github"></i>
+                    Conectar com GitHub
+                </button>
+
+                <div class="auth-note">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Você será redirecionado para autorizar o acesso</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Info (Hidden by default) -->
+    <section id="user-info" class="user-info hidden">
+        <div class="user-card">
+            <img id="user-avatar" src="" alt="Avatar">
+            <div class="user-details">
+                <h3 id="user-name"></h3>
+                <p id="user-username"></p>
+            </div>
+            <button id="logout-btn" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </div>
+    </section>
+
+    <!-- Upload Form (Hidden by default) -->
+    <section id="upload-form-section" class="upload-section hidden">
+        <div class="container">
+            <h2><i class="fas fa-file-upload"></i> Enviar Trabalho</h2>
+            
+            <form id="upload-form">
+                <!-- Student Info -->
+                <div class="form-group">
+                    <label for="student-name">
+                        <i class="fas fa-user"></i> Nome do Estudante
+                    </label>
+                    <input type="text" id="student-name" required placeholder="Seu nome completo">
+                </div>
+
+                <!-- Work Title -->
+                <div class="form-group">
+                    <label for="work-title">
+                        <i class="fas fa-heading"></i> Título do Trabalho
+                    </label>
+                    <input type="text" id="work-title" required placeholder="Ex: Avatar Futurista Criado com IA">
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+                    <label for="work-description">
+                        <i class="fas fa-align-left"></i> Descrição
+                    </label>
+                    <textarea id="work-description" required placeholder="Descreva seu trabalho, o processo criativo e os resultados"></textarea>
+                </div>
+
+                <!-- Work Type -->
+                <div class="form-group">
+                    <label><i class="fas fa-layer-group"></i> Tipo de Trabalho</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="work-type" value="imagem" checked>
+                            <span><i class="fas fa-image"></i> Imagem</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="work-type" value="video">
+                            <span><i class="fas fa-video"></i> Vídeo</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="work-type" value="avatar">
+                            <span><i class="fas fa-user-circle"></i> Avatar</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- AI Tool -->
+                <div class="form-group">
+                    <label for="ai-tool">
+                        <i class="fas fa-robot"></i> Ferramentas de IA Utilizadas
+                    </label>
+                    <input type="text" id="ai-tool" required placeholder="Ex: MidJourney, DALL-E, Stable Diffusion">
+                </div>
+
+                <!-- File Upload -->
+                <div class="form-group">
+                    <label for="file-input">
+                        <i class="fas fa-paperclip"></i> Arquivo
+                    </label>
+                    <div class="file-upload">
+                        <input type="file" id="file-input" accept="image/*,video/*" required>
+                        <div class="file-upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Clique ou arraste o arquivo aqui</p>
+                            <small>Máximo 100 MB - Imagens: JPG, PNG, GIF, WebP | Vídeos: MP4, WebM</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Enviar Trabalho
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section id="progress-section" class="progress-section">
+        <div class="progress-container">
+            <h3>Enviando...</h3>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill">0%</div>
+            </div>
+            <p id="progress-status"></p>
+        </div>
+    </section>
+
+    <!-- Success Message -->
+    <section id="success-message" class="success-section">
+        <div class="success-container">
+            <i class="fas fa-check-circle"></i>
+            <h2>Trabalho Enviado com Sucesso!</h2>
+            <p>Seu trabalho foi adicionado à galeria e estará visível em breve.</p>
+            <div class="success-actions">
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Ver Galeria
+                </a>
+                <button onclick="resetForm()" class="btn btn-secondary">
+                    <i class="fas fa-plus"></i> Enviar Outro
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Error Message -->
+    <div id="error-message" class="error-message"></div>
+
+    <script src="js/upload.js"></script>
+</body>
+</html>
