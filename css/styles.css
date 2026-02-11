@@ -454,6 +454,14 @@ body {
     gap: 0.5rem;
 }
 
+/* Content Divider */
+.content-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-color), transparent);
+    margin: 3rem 0;
+}
+
 /* Footer */
 .footer {
     background: var(--dark-bg);
