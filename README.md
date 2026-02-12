@@ -1,143 +1,279 @@
-# 🎓 MBA IA para Negócios - Galeria de Trabalhos
+# 🤖 MBA IA para Negócios - Galeria de Trabalhos
 
-![Badge](https://img.shields.io/badge/IA-Para%20Neg%C3%B3cios-blue)
-![Badge](https://img.shields.io/badge/Status-Ativo-success)
+Galeria web moderna e responsiva para exibição dos projetos desenvolvidos pelos estudantes do MBA em Inteligência Artificial para Negócios.
 
-Galeria interativa e moderna para exibir os trabalhos dos estudantes do MBA de Inteligência Artificial para Negócios. Apresenta imagens, vídeos e avatares criados com ferramentas de IA.
+## 📋 Sobre o Projeto
 
-## 🚀 Demo
+Esta galeria permite visualizar trabalhos criados com ferramentas de IA, incluindo:
+- 🖼️ **Imagens** geradas com MidJourney, DALL-E, Adobe Firefly
+- 🎥 **Vídeos** criados com Runway ML, Synthesia, HeyGen
+- 👤 **Avatares** desenvolvidos com D-ID, Murf AI
 
-**Acesse a galeria ao vivo:** [https://silviosb88.github.io/ia_para_negocios/](https://silviosb88.github.io/ia_para_negocios/)
+## 🚀 Como Visualizar a Galeria
 
-## ✨ Funcionalidades
+### Opção 1: Visualização Local
 
-- 🎨 **Design Moderno e Responsivo** - Funciona perfeitamente em desktop, tablet e mobile
-- 🔍 **Busca em Tempo Real** - Encontre trabalhos por nome do estudante ou título
-- 🎯 **Filtros por Categoria** - Filtre por imagens, vídeos ou avatares
-- 🖼️ **Modal de Visualização** - Veja os trabalhos em tamanho maior com navegação
-- 📊 **Contador Dinâmico** - Veja quantos trabalhos estão sendo exibidos
-- ⚡ **Performance Otimizada** - Carregamento rápido e animações suaves
+1. Clone este repositório:
+```bash
+git clone https://github.com/Silviosb88/ia_para_negocios.git
+cd ia_para_negocios
+```
 
-## 📁 Estrutura do Projeto
+2. Abra o arquivo `index.html` diretamente no navegador, ou inicie um servidor local:
+
+```bash
+# Python 3
+python3 -m http.server 8080
+
+# Python 2
+python -m SimpleHTTPServer 8080
+
+# Node.js (se tiver http-server instalado)
+npx http-server -p 8080
+```
+
+3. Acesse no navegador: `http://localhost:8080`
+
+### Opção 2: GitHub Pages (Recomendado)
+
+1. Acesse as configurações do repositório no GitHub
+2. Vá em **Settings** > **Pages**
+3. Em **Source**, selecione a branch padrão do repositório (por exemplo, `main`)
+4. Selecione a pasta `/ (root)`
+5. Clique em **Save**
+6. Aguarde alguns minutos e acesse: `https://silviosb88.github.io/ia_para_negocios/`
+
+## 📁 Estrutura de Arquivos
 
 ```
 ia_para_negocios/
-├── index.html              # Página principal
+├── index.html              # Página principal da galeria
 ├── css/
-│   └── styles.css         # Estilos da aplicação
+│   └── styles.css         # Estilos personalizados
 ├── js/
-│   └── app.js            # Lógica e interatividade
+│   └── app.js             # Lógica e interatividade
 ├── data/
-│   └── trabalhos.json    # Base de dados dos trabalhos
-└── README.md             # Este arquivo
+│   └── trabalhos.json     # Dados dos projetos
+└── README.md              # Documentação
 ```
 
-## 🎯 Como Adicionar Novos Trabalhos
+## ➕ Como Adicionar Novos Trabalhos
 
-### Passo 1: Edite o arquivo JSON
+### Passo 1: Preparar a Mídia
 
-Abra o arquivo `data/trabalhos.json` e adicione um novo objeto ao array `trabalhos`:
+Faça upload das imagens/vídeos em uma destas opções:
+
+**Opção A - GitHub (Recomendado para imagens pequenas):**
+1. Crie uma pasta `assets/` no repositório
+2. Faça upload da imagem
+3. Use o caminho: `assets/nome-arquivo.jpg`
+
+**Opção B - Serviços de Hospedagem Externos:**
+- **Imgur**: https://imgur.com (imagens)
+- **Google Drive**: Compartilhe e use o link direto
+- **YouTube**: Para vídeos (use o link embed)
+- **Vimeo**: Para vídeos profissionais
+
+**Para converter link do YouTube em embed:**
+- Link original: `https://www.youtube.com/watch?v=ABC123`
+- Link embed: `https://www.youtube.com/embed/ABC123`
+
+### Passo 2: Editar o Arquivo JSON
+
+Abra o arquivo `data/trabalhos.json` e adicione um novo objeto no array `galeria_projetos`:
 
 ```json
 {
-  "id": 7,
-  "estudante": "Seu Nome",
-  "tipo": "imagem",
-  "titulo": "Título do Seu Trabalho",
-  "descricao": "Descrição detalhada do trabalho",
-  "url": "URL_DA_SUA_IMAGEM",
-  "videoUrl": "URL_DO_VIDEO (apenas se tipo for 'video')",
-  "data": "2026-02-07",
-  "ferramentas": ["MidJourney", "ChatGPT"]
+  "codigo": "PRJ007",
+  "autor": "Seu Nome Completo",
+  "modalidade": "imagem",
+  "titulo_obra": "Título do Seu Trabalho",
+  "resumo": "Descrição detalhada do projeto e técnicas utilizadas",
+  "arquivo_preview": "URL_DA_SUA_IMAGEM",
+  "timestamp": "2026-02-06",
+  "stack_ia": ["Ferramenta 1", "Ferramenta 2"]
 }
 ```
 
-### Tipos Disponíveis:
-- "imagem" - Para imagens geradas por IA
-- "video" - Para vídeos
-- "avatar" - Para avatares digitais
-
-### Passo 2: Hospede Suas Mídias
-
-Você pode usar:
-- **GitHub** - Faça upload na pasta `images/` do repositório
-- **Google Drive** - Compartilhe o link público
-- **YouTube/Vimeo** - Para vídeos
+**Para vídeos**, adicione também:
+```json
+"link_streaming": "https://www.youtube.com/embed/SEU_VIDEO_ID"
+```
 
 ### Passo 3: Commit e Push
 
 ```bash
 git add data/trabalhos.json
-git commit -m "Adicionar trabalho de [Seu Nome]"
+git commit -m "Adicionar projeto: [Nome do Projeto]"
 git push origin main
 ```
 
-A galeria será atualizada automaticamente! 🎉
+## 🎨 Tipos de Trabalho e Modalidades
 
-## 🌐 Como Ativar o GitHub Pages
+### Imagens (`modalidade: "imagem"`)
+- Geração de arte com IA
+- Logos e identidades visuais
+- Ilustrações conceituais
+- Edição e manipulação de imagens
 
-1. Acesse seu repositório no GitHub
-2. Vá em **Settings** (Configurações)
-3. No menu lateral, clique em **Pages**
-4. Em **Source**, selecione:
-   - Branch: `main`
-   - Folder: `/ (root)`
-5. Clique em **Save**
-6. Aguarde 2-3 minutos
-7. Sua página estará disponível em: `https://silviosb88.github.io/ia_para_negocios/`
+**Badge**: Azul (#4F46E5)
+
+### Vídeos (`modalidade: "video"`)
+- Animações geradas por IA
+- Vídeos explicativos
+- Motion graphics
+- Edição automatizada
+
+**Badge**: Roxo (#8B5CF6)
+
+### Avatares (`modalidade: "avatar"`)
+- Avatares digitais humanizados
+- Assistentes virtuais
+- Porta-vozes corporativos
+- Personagens animados
+
+**Badge**: Verde (#10B981)
+
+## 🔍 Funcionalidades da Galeria
+
+### Filtros
+- **Todos**: Exibe todos os projetos
+- **Imagens**: Apenas trabalhos de imagem
+- **Vídeos**: Apenas conteúdo em vídeo
+- **Avatares**: Apenas avatares digitais
+
+### Busca
+- Busca em tempo real por nome do estudante
+- Resultados instantâneos conforme você digita
+- Case-insensitive (maiúsculas/minúsculas não importam)
+
+### Visualização
+- Clique em qualquer card para ver em tamanho maior
+- Modal com informações completas do projeto
+- Navegação entre projetos (setas ou teclado)
+- Player de vídeo integrado para conteúdo audiovisual
+
+### Responsividade
+- **Mobile** (até 768px): 1 coluna
+- **Tablet** (768px - 1024px): 2 colunas
+- **Desktop** (acima de 1024px): 3-4 colunas
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **HTML5** - Estrutura semântica
-- **CSS3** - Estilos modernos com Flexbox e Grid
-- **JavaScript (ES6+)** - Lógica e interatividade
-- **Font Awesome** - Ícones
-- **GitHub Pages** - Hospedagem gratuita
+- **HTML5**: Estrutura semântica
+- **CSS3**: Flexbox, Grid, Animações, Variáveis CSS
+- **JavaScript ES6+**: Fetch API, Manipulação do DOM
+- **JSON**: Armazenamento de dados
 
-## 📱 Compatibilidade
+## 👥 Como Contribuir
 
-- ✅ Chrome, Firefox, Safari, Edge (versões recentes)
-- ✅ Dispositivos móveis (iOS e Android)
-- ✅ Tablets
-- ✅ Desktops
+### Para Estudantes
 
-## 🎨 Customização
+1. **Fork** este repositório
+2. Adicione seu trabalho ao arquivo `data/trabalhos.json`
+3. Se necessário, adicione suas imagens na pasta `assets/`
+4. Crie um **Pull Request** com a descrição:
+   - Seu nome
+   - Tipo de trabalho
+   - Ferramentas utilizadas
 
-### Alterar Cores
+### Diretrizes de Contribuição
 
-Edite as variáveis CSS no arquivo `css/styles.css`:
+- Use URLs válidas e acessíveis para mídias
+- Preencha todos os campos obrigatórios do JSON
+- Mantenha descrições claras e profissionais
+- Teste localmente antes de enviar o PR
+- Um projeto por Pull Request
 
-```css
-:root {
-    --primary-color: #6366f1;
-    --secondary-color: #8b5cf6;
-    /* Adicione suas cores aqui */
-}
+## 📝 Formato do JSON
+
+### Campos Obrigatórios
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `codigo` | String | Identificador único (ex: PRJ007) |
+| `autor` | String | Nome completo do estudante |
+| `modalidade` | String | Tipo: "imagem", "video" ou "avatar" |
+| `titulo_obra` | String | Título do projeto |
+| `resumo` | String | Descrição do trabalho |
+| `arquivo_preview` | String | URL da thumbnail/preview |
+| `timestamp` | String | Data no formato YYYY-MM-DD |
+| `stack_ia` | Array | Lista de ferramentas IA usadas |
+
+### Campos Opcionais
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `link_streaming` | String | URL do vídeo embed (apenas para vídeos) |
+
+## 🎯 Exemplos de Prompts e Ferramentas
+
+### MidJourney
+```
+/imagine corporate futuristic office with holographic displays, 
+photorealistic, 8k, professional lighting --ar 16:9 --v 6
 ```
 
-### Alterar Textos
+### DALL-E 3
+```
+Create a modern logo for an AI consulting company, 
+minimalist design, blue and purple gradient, vector style
+```
 
-Edite diretamente o arquivo `index.html` para mudar:
-- Título do header
-- Textos dos botões
-- Mensagens do rodapé
+### Runway ML
+- Text-to-Video: Converta descrições em vídeos
+- Motion Brush: Anime partes específicas de imagens
 
-## 🤝 Como Contribuir
+### Synthesia
+- Crie vídeos com avatares IA
+- Suporte para múltiplos idiomas
+- Sincronização labial realista
 
-1. Faça um Fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/NovaFuncionalidade`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/NovaFuncionalidade`)
-5. Abra um Pull Request
+## 📱 Acessibilidade
 
-## 📝 Exemplos de Ferramentas de IA Suportadas
+A galeria foi desenvolvida com foco em acessibilidade:
 
-- **Imagens:** MidJourney, DALL-E, Stable Diffusion, Leonardo.ai
-- **Vídeos:** Runway, Synthesia, Pictory, InVideo
-- **Avatares:** D-ID, HeyGen, Synthesia, Hour One
-- **Edição:** Photoshop AI, Canva AI, Remove.bg
-- **Texto:** ChatGPT, Claude, Gemini
+- ✅ Navegação por teclado (Tab, Enter, Esc, Setas)
+- ✅ ARIA labels para leitores de tela
+- ✅ Alt text em todas as imagens
+- ✅ Contraste adequado de cores
+- ✅ Foco visível em elementos interativos
+
+## 🐛 Resolução de Problemas
+
+### Imagens não aparecem
+- Verifique se a URL está acessível publicamente
+- Teste a URL diretamente no navegador
+- Certifique-se de usar HTTPS (não HTTP)
+
+### Vídeo não carrega
+- Use URLs embed (não URLs normais)
+- YouTube: `/embed/VIDEO_ID`
+- Vimeo: `https://player.vimeo.com/video/VIDEO_ID`
+
+### Projeto não aparece na galeria
+- Valide o JSON em https://jsonlint.com
+- Verifique vírgulas e aspas
+- Certifique-se que `modalidade` é "imagem", "video" ou "avatar"
+
+### GitHub Pages não atualiza
+- Aguarde 2-5 minutos após o push
+- Force refresh: Ctrl+F5 (Windows) ou Cmd+Shift+R (Mac)
+- Limpe o cache do navegador
+
+## 📞 Suporte
+
+Para dúvidas ou problemas:
+1. Abra uma **Issue** neste repositório
+2. Entre em contato com a coordenação do MBA
+3. Consulte a documentação das ferramentas IA utilizadas
+
+## 📄 Licença
+
+Este projeto é educacional e destinado a estudantes de IA.
 
 ---
 
-⭐ **Em Desenvolvimento pelo Clube do Foco com ❤️ - estudantes do MBA de IA para Negócios**
+**Desenvolvido pelos Clube do Focom em IA**
+
+*Última atualização: 06 de Fevereiro de 2026*
