@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Search, Filter, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Search, Filter, X, ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
@@ -103,9 +104,17 @@ export default function Home() {
       {/* Header */}
       <header className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-12 shadow-lg">
         <div className="container">
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <div className="text-4xl">🎨</div>
-            <h1 className="text-4xl font-bold">Clube do Foco</h1>
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <div className="text-4xl">🎨</div>
+              <h1 className="text-4xl font-bold">Clube do Foco</h1>
+            </div>
+            <Link href="/docs">
+              <a className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
+                <BookOpen className="w-5 h-5" />
+                Documentacao
+              </a>
+            </Link>
           </div>
           <p className="text-center text-indigo-100 text-lg">
             Galeria de Trabalhos com IA - Explorando o Futuro da Criatividade
