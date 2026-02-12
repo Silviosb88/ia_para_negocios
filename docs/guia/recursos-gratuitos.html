@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recursos gratuitos e benefícios para estudantes de IA e Programação">
+    <title>Recursos Gratuitos - Clube do Foco</title>
+    <link rel="stylesheet" href="assets/docs.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos adicionais específicos para esta página */
+        .resource-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+            transform: translateY(-3px);
+        }
+        
+        .resource-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .resource-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .badge-free {
+            background: #10b981;
+            color: white;
+        }
+        
+        .badge-student {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .badge-trial {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .resource-desc {
+            color: #6b7280;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+        
+        .benefits-box, .howto-box {
+            background: #f9fafb;
+            border-left: 4px solid #667eea;
+            padding: 18px;
+            border-radius: 8px;
+            margin: 18px 0;
+        }
+        
+        .benefits-box {
+            background: #f0fdf4;
+            border-left-color: #10b981;
+        }
+        
+        .howto-box {
+            background: #eff6ff;
+            border-left-color: #3b82f6;
+        }
+        
+        .benefits-box strong, .howto-box strong {
+            display: block;
+            margin-bottom: 10px;
+            color: #1f2937;
+            font-size: 1.05em;
+        }
+        
+        .benefits-box ul, .howto-box ol {
+            margin-left: 20px;
+            color: #374151;
+        }
+        
+        .benefits-box li, .howto-box li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        .tip-box {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 18px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .tip-box strong {
+            color: #92400e;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .btn-resource {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .btn-resource:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+            color: white;
+        }
+        
+        .btn-resource i {
+            margin-left: 6px;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .small-resource-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .small-resource-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.12);
+            transform: translateY(-2px);
+        }
+        
+        .small-resource-card h4 {
+            font-size: 1.15em;
+            color: #1f2937;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .small-resource-card p {
+            color: #6b7280;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        .intro-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .intro-box p {
+            color: white;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+        
+        .intro-box strong {
+            color: #fbbf24;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 50px 0 25px 0;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .section-title i {
+            font-size: 1.8em;
+            color: #667eea;
+        }
+        
+        .section-title h2 {
+            margin: 0;
+            color: #1f2937;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-brain"></i> Clube do Foco
+            </a>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Galeria</a>
+                <a href="index.html"><i class="fas fa-book"></i> Documentação</a>
+                <a href="changelog/index.html"><i class="fas fa-history"></i> Changelog</a>
+                <a href="dialogos/index.html"><i class="fas fa-comments"></i> Diálogos IA</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <h1><i class="fas fa-gift"></i> Recursos Gratuitos para Estudantes</h1>
+            <p class="subtitle">Tudo o que você precisa para estudar IA e Programação sem gastar nada</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container" style="padding: 40px 20px;">
+        
+        <!-- Intro -->
+        <div class="intro-box">
+            <p><strong>👋 Bem-vindo(a) à central de recursos!</strong></p>
+            <p>Aqui você encontra todos os programas, ferramentas e plataformas gratuitas que estudantes como você podem usar para aprender e desenvolver projetos. Não precisa mais ficar procurando por aí - tudo está organizado em um só lugar!</p>
+        </div>
+
+        <!-- SEÇÃO 1: PROGRAMAS PARA ESTUDANTES -->
+        <div class="section-title">
+            <i class="fas fa-graduation-cap"></i>
+            <h2>Programas Especiais para Estudantes</h2>
+        </div>
+
+        <div class="resource-card">
+            <div class="resource-header">
+                <h3 class="resource-title">GitHub Student Developer Pack</h3>
+                <span class="badge badge-student">Estudante</span>
+                <span class="badge badge-free">100% Grátis</span>
+            </div>
+            
+            <p class="resource-desc">
+                O pacote mais completo para estudantes de tecnologia! Acesso gratuito a mais de 100 ferramentas premium que normalmente custariam milhares de dólares.
+            </p>
+            
+            <div class="benefits-box">
+                <strong>✨ O que você ganha:</strong>
+                <ul>
+                    <li><strong>GitHub Copilot</strong> - IA que programa com você (valor: $10/mês)</li>
+                    <li><strong>GitHub Pro</strong> - Repositórios privados ilimitados</li>
+                    <li><strong>$200 em créditos Azure</strong> - Hospedagem e cloud computing</li>
+                    <li><strong>$100 em créditos DigitalOcean</strong> - Servidores e deploy</li>
+                    <li><strong>Domínio .me grátis</strong> - Seu site personalizado por 1 ano</li>
+                    <li><strong>Canva Pro</strong> - Design gráfico profissional</li>
+                    <li><strong>Bootstrap Studio</strong> - Editor de sites visual</li>
+                    <li>E mais de 90 outras ferramentas!</li>
+                </ul>
+            </div>
+            
+            <div class="howto-box">
+                <strong>📋 Como conseguir:</strong>
+                <ol>
+                    <li>Acesse <a href="https://education.github.com/pack" target="_blank" style="color: #3b82f6; font-weight: 600;">education.github.com/pack</a></li>
+                    <li>Clique em "Get Student Benefits"</li>
+                    <li>Você vai precisar de:
+                        <ul>
+                            <li>Email institucional (@suaUniversidade.edu.br) <strong>OU</strong></li>
+                            <li>Comprovante de matrícula (PDF da declaração/atestado)</li>
+                        </ul>
+                    </li>
+                    <li>Aguarde aprovação (geralmente 1-7 dias)</li>
+                    <li>Pronto! Ative cada benefício dentro do painel</li>
+                </ol>
+            </div>
+            
+            <div class="tip-box">
+                <strong>💡 Dica:</strong>
+                <p style="margin: 0;">Se você não tem email institucional, use a declaração de matrícula em PDF. Tire um print da tela com seu nome e data de validade visíveis!</p>
+            </div>
+            
+            <a href="https://education.github.com/pack" class="btn-resource" target="_blank">
+                Solicitar Agora <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="resource-card">
+            <div class="resource-header">
+                <h3 class="resource-title">JetBrains Student License</h3>
+                <span class="badge badge-student">Estudante</span>
+                <span class="badge badge-free">Grátis</span>
+            </div>
+            
+            <p class="resource-desc">
+                Acesso gratuito a todas as IDEs profissionais da JetBrains (PyCharm, WebStorm, IntelliJ IDEA, etc.).
+            </p>
+            
+            <div class="benefits-box">
+                <strong>✨ Inclui:</strong>
+                <ul>
+                    <li>PyCharm Professional - Python</li>
+                    <li>WebStorm - JavaScript/TypeScript</li>
+                    <li>IntelliJ IDEA Ultimate - Java</li>
+                    <li>Todas as outras 15+ IDEs</li>
+                </ul>
+            </div>
+            
+            <a href="https://www.jetbrains.com/community/education/" class="btn-resource" target="_blank">
+                Solicitar <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="resource-card">
+            <div class="resource-header">
+                <h3 class="resource-title">Microsoft Azure for Students</h3>
+                <span class="badge badge-student">Estudante</span>
+                <span class="badge badge-free">$100 Créditos</span>
+            </div>
+            
+            <p class="resource-desc">
+                $100 em créditos Azure sem precisar de cartão de crédito + acesso a serviços gratuitos.
+            </p>
+            
+            <div class="benefits-box">
+                <strong>✨ Benefícios:</strong>
+                <ul>
+                    <li>$100 em créditos (renováveis anualmente)</li>
+                    <li>Máquinas virtuais gratuitas</li>
+                    <li>Bancos de dados</li>
+                    <li>IA e Machine Learning</li>
+                    <li>Hospedagem de sites</li>
+                </ul>
+            </div>
+            
+            <a href="https://azure.microsoft.com/pt-br/free/students/" class="btn-resource" target="_blank">
+                Ativar <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <!-- SEÇÃO 2: FERRAMENTAS DE IA -->
+        <div class="section-title">
+            <i class="fas fa-robot"></i>
+            <h2>Ferramentas de IA Gratuitas</h2>
+        </div>
+
+        <div class="resources-grid">
+            <div class="small-resource-card">
+                <h4>
+                    <span class="badge badge-free">Grátis</span>
+                    Claude (Anthropic)
+                </h4>
+                <p>IA conversacional avançada (a que você está usando agora!). Ótima para programação, escrita e análise.</p>
+                <p style="font-size: 0.9em; margin-bottom: 15px;"><strong>Uso:</strong> Mensagens diárias gratuitas</p>
+                <a href="https://claude.ai" class="btn-resource" target="_blank" style="font-size: 0.9em; padding: 8px 18px;">
+                    Usar <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="small-resource-card">
+                <h4>
+                    <span class="badge badge-free">Grátis</span>
+                    ChatGPT (OpenAI)
+                </h4>
+                <p>GPT-4o mini gratuito. Bom para conversas, código, ideias e aprendizado.</p>
+                <p style="font-size: 0.9em; margin-bottom: 15px;"><strong>Uso:</strong> Ilimitado no plano gratuito</p>
+                <a href="https://chat.openai.com" class="btn-resource" target="_blank" style="font-size: 0.9em; padding: 8px 18px;">
+                    Usar <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="small-resource-card">
+                <h4>
+                    <span class="badge badge-free">Grátis</span>
+                    Google Gemini
+                </h4>
+                <p>IA do Google com acesso à busca em tempo real. Ótima para pesquisas e dados atualizados.</p>
+                <p style="font-size: 0.9em; margin-bottom: 15px;"><strong>Uso:</strong> Plano gratuito generoso</p>
+                <a href="https://gemini.google.com" class="btn-resource" target="_blank" style="font-size: 0.9em; padding: 8px 18px;">
+                    Usar <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="small-resource-card">
+                <h4>
+                    <span class="badge badge-free">Grátis</span>
+                    Microsoft Copilot
+                </h4>
+                <p>IA integrada ao Bing. Pesquisa web + IA em um só lugar.</p>
+                <p style="font-size: 0.9em; margin-bottom: 15px;"><strong>Uso:</strong> Gratuito com conta Microsoft</p>
+                <a href="https://copilot.microsoft.com" class="btn-resource" target="_blank" style="font-size: 0.9em; padding: 8px 18px;">
+                    Usar <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 3: EDITORES COM IA -->
+        <div class="section-title">
+            <i class="fas fa-code"></i>
+            <h2>Editores com IA Integrada</h2>
+        </div>
+
+        <div class="resource-card">
+            <div class="resource-header">
+                <h3 class="resource-title">Cursor IDE</h3>
+                <span class="badge badge-trial">Trial Generoso</span>
+            </div>
+            
+            <p class="resource-desc">
+                Fork do VS Code com IA nativa. Melhor experiência de programação com IA atualmente.
+            </p>
+            
+            <div class="benefits-box">
+                <strong>✨ Recursos:</strong>
+                <ul>
+                    <li>IA entende todo o contexto do projeto</li>
+                    <li>Autocomplete inteligente</li>
+                    <li>Chat integrado no código</li>
+                    <li>Edição com comandos de voz</li>
+                    <li>2 semanas grátis Pro, depois plano gratuito limitado</li>
+                </ul>
+            </div>
+            
+            <a href="https://cursor.sh" class="btn-resource" target="_blank">
+                Download <i class="fas fa-download"></i>
+            </a>
+        </div>
+
+        <div class="resource-card">
+            <div class="resource-header">
+                <h3 class="resource-title">VS Code + Extensões IA</h3>
+                <span class="badge badge-free">Grátis</span>
+            </div>
+            
+            <p class="resource-desc">
+                Editor mais popular do mundo + extensões gratuitas de IA.
+            </p>
+            
+            <div class="benefits-box">
+                <strong>🔌 Extensões recomendadas:</strong>
+                <ul>
+                    <li><strong>Continue</strong> - Copilot open-source gratuito</li>
+                    <li><strong>Codeium</strong> - Autocomplete com IA grátis</li>
+                    <li><strong>Tabnine</strong> - Sugestões de código IA</li>
+                    <li><strong>GitHub Copilot</strong> - Se tiver Student Pack</li>
+                </ul>
+            </div>
+            
+            <a href="https://code.visualstudio.com" class="btn-resource" target="_blank">
+                Download <i class="fas fa-download"></i>
+            </a>
+        </div>
+
+        <!-- SEÇÃO 4: HOSPEDAGEM -->
+        <div class="section-title">
+            <i class="fas fa-server"></i>
+            <h2>Hospedagem e Deploy Gratuitos</h2>
+        </div>
+
+        <!-- Cloudflare Pages Card em Destaque -->
+        <div class="resource-card" style="border: 2px solid #f38020; background: linear-gradient(to right, #fff 0%, #fff5ed 100%);">
+            <div class="resource-header">
+                <h3 class="resource-title" style="color: #f38020;">
+                    <i class="fas fa-cloud" style="color: #f38020;"></i> Cloudflare Pages
+                </h3>
+                <span class="badge badge-free">Grátis</span>
+                <span class="badge" style="background: #f38020; color: white;">RECOMENDADO ⭐</span>
+            </div>
+            
+            <p class="resource-desc">
+                <strong>Onde este site está hospedado!</strong> Plataforma completa para deploy de sites estáticos com CDN global ultra-rápido da Cloudflare.
+            </p>
+            
+            <div class="benefits-box">
+                <strong>✨ Por que o Cloudflare Pages é excelente:</strong>
+                <ul>
+                    <li><strong>Ilimitado!</strong> Projetos, builds e banda ilimitados no plano gratuito</li>
+                    <li><strong>Super Rápido</strong> - CDN global em 200+ cidades</li>
+                    <li><strong>Deploy Automático</strong> - Conecta com GitHub/GitLab</li>
+                    <li><strong>HTTPS Grátis</strong> - SSL automático incluído</li>
+                    <li><strong>Domínio Personalizado</strong> - Use seu próprio domínio grátis</li>
+                    <li><strong>Preview Branches</strong> - Cada branch gera uma URL de preview</li>
+                    <li><strong>Edge Functions</strong> - Execute código serverless no edge</li>
+                    <li><strong>Analytics Grátis</strong> - Veja visitas sem rastreamento</li>
+                </ul>
+            </div>
+            
+            <div class="howto-box">
+                <strong>📋 Como fazer deploy no Cloudflare Pages:</strong>
+                <ol>
+                    <li>Crie uma conta grátis em <a href="https://pages.cloudflare.com" target="_blank" style="color: #3b82f6; font-weight: 600;">pages.cloudflare.com</a></li>
+                    <li>Clique em "Create a project"</li>
+                    <li>Conecte sua conta GitHub/GitLab</li>
+                    <li>Selecione o repositório do seu projeto</li>
+                    <li>Configure o comando de build (ex: <code style="background: #f3f4f6; padding: 2px 6px; border-radius: 4px;">npm run build</code>)</li>
+                    <li>Defina a pasta de output (ex: <code style="background: #f3f4f6; padding: 2px 6px; border-radius: 4px;">build</code> ou <code style="background: #f3f4f6; padding: 2px 6px; border-radius: 4px;">dist</code>)</li>
+                    <li>Clique em "Save and Deploy"</li>
+                    <li>Pronto! Seu site estará online em segundos 🚀</li>
+                </ol>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 Dica Pro:</strong>
+                <p style="margin: 10px 0 0 0;">A cada push no GitHub, o Cloudflare Pages faz deploy automático. Branches diferentes geram URLs de preview únicas - perfeito para testar mudanças antes de ir para produção!</p>
+            </div>
+            
+            <a href="https://pages.cloudflare.com" class="btn-resource" target="_blank" style="background: #f38020;">
+                Começar no Cloudflare Pages <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="resources-grid">
+            <div class="small-resource-card">
+                <h4>
+                    <span class="badge badge-free">Grátis</span>
+                    Vercel
+                </h4>
+                <p>Melhor opção para sites e apps Next.js/React. Deploy automático do GitHub.</p>
+                <p style="font-size: 0.9em; margin-bottom: 15px;"><strong>Limite:</strong> 100GB bandwidth/mês</p>
+                <a href="https://vercel.com" class="btn-resource" target="_blank" style="font-size: 0.9em; padding: 8px 18px;">
+                    Começar <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="small-resource-card">
+                <h4>
+                    <span class="badge badge-free">Grátis</span>
+                    Netlify
+                </h4>
+                <p>Ótimo para sites estáticos. Integração fácil com Git.</p>
+                <p style="font-size: 0.9em; margin-bottom: 15px;"><strong>Limite:</strong> 100GB bandwidth/mês</p>
+                <a href="https://netlify.com" class="btn-resource" target="_blank" style="font-size: 0.9em; padding: 8px 18px;">
+                    Começar <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="small-resource-card">
+                <h4>
+                    <span class="badge badge-free">Grátis</span>
+                    GitHub Pages
+                </h4>
+                <p>Hospedagem gratuita direto do repositório GitHub. Perfeito para portfolios.</p>
+                <p style="font-size: 0.9em; margin-bottom: 15px;"><strong>Limite:</strong> 1GB storage, 100GB bandwidth/mês</p>
+                <a href="https://pages.github.com" class="btn-resource" target="_blank" style="font-size: 0.9em; padding: 8px 18px;">
+                    Começar <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="small-resource-card">
+                <h4>
+                    <span class="badge badge-free">Grátis</span>
+                    Render
+                </h4>
+                <p>Backend e bancos de dados gratuitos. Alternativa ao Heroku.</p>
+                <p style="font-size: 0.9em; margin-bottom: 15px;"><strong>Limite:</strong> 750h/mês (sempre ativo)</p>
+                <a href="https://render.com" class="btn-resource" target="_blank" style="font-size: 0.9em; padding: 8px 18px;">
+                    Começar <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 5: CURSOS -->
+        <div class="section-title">
+            <i class="fas fa-graduation-cap"></i>
+            <h2>Cursos e Plataformas de Aprendizado</h2>
+        </div>
+
+        <div class="resource-card">
+            <div class="resource-header">
+                <h3 class="resource-title">freeCodeCamp</h3>
+                <span class="badge badge-free">100% Grátis</span>
+            </div>
+            
+            <p class="resource-desc">
+                Cursos completos de programação com certificados gratuitos.
+            </p>
+            
+            <div class="benefits-box">
+                <strong>📖 Trilhas disponíveis:</strong>
+                <ul>
+                    <li>Web Development Responsivo</li>
+                    <li>JavaScript Algorithms</li>
+                    <li>Front End Development</li>
+                    <li>Data Visualization</li>
+                    <li>APIs e Microservices</li>
+                    <li>Machine Learning com Python</li>
+                </ul>
+            </div>
+            
+            <a href="https://www.freecodecamp.org" class="btn-resource" target="_blank">
+                Começar <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="resource-card">
+            <div class="resource-header">
+                <h3 class="resource-title">Coursera for Students</h3>
+                <span class="badge badge-student">Estudante</span>
+            </div>
+            
+            <p class="resource-desc">
+                Cursos de universidades top (Stanford, Yale, etc.) com auxílio financeiro.
+            </p>
+            
+            <div class="howto-box">
+                <strong>Como conseguir grátis:</strong>
+                <ol>
+                    <li>Escolha um curso</li>
+                    <li>Clique em "Enroll" e depois "Financial Aid Available"</li>
+                    <li>Preencha o formulário (aprovação em 15 dias)</li>
+                    <li>Curso 100% gratuito após aprovação</li>
+                </ol>
+            </div>
+            
+            <a href="https://www.coursera.org" class="btn-resource" target="_blank">
+                Explorar <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="resources-grid">
+            <div class="small-resource-card">
+                <h4>
+                    <span class="badge badge-free">Grátis</span>
+                    The Odin Project
+                </h4>
+                <p>Currículo completo de Full Stack Development.</p>
+                <a href="https://www.theodinproject.com" class="btn-resource" target="_blank" style="font-size: 0.9em; padding: 8px 18px;">
+                    Começar <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="small-resource-card">
+                <h4>
+                    <span class="badge badge-free">Grátis</span>
+                    CS50 (Harvard)
+                </h4>
+                <p>Curso introdutório de Ciência da Computação de Harvard.</p>
+                <a href="https://cs50.harvard.edu" class="btn-resource" target="_blank" style="font-size: 0.9em; padding: 8px 18px;">
+                    Começar <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 6: FERRAMENTAS EXTRAS -->
+        <div class="section-title">
+            <i class="fas fa-tools"></i>
+            <h2>Ferramentas Úteis Extras</h2>
+        </div>
+
+        <div class="resources-grid">
+            <div class="small-resource-card">
+                <h4>Notion</h4>
+                <p>Organize seus estudos, projetos e anotações.</p>
+                <p style="font-size: 0.9em; margin-bottom: 15px;"><strong>Estudante:</strong> Plano Plus grátis</p>
+                <a href="https://www.notion.so/students" class="btn-resource" target="_blank" style="font-size: 0.9em; padding: 8px 18px;">
+                    Ativar <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="small-resource-card">
+                <h4>Figma</h4>
+                <p>Design de interfaces e protótipos.</p>
+                <p style="font-size: 0.9em; margin-bottom: 15px;"><strong>Estudante:</strong> Plano Education grátis</p>
+                <a href="https://www.figma.com/education/" class="btn-resource" target="_blank" style="font-size: 0.9em; padding: 8px 18px;">
+                    Solicitar <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="small-resource-card">
+                <h4>Canva</h4>
+                <p>Design gráfico simplificado.</p>
+                <p style="font-size: 0.9em; margin-bottom: 15px;"><strong>Estudante:</strong> Canva Pro grátis por 1 ano</p>
+                <a href="https://www.canva.com/education/" class="btn-resource" target="_blank" style="font-size: 0.9em; padding: 8px 18px;">
+                    Ativar <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="small-resource-card">
+                <h4>MongoDB Atlas</h4>
+                <p>Banco de dados NoSQL na nuvem.</p>
+                <p style="font-size: 0.9em; margin-bottom: 15px;"><strong>Grátis:</strong> 512MB permanentemente</p>
+                <a href="https://www.mongodb.com/cloud/atlas" class="btn-resource" target="_blank" style="font-size: 0.9em; padding: 8px 18px;">
+                    Começar <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- DICAS FINAIS -->
+        <div class="section-title">
+            <i class="fas fa-lightbulb"></i>
+            <h2>Dicas Importantes</h2>
+        </div>
+
+        <div class="tip-box">
+            <strong>🎯 Priorize primeiro:</strong>
+            <ol style="margin: 10px 0 0 20px;">
+                <li style="margin-bottom: 8px;"><strong>GitHub Student Developer Pack</strong> - É o mais completo e dá acesso a várias outras ferramentas</li>
+                <li style="margin-bottom: 8px;"><strong>VS Code + Extensões gratuitas de IA</strong> - Para começar a programar imediatamente</li>
+                <li style="margin-bottom: 8px;"><strong>Vercel ou Netlify</strong> - Para publicar seus projetos</li>
+                <li>Depois vá adicionando as outras conforme precisar</li>
+            </ol>
+        </div>
+
+        <div class="tip-box">
+            <strong>📧 Dica do Email Institucional:</strong>
+            <p style="margin: 10px 0 0 0;">Se sua universidade não fornece email @instituicao.edu.br, você pode:</p>
+            <ul style="margin: 10px 0 0 20px;">
+                <li style="margin-bottom: 8px;">Solicitar ao departamento de TI da faculdade</li>
+                <li>Ou usar comprovante de matrícula em PDF (funciona na maioria dos programas)</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <strong>⏰ Mantenha Atualizado:</strong>
+            <p style="margin: 10px 0 0 0;">Muitos benefícios estudantis precisam ser renovados anualmente. Coloque lembretes no calendário para não perder o acesso!</p>
+        </div>
+
+        <!-- Botão de Volta -->
+        <div style="text-align: center; margin-top: 60px;">
+            <a href="index.html" class="btn-resource" style="background: #6b7280; padding: 14px 32px; font-size: 1.1em;">
+                <i class="fas fa-arrow-left"></i> Voltar para Documentação
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Clube do Foco - MBA IA para Negócios</p>
+            <p>Documentação colaborativa feita por estudantes, para estudantes 🚀</p>
+            <p style="margin-top: 15px; font-size: 0.9em;">
+                Faltou algum recurso importante? Quer adicionar algo?<br>
+                Entre em contato ou faça um pull request no GitHub!
+            </p>
+        </div>
+    </footer>
+
+    <script src="assets/docs.js"></script>
+</body>
+</html>
