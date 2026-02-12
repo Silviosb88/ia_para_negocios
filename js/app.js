@@ -1,502 +1,219 @@
-// ===== CONFIGURAÇÃO INICIAL E VARIÁVEIS GLOBAIS =====
-const configuracaoApp = {
-    caminhoArquivoDados: 'data/trabalhos.json',
-    mensagemErroCarregamento: 'Não foi possível carregar os projetos. Tente novamente mais tarde.',
-    mensagemNenhumResultado: 'Nenhum trabalho encontrado com os filtros aplicados.'
-};
+// Dados e estado da aplicação
+let trabalhos = []; 
+let trabalhosFiltrados = []; 
+let currentModalIndex = 0;
 
-let listaProjetos = [];
-let projetosFiltrados = [];
-let categoriaAtual = 'todos';
-let termoBusca = '';
-let indiceProjetoVisualizado = -1;
+// Elementos DOM
+const galleryGrid = document.getElementById('galleryGrid');
+const searchInput = document.getElementById('searchInput');
+const filterBtns = document.querySelectorAll('.filter-btn');
+const workCounter = document.getElementById('workCounter');
+const loading = document.getElementById('loading');
+const noResults = document.getElementById('noResults');
+const modal = document.getElementById('modal');
+const modalClose = document.getElementById('modalClose');
+const modalPrev = document.getElementById('modalPrev');
+const modalNext = document.getElementById('modalNext');
 
-// ===== INICIALIZAÇÃO DA APLICAÇÃO =====
-document.addEventListener('DOMContentLoaded', () => {
-    inicializarAplicacao();
-});
-
-function inicializarAplicacao() {
-    configurarEventosInterface();
-    carregarDadosProjetos();
-}
-
-// ===== CARREGAMENTO DE DADOS =====
-async function carregarDadosProjetos() {
+// Carregar dados
+async function loadTrabalhos() {
     try {
-        const resposta = await fetch(configuracaoApp.caminhoArquivoDados);
-        
-        if (!resposta.ok) {
-            throw new Error(`Erro HTTP: ${resposta.status}`);
-        }
-        
-        const dados = await resposta.json();
-        listaProjetos = dados.galeria_projetos || [];
-        projetosFiltrados = [...listaProjetos];
-        
-        renderizarGaleria();
-        atualizarContadorResultados();
-        
-    } catch (erro) {
-        console.error('Erro ao carregar projetos:', erro);
-        exibirMensagemErro(configuracaoApp.mensagemErroCarregamento);
+        const response = await fetch('data/trabalhos.json');
+        trabalhos = await response.json();
+        trabalhosFiltrados = trabalhos.trabalhos;
+        renderGallery();
+        updateCounter();
+    } catch (error) {
+        console.error('Erro ao carregar trabalhos:', error);
+        loading.innerHTML = '<i class="fas fa-exclamation-circle"></i><p>Erro ao carregar trabalhos</p>';
     }
 }
 
-// ===== CONFIGURAÇÃO DE EVENTOS =====
-function configurarEventosInterface() {
-    const botoesFiltro = document.querySelectorAll('.botao-categoria');
-    botoesFiltro.forEach(botao => {
-        botao.addEventListener('click', gerenciarCliqueFiltro);
-    });
+// Renderizar galeria
+function renderGallery() {
+    loading.style.display = 'none';
     
-    const campoBusca = document.getElementById('campo-busca-estudante');
-    if (campoBusca) {
-        campoBusca.addEventListener('input', gerenciarDigitacaoBusca);
-    }
-    
-    const botaoFechar = document.querySelector('.botao-fechar-modal');
-    if (botaoFechar) {
-        botaoFechar.addEventListener('click', fecharModal);
-    }
-    
-    const fundoModal = document.querySelector('.fundo-escurecido');
-    if (fundoModal) {
-        fundoModal.addEventListener('click', fecharModal);
-    }
-    
-    const botaoAnterior = document.getElementById('botao-anterior');
-    if (botaoAnterior) {
-        botaoAnterior.addEventListener('click', navegarProjetoAnterior);
-    }
-    
-    const botaoProximo = document.getElementById('botao-proximo');
-    if (botaoProximo) {
-        botaoProximo.addEventListener('click', navegarProjetoProximo);
-    }
-    
-    document.addEventListener('keydown', gerenciarTeclasNavegacao);
-}
-
-// ===== GERENCIAMENTO DE FILTROS =====
-function gerenciarCliqueFiltro(evento) {
-    const botaoClicado = evento.currentTarget;
-    const filtroSelecionado = botaoClicado.getAttribute('data-filtro');
-    
-    const todosBotoes = document.querySelectorAll('.botao-categoria');
-    todosBotoes.forEach(btn => btn.classList.remove('ativo'));
-    botaoClicado.classList.add('ativo');
-    
-    categoriaAtual = filtroSelecionado;
-    aplicarFiltragem();
-}
-
-function gerenciarDigitacaoBusca(evento) {
-    termoBusca = evento.target.value.trim();
-    aplicarFiltragem();
-}
-
-// ===== ALGORITMO CUSTOMIZADO DE FILTRAGEM =====
-function aplicarFiltragem() {
-    const resultadosTemporarios = [];
-    
-    for (let i = 0; i < listaProjetos.length; i++) {
-        const projeto = listaProjetos[i];
-        let incluirProjeto = true;
-        
-        if (categoriaAtual !== 'todos') {
-            if (projeto.modalidade !== categoriaAtual) {
-                incluirProjeto = false;
-            }
-        }
-        
-        if (incluirProjeto && termoBusca !== '') {
-            const nomeAutor = projeto.autor.toLowerCase();
-            const termoBuscaLower = termoBusca.toLowerCase();
-            
-            let encontrou = false;
-            for (let j = 0; j <= nomeAutor.length - termoBuscaLower.length; j++) {
-                let corresponde = true;
-                for (let k = 0; k < termoBuscaLower.length; k++) {
-                    if (nomeAutor[j + k] !== termoBuscaLower[k]) {
-                        corresponde = false;
-                        break;
-                    }
-                }
-                if (corresponde) {
-                    encontrou = true;
-                    break;
-                }
-            }
-            
-            if (!encontrou) {
-                incluirProjeto = false;
-            }
-        }
-        
-        if (incluirProjeto) {
-            resultadosTemporarios.push(projeto);
-        }
-    }
-    
-    projetosFiltrados = resultadosTemporarios;
-    renderizarGaleria();
-    atualizarContadorResultados();
-}
-
-// ===== RENDERIZAÇÃO DA GALERIA =====
-function renderizarGaleria() {
-    const container = document.getElementById('painel-obras-mba');
-    
-    if (!container) return;
-    
-    container.innerHTML = '';
-    
-    if (projetosFiltrados.length === 0) {
-        const mensagem = criarElementoMensagem(configuracaoApp.mensagemNenhumResultado);
-        container.appendChild(mensagem);
+    if (trabalhosFiltrados.length === 0) {
+        galleryGrid.style.display = 'none';
+        noResults.style.display = 'block';
         return;
     }
     
-    for (let i = 0; i < projetosFiltrados.length; i++) {
-        const projeto = projetosFiltrados[i];
-        const cartao = construirCartaoProjeto(projeto, i);
-        container.appendChild(cartao);
-    }
-}
-
-// ===== CONSTRUÇÃO CUSTOMIZADA DO CARTÃO =====
-function construirCartaoProjeto(projeto, indice) {
-    const artigo = document.createElement('article');
-    artigo.className = 'cartao-trabalho-estudante';
-    artigo.setAttribute('data-indice', indice);
-    artigo.addEventListener('click', () => abrirModal(indice));
-    // Tornar o cartão acessível via teclado
-    artigo.tabIndex = 0;
-    artigo.setAttribute('role', 'button');
-    artigo.addEventListener('keydown', (event) => {
-        const key = event.key;
-        if (key === 'Enter' || key === ' ' || key === 'Spacebar') {
-            event.preventDefault();
-            abrirModal(indice);
-        }
+    galleryGrid.style.display = 'grid';
+    noResults.style.display = 'none';
+    galleryGrid.innerHTML = '';
+    
+    trabalhosFiltrados.forEach((trabalho, index) => {
+        const card = createCard(trabalho, index);
+        galleryGrid.appendChild(card);
     });
-    
-    const containerImagem = document.createElement('div');
-    containerImagem.className = 'container-imagem-cartao';
-    
-    const imagem = document.createElement('img');
-    imagem.src = projeto.arquivo_preview;
-    imagem.alt = projeto.titulo_obra;
-    imagem.className = 'imagem-preview-projeto';
-    imagem.loading = 'lazy';
-    
-    const selo = document.createElement('span');
-    selo.className = `selo-modalidade tipo-${projeto.modalidade}`;
-    selo.textContent = projeto.modalidade;
-    
-    containerImagem.appendChild(imagem);
-    containerImagem.appendChild(selo);
-    
-    const conteudo = document.createElement('div');
-    conteudo.className = 'conteudo-cartao';
-    
-    const titulo = document.createElement('h3');
-    titulo.className = 'titulo-trabalho';
-    titulo.textContent = projeto.titulo_obra;
-    
-    const autor = document.createElement('p');
-    autor.className = 'autor-trabalho';
-    autor.textContent = projeto.autor;
-    
-    const resumo = document.createElement('p');
-    resumo.className = 'resumo-trabalho';
-    resumo.textContent = projeto.resumo;
-    
-    const listaFerramentas = document.createElement('div');
-    listaFerramentas.className = 'lista-ferramentas';
-    
-    if (projeto.stack_ia && Array.isArray(projeto.stack_ia)) {
-        for (let i = 0; i < projeto.stack_ia.length; i++) {
-            const etiqueta = document.createElement('span');
-            etiqueta.className = 'etiqueta-ferramenta';
-            etiqueta.textContent = projeto.stack_ia[i];
-            listaFerramentas.appendChild(etiqueta);
-        }
-    }
-    
-    const timestamp = document.createElement('p');
-    timestamp.className = 'info-timestamp';
-    timestamp.textContent = formatarData(projeto.timestamp);
-    
-    conteudo.appendChild(titulo);
-    conteudo.appendChild(autor);
-    conteudo.appendChild(resumo);
-    conteudo.appendChild(listaFerramentas);
-    conteudo.appendChild(timestamp);
-    
-    artigo.appendChild(containerImagem);
-    artigo.appendChild(conteudo);
-    
-    return artigo;
 }
 
-// ===== GERENCIAMENTO DO MODAL =====
-function abrirModal(indice) {
-    indiceProjetoVisualizado = indice;
-    const projeto = projetosFiltrados[indice];
+// Criar card
+function createCard(trabalho, index) {
+    const card = document.createElement('div');
+    card.className = 'work-card';
+    card.onclick = () => openModal(index);
     
-    if (!projeto) return;
+    const imageUrl = trabalho.url || 'https://via.placeholder.com/400x300/667eea/ffffff?text=' + encodeURIComponent(trabalho.titulo);
     
-    preencherDadosModal(projeto);
+    card.innerHTML = `
+        <img src="${imageUrl}" alt="${trabalho.titulo}" class="card-image" onerror="this.src='https://via.placeholder.com/400x300/667eea/ffffff?text=Imagem+Indisponível'">
+        <div class="card-content">
+            <div class="card-header">
+                <h3 class="card-title">${trabalho.titulo}</h3>
+                <span class="type-badge ${trabalho.tipo}">${trabalho.tipo}</span>
+            </div>
+            <p class="card-student">
+                <i class="fas fa-user"></i>
+                ${trabalho.estudante}
+            </p>
+            <p class="card-description">${trabalho.descricao}</p>
+            <div class="card-tools">
+                ${trabalho.ferramentas.map(tool => `<span class="tool-tag">${tool}</span>`).join('')}
+            </div>
+            <p class="card-date">
+                <i class="fas fa-calendar"></i>
+                ${formatDate(trabalho.data)}
+            </p>
+        </div>
+    `;
     
-    const modal = document.getElementById('janela-ampliacao');
-    if (modal) {
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    }
-    
-    atualizarBotoesNavegacao();
+    return card;
 }
 
-// ===== VALIDAÇÃO DE URL =====
-function validarURL(url) {
-    if (!url || typeof url !== 'string') {
-        return false;
-    }
+// Abrir modal
+function openModal(index) {
+    currentModalIndex = index;
+    const trabalho = trabalhosFiltrados[index];
     
-    try {
-        const urlObj = new URL(url);
-        // Permitir apenas HTTPS e URLs de hosts confiáveis
-        const hostPermitidos = [
-            'picsum.photos',
-            'youtube.com',
-            'www.youtube.com',
-            'youtu.be',
-            'vimeo.com',
-            'player.vimeo.com',
-            'imgur.com',
-            'i.imgur.com',
-            'drive.google.com',
-            'raw.githubusercontent.com',
-            'user-images.githubusercontent.com'
-        ];
-        
-        // Bloquear esquemas perigosos
-        if (urlObj.protocol !== 'https:' && urlObj.protocol !== 'http:') {
-            return false;
-        }
-        
-        // Verificar se o host está na lista de permitidos
-        const hostValido = hostPermitidos.some(host => 
-            urlObj.hostname === host || urlObj.hostname.endsWith('.' + host)
-        );
-        
-        return hostValido;
-    } catch (e) {
-        return false;
-    }
-}
-
-function preencherDadosModal(projeto) {
-    const imagemModal = document.getElementById('imagem-ampliada');
-    const videoModal = document.getElementById('video-incorporado');
+    document.getElementById('modalTitle').textContent = trabalho.titulo;
+    document.getElementById('modalStudent').textContent = trabalho.estudante;
+    document.getElementById('modalDescription').textContent = trabalho.descricao;
+    document.getElementById('modalDate').textContent = formatDate(trabalho.data);
     
-    // Limpar iframe anterior para evitar vídeos em segundo plano
-    videoModal.src = '';
+    // Ferramentas
+    const toolsContainer = document.getElementById('modalTools');
+    toolsContainer.innerHTML = trabalho.ferramentas
+        .map(tool => `<span class="tool-tag">${tool}</span>`)
+        .join('');
     
-    if (projeto.modalidade === 'video' && projeto.link_streaming) {
-        const urlValida = validarURL(projeto.link_streaming);
-        
-        if (urlValida) {
-            imagemModal.style.display = 'none';
-            videoModal.style.display = 'block';
-            videoModal.src = projeto.link_streaming;
-        } else {
-            // Exibir mensagem de erro se URL inválida
-            console.error('URL de vídeo inválida ou não confiável:', projeto.link_streaming);
-            videoModal.style.display = 'none';
-            imagemModal.style.display = 'block';
-            imagemModal.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect fill="%23f0f0f0" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="18" fill="%23999" text-anchor="middle" dominant-baseline="middle"%3EConteúdo indisponível%3C/text%3E%3C/svg%3E';
-            imagemModal.alt = 'Conteúdo de vídeo indisponível';
-        }
+    // Media
+    const mediaContainer = document.getElementById('modalMedia');
+    if (trabalho.tipo === 'video' && trabalho.videoUrl) {
+        mediaContainer.innerHTML = `
+            <video controls>
+                <source src="${trabalho.videoUrl}" type="video/mp4">
+                Seu navegador não suporta vídeo.
+            </video>
+        `;
     } else {
-        const urlValida = validarURL(projeto.arquivo_preview);
+        const imageUrl = trabalho.url || 'https://via.placeholder.com/800x600/667eea/ffffff?text=' + encodeURIComponent(trabalho.titulo);
+        mediaContainer.innerHTML = `<img src="${imageUrl}" alt="${trabalho.titulo}" onerror="this.src='https://via.placeholder.com/800x600/667eea/ffffff?text=Imagem+Indisponível'">`;
+    }
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Fechar modal
+function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Navegação modal
+function navigateModal(direction) {
+    currentModalIndex += direction;
+    
+    if (currentModalIndex < 0) {
+        currentModalIndex = trabalhosFiltrados.length - 1;
+    } else if (currentModalIndex >= trabalhosFiltrados.length) {
+        currentModalIndex = 0;
+    }
+    
+    openModal(currentModalIndex);
+}
+
+// Filtros
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        // Atualizar botão ativo
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
         
-        videoModal.style.display = 'none';
-        imagemModal.style.display = 'block';
-        
-        if (urlValida) {
-            imagemModal.src = projeto.arquivo_preview;
-            imagemModal.alt = projeto.titulo_obra;
+        // Filtrar
+        const filter = btn.dataset.filter;
+        if (filter === 'todos') {
+            trabalhosFiltrados = trabalhos.trabalhos;
         } else {
-            console.error('URL de imagem inválida ou não confiável:', projeto.arquivo_preview);
-            imagemModal.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect fill="%23f0f0f0" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="18" fill="%23999" text-anchor="middle" dominant-baseline="middle"%3EImagem indisponível%3C/text%3E%3C/svg%3E';
-            imagemModal.alt = 'Imagem indisponível';
+            trabalhosFiltrados = trabalhos.trabalhos.filter(t => t.tipo === filter);
         }
-    }
-    
-    const etiqueta = document.getElementById('etiqueta-modalidade');
-    if (etiqueta) {
-        etiqueta.className = `emblema-tipo tipo-${projeto.modalidade}`;
-        etiqueta.textContent = projeto.modalidade;
-    }
-    
-    const titulo = document.getElementById('titulo-projeto-modal');
-    if (titulo) titulo.textContent = projeto.titulo_obra;
-    
-    const autor = document.getElementById('autor-projeto-modal');
-    if (autor) autor.textContent = `Por: ${projeto.autor}`;
-    
-    const codigo = document.getElementById('codigo-projeto-modal');
-    if (codigo) codigo.textContent = `Código: ${projeto.codigo}`;
-    
-    const descricao = document.getElementById('descricao-projeto-modal');
-    if (descricao) descricao.textContent = projeto.resumo;
-    
-    const containerTecnologias = document.getElementById('ferramentas-utilizadas');
-    if (containerTecnologias) {
-        containerTecnologias.innerHTML = '';
         
-        if (projeto.stack_ia && Array.isArray(projeto.stack_ia)) {
-            for (let i = 0; i < projeto.stack_ia.length; i++) {
-                const chip = document.createElement('span');
-                chip.className = 'chip-tecnologia';
-                chip.textContent = projeto.stack_ia[i];
-                containerTecnologias.appendChild(chip);
-            }
-        }
+        renderGallery();
+        updateCounter();
+    });
+});
+
+// Busca
+searchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+    
+    let baseTrabalhos = activeFilter === 'todos' 
+        ? trabalhos.trabalhos 
+        : trabalhos.trabalhos.filter(t => t.tipo === activeFilter);
+    
+    trabalhosFiltrados = baseTrabalhos.filter(trabalho => 
+        trabalho.estudante.toLowerCase().includes(searchTerm) ||
+        trabalho.titulo.toLowerCase().includes(searchTerm)
+    );
+    
+    renderGallery();
+    updateCounter();
+});
+
+// Atualizar contador
+function updateCounter() {
+    workCounter.textContent = trabalhosFiltrados.length;
+}
+
+// Formatar data
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('pt-BR', { 
+        day: '2-digit', 
+        month: '2-digit', 
+        year: 'numeric' 
+    });
+}
+
+// Event listeners
+modalClose.addEventListener('click', closeModal);
+modalPrev.addEventListener('click', () => navigateModal(-1));
+modalNext.addEventListener('click', () => navigateModal(1));
+
+// Fechar modal com ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
     }
-    
-    const data = document.getElementById('data-projeto-modal');
-    if (data) data.textContent = `Data de criação: ${formatarData(projeto.timestamp)}`;
-}
+});
 
-function fecharModal() {
-    const modal = document.getElementById('janela-ampliacao');
-    if (modal) {
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
+// Fechar modal clicando fora
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        closeModal();
     }
-    
-    const videoModal = document.getElementById('video-incorporado');
-    if (videoModal) {
-        videoModal.src = '';
+});
+
+// Navegação com setas
+document.addEventListener('keydown', (e) => {
+    if (modal.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') navigateModal(-1);
+        if (e.key === 'ArrowRight') navigateModal(1);
     }
-    
-    indiceProjetoVisualizado = -1;
-}
+});
 
-// ===== NAVEGAÇÃO ENTRE PROJETOS =====
-function navegarProjetoAnterior() {
-    if (indiceProjetoVisualizado > 0) {
-        abrirModal(indiceProjetoVisualizado - 1);
-    }
-}
-
-function navegarProjetoProximo() {
-    if (indiceProjetoVisualizado < projetosFiltrados.length - 1) {
-        abrirModal(indiceProjetoVisualizado + 1);
-    }
-}
-
-function atualizarBotoesNavegacao() {
-    const botaoAnterior = document.getElementById('botao-anterior');
-    const botaoProximo = document.getElementById('botao-proximo');
-    
-    if (botaoAnterior) {
-        botaoAnterior.disabled = indiceProjetoVisualizado <= 0;
-    }
-    
-    if (botaoProximo) {
-        botaoProximo.disabled = indiceProjetoVisualizado >= projetosFiltrados.length - 1;
-    }
-}
-
-function gerenciarTeclasNavegacao(evento) {
-    const modal = document.getElementById('janela-ampliacao');
-    if (!modal || modal.getAttribute('aria-hidden') === 'true') return;
-    
-    if (evento.key === 'Escape') {
-        fecharModal();
-    } else if (evento.key === 'ArrowLeft') {
-        navegarProjetoAnterior();
-    } else if (evento.key === 'ArrowRight') {
-        navegarProjetoProximo();
-    }
-}
-
-// ===== UTILITÁRIOS =====
-function atualizarContadorResultados() {
-    const contador = document.getElementById('contador-resultados');
-    if (!contador) return;
-    
-    const total = projetosFiltrados.length;
-    const totalGeral = listaProjetos.length;
-    
-    let textoContador = '';
-    
-    if (categoriaAtual === 'todos' && termoBusca === '') {
-        textoContador = `Exibindo ${total} trabalho${total !== 1 ? 's' : ''} no total`;
-    } else {
-        textoContador = `Encontrado${total !== 1 ? 's' : ''} ${total} trabalho${total !== 1 ? 's' : ''} de ${totalGeral}`;
-    }
-    
-    contador.textContent = textoContador;
-}
-
-function formatarData(dataString) {
-    if (!dataString) return 'Data não disponível';
-    
-    const partes = dataString.split('-');
-    if (partes.length !== 3) return dataString;
-    
-    const meses = [
-        'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-        'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-    ];
-    
-    const ano = partes[0];
-    const mesNumero = parseInt(partes[1], 10);
-    const dia = partes[2];
-    
-    const mesNome = meses[mesNumero - 1] || partes[1];
-    
-    return `${dia} de ${mesNome} de ${ano}`;
-}
-
-function criarElementoMensagem(texto) {
-    const div = document.createElement('div');
-    div.style.gridColumn = '1 / -1';
-    div.style.textAlign = 'center';
-    div.style.padding = '3rem';
-    div.style.color = 'var(--cor-texto-secundario)';
-    div.style.fontSize = '1.1rem';
-    
-    const paragrafo = document.createElement('p');
-    paragrafo.textContent = texto;
-    
-    div.appendChild(paragrafo);
-    return div;
-}
-
-function exibirMensagemErro(mensagem) {
-    const container = document.getElementById('painel-obras-mba');
-    if (!container) return;
-    
-    container.innerHTML = '';
-    
-    const elementoErro = criarElementoMensagem(mensagem);
-    elementoErro.style.color = '#EF4444';
-    
-    container.appendChild(elementoErro);
-}
-
-// ===== EXPORTAÇÃO (se necessário para testes) =====
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        aplicarFiltragem,
-        formatarData,
-        construirCartaoProjeto
-    };
-}
+// Inicializar
+loadTrabalhos();

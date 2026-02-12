@@ -270,10 +270,10 @@ Para dúvidas ou problemas:
 
 ## 📄 Licença
 
-Este projeto é educacional e destinado aos estudantes do MBA IA para Negócios.
+Este projeto é educacional e destinado a estudantes de IA.
 
 ---
 
-**Desenvolvido com** 🤖 **e** ❤️ **pelos estudantes do MBA IA para Negócios**
+**Desenvolvido pelos Clube do Focom em IA**
 
 *Última atualização: 06 de Fevereiro de 2026*

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Histórico de versões do Clube do Foco">
+    <title>Histórico de Versões - Clube do Foco</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .version-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .version-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .version-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .version-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .version-date {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .version-title {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .version-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .version-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .version-features li {
+            padding: 8px 0;
+            color: #555;
+        }
+
+        .version-features li i {
+            color: #4CAF50;
+            margin-right: 10px;
+        }
+
+        .version-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .current-badge {
+            background: #4CAF50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .version-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .version-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../" class="back-link">
+            <i class="fas fa-arrow-left"></i> Voltar ao Site
+        </a>
+
+        <div class="header">
+            <h1>🏛️ Museu de Versões</h1>
+            <p>Explore a evolução do Clube do Foco</p>
+        </div>
+
+        <!-- Version 1.0 -->
+        <div class="version-card">
+            <div class="version-header">
+                <span class="version-badge">📦 v1.0</span>
+                <span class="version-date"><i class="fas fa-calendar"></i> 06 de Fevereiro de 2026</span>
+            </div>
+            <h2 class="version-title">Como Tudo Começou <span class="current-badge">✓ Salvo</span></h2>
+            <p class="version-description">
+                A primeira versão funcional do Clube do Foco. Uma galeria interativa criada com HTML, CSS e JavaScript vanilla, 
+                mostrando os primeiros trabalhos dos estudantes de IA.
+            </p>
+            <ul class="version-features">
+                <li><i class="fas fa-check-circle"></i> Galeria de trabalhos com cards responsivos</li>
+                <li><i class="fas fa-check-circle"></i> Sistema de busca em tempo real</li>
+                <li><i class="fas fa-check-circle"></i> Filtros por categoria (imagens, vídeos, avatares)</li>
+                <li><i class="fas fa-check-circle"></i> Modal de visualização com navegação</li>
+                <li><i class="fas fa-check-circle"></i> Design 100% responsivo</li>
+            </ul>
+            <div class="version-actions">
+                <a href="v1.0/" class="btn btn-primary">
+                    <i class="fas fa-eye"></i> Ver Esta Versão
+                </a>
+                <a href="v1.0/README.md" class="btn btn-secondary">
+                    <i class="fas fa-book"></i> Documentação
+                </a>
+            </div>
+        </div>
+
+        <!-- Version 2.0 - Em Desenvolvimento -->
+        <div class="version-card" style="opacity: 0.7; border: 2px dashed #667eea;">
+            <div class="version-header">
+                <span class="version-badge" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">🚀 v2.0</span>
+                <span class="version-date"><i class="fas fa-calendar"></i> Em Desenvolvimento</span>
+            </div>
+            <h2 class="version-title">Plataforma Educacional Completa <span class="current-badge" style="background: #ff9800;">⏳ Em Breve</span></h2>
+            <p class="version-description">
+                Transformando a galeria em uma plataforma educacional completa, com documentação detalhada, 
+                trilhas de aprendizado e histórico do projeto.
+            </p>
+            <ul class="version-features">
+                <li><i class="fas fa-clock"></i> Hub de documentação com trilhas (Iniciante/Intermediário)</li>
+                <li><i class="fas fa-clock"></i> Changelog interativo com timeline</li>
+                <li><i class="fas fa-clock"></i> Diálogos reais com IA documentados</li>
+                <li><i class="fas fa-clock"></i> Guias completos (5 fases)</li>
+                <li><i class="fas fa-clock"></i> Sistema de versionamento</li>
+            </ul>
+            <div class="version-actions">
+                <a href="../" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> Ver Desenvolvimento
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
