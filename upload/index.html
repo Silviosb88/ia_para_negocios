@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de Upload - Clube do Foco - Compartilhe seus trabalhos com IA">
+    <meta name="keywords" content="upload, galeria, IA, trabalhos, clube do foco">
+    <meta name="theme-color" content="#6366f1">
+    <title>Upload de Trabalhos - Clube do Foco</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>🚀 Clube do Foco</h1>
+                    <p>Sistema de Upload de Trabalhos</p>
+                </div>
+                <nav class="nav">
+                    <a href="../index.html" class="nav-link">← Voltar à Galeria</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="../index.html">Galeria</a>
+                <span>/</span>
+                <span>Upload</span>
+            </div>
+
+            <!-- Page Title -->
+            <section class="hero">
+                <h2>Compartilhe Seu Trabalho</h2>
+                <p>Envie suas criações com IA e inspire outros alunos do Clube do Foco</p>
+            </section>
+
+            <!-- Upload Form -->
+            <section class="upload-section">
+                <div class="form-container">
+                    <form id="uploadForm" class="upload-form">
+                        <!-- File Upload -->
+                        <div class="form-group">
+                            <label for="file" class="form-label">📁 Arquivo</label>
+                            <div class="file-dropzone" id="fileDropzone">
+                                <input type="file" id="file" name="file" class="file-input" accept="image/*,video/*,audio/*" required>
+                                <div class="dropzone-content">
+                                    <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                    <p class="dropzone-text">Arraste seu arquivo aqui ou clique para selecionar</p>
+                                    <p class="dropzone-hint">Máximo 100MB • Formatos: JPG, PNG, MP4, WebM, MP3</p>
+                                </div>
+                            </div>
+                            <div id="filePreview" class="file-preview" style="display: none;">
+                                <div class="preview-content">
+                                    <img id="previewImage" src="" alt="Preview" style="display: none;">
+                                    <video id="previewVideo" controls style="display: none;"></video>
+                                    <audio id="previewAudio" controls style="display: none;"></audio>
+                                    <p id="previewName" class="preview-name"></p>
+                                    <p id="previewSize" class="preview-size"></p>
+                                </div>
+                                <button type="button" class="btn-remove" id="removeFile">✕ Remover</button>
+                            </div>
+                            <div id="fileError" class="error-message" style="display: none;"></div>
+                        </div>
+
+                        <!-- Título -->
+                        <div class="form-group">
+                            <label for="title" class="form-label">Título do Trabalho</label>
+                            <input type="text" id="title" name="title" class="form-input" placeholder="Ex: Avatar IA com Synthesia" maxlength="100" required>
+                            <div class="char-counter">
+                                <span id="titleCount">0</span>/100
+                            </div>
+                        </div>
+
+                        <!-- Descrição -->
+                        <div class="form-group">
+                            <label for="description" class="form-label">Descrição</label>
+                            <textarea id="description" name="description" class="form-textarea" placeholder="Descreva seu trabalho, técnicas utilizadas, ferramentas, etc..." maxlength="500" required></textarea>
+                            <div class="char-counter">
+                                <span id="descriptionCount">0</span>/500
+                            </div>
+                        </div>
+
+                        <!-- Tipo de Conteúdo -->
+                        <div class="form-group">
+                            <label for="type" class="form-label">Tipo de Conteúdo</label>
+                            <select id="type" name="type" class="form-select" required>
+                                <option value="">Selecione uma opção</option>
+                                <option value="imagem">🖼️ Imagem</option>
+                                <option value="video">🎥 Vídeo</option>
+                                <option value="avatar">👤 Avatar</option>
+                                <option value="audio">🎵 Áudio</option>
+                                <option value="outro">📦 Outro</option>
+                            </select>
+                        </div>
+
+                        <!-- Ferramentas de IA -->
+                        <div class="form-group">
+                            <label class="form-label">Ferramentas de IA Utilizadas</label>
+                            <div class="tools-container">
+                                <div class="quick-tools">
+                                    <button type="button" class="tool-btn" data-tool="DALL-E">DALL-E</button>
+                                    <button type="button" class="tool-btn" data-tool="Midjourney">Midjourney</button>
+                                    <button type="button" class="tool-btn" data-tool="Synthesia">Synthesia</button>
+                                    <button type="button" class="tool-btn" data-tool="D-ID">D-ID</button>
+                                    <button type="button" class="tool-btn" data-tool="Runway ML">Runway ML</button>
+                                    <button type="button" class="tool-btn" data-tool="HeyGen">HeyGen</button>
+                                </div>
+                                <div class="selected-tools" id="selectedTools"></div>
+                                <input type="hidden" id="tools" name="tools" value="">
+                            </div>
+                        </div>
+
+                        <!-- Fonte de Inspiração -->
+                        <div class="form-group">
+                            <label for="source" class="form-label">Fonte de Inspiração (Opcional)</label>
+                            <input type="text" id="source" name="source" class="form-input" placeholder="Ex: Artigo, vídeo, outro trabalho, etc...">
+                        </div>
+
+                        <!-- Autor -->
+                        <div class="form-group">
+                            <label for="author" class="form-label">Seu Nome Completo</label>
+                            <input type="text" id="author" name="author" class="form-input" placeholder="Ex: João Silva Santos" required>
+                        </div>
+
+                        <!-- Termos -->
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms" class="checkbox-label">
+                                Concordo que meu trabalho pode ser exibido na galeria pública do Clube do Foco
+                            </label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn-submit">
+                            <span class="btn-text">📤 Enviar Trabalho</span>
+                            <span class="btn-loader" style="display: none;">Enviando...</span>
+                        </button>
+
+                        <!-- Success Message -->
+                        <div id="successMessage" class="success-message" style="display: none;">
+                            <h3>✅ Trabalho Enviado com Sucesso!</h3>
+                            <p>Seu trabalho foi recebido e está aguardando aprovação da moderação.</p>
+                            <p class="success-note">Você receberá uma notificação quando for aprovado.</p>
+                            <button type="button" class="btn-secondary" id="newUploadBtn">Enviar Outro Trabalho</button>
+                        </div>
+                    </form>
+
+                    <!-- Info Panel -->
+                    <aside class="info-panel">
+                        <div class="info-card">
+                            <h3>📋 Informações</h3>
+                            <ul>
+                                <li>Máximo 100MB por arquivo</li>
+                                <li>Formatos aceitos: JPG, PNG, MP4, WebM, MP3</li>
+                                <li>Preenchimento obrigatório de todos os campos</li>
+                                <li>Moderação em até 24 horas</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>✨ Dicas</h3>
+                            <ul>
+                                <li>Use descrições detalhadas</li>
+                                <li>Mencione todas as ferramentas usadas</li>
+                                <li>Adicione fonte de inspiração se houver</li>
+                                <li>Verifique a qualidade do arquivo</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>❓ Dúvidas?</h3>
+                            <p>Entre em contato com a moderação:</p>
+                            <p class="contact-email">contato@clubedofoco.ia.br</p>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Clube do Foco</h4>
+                    <p>Galeria de trabalhos dos estudantes do MBA de IA para Negócios</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="../index.html">Galeria</a></li>
+                        <li><a href="../docs/">Documentação</a></li>
+                        <li><a href="#admin">Moderação</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <ul>
+                        <li><a href="https://github.com/Silviosb88/ia_para_negocios" target="_blank">GitHub</a></li>
+                        <li><a href="#" target="_blank">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Clube do Foco. Desenvolvido com ❤️ e Manus IA</p>
+                <p class="version">v2.1 • Fevereiro de 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+</body>
+</html>
