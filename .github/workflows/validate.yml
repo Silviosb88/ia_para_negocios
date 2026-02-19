@@ -1,0 +1,33 @@
+name: Validate Upload Files
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'data/trabalhos.json'
+      - 'upload/**'
+      - 'admin/**'
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Validate JSON
+        run: |
+          python3 -m json.tool data/trabalhos.json > /dev/null && echo "✅ JSON válido"
+      
+      - name: Check file sizes
+        run: |
+          find upload admin -type f -size +10M && echo "⚠️ Arquivo muito grande" || echo "✅ Tamanhos OK"
+      
+      - name: Validate HTML
+        run: |
+          for file in upload/index.html admin/index.html; do
+            if [ -f "$file" ]; then
+              grep -q "<html" "$file" && echo "✅ $file válido" || echo "❌ $file inválido"
+            fi
+          done
