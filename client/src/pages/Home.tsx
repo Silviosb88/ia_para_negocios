@@ -4,6 +4,8 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { getLoginUrl } from "@/const";
 
 interface Trabalho {
   id: number;
@@ -18,6 +20,10 @@ interface Trabalho {
 }
 
 export default function Home() {
+  // The userAuth hooks provides authentication state
+  // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
+  let { user, loading: authLoading, error: authError, isAuthenticated, logout } = useAuth();
+
   const [trabalhos, setTrabalhos] = useState<Trabalho[]>([]);
   const [filtrados, setFiltrados] = useState<Trabalho[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -109,12 +115,22 @@ export default function Home() {
               <div className="text-4xl">🎨</div>
               <h1 className="text-4xl font-bold">Clube do Foco</h1>
             </div>
-            <Link href="/docs">
-              <a className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
-                <BookOpen className="w-5 h-5" />
-                Documentacao
-              </a>
-            </Link>
+            <div className="flex items-center gap-3">
+              {isAuthenticated && (
+                <Link href="/upload">
+                  <a className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
+                    <span>📤</span>
+                    Enviar Trabalho
+                  </a>
+                </Link>
+              )}
+              <Link href="/docs">
+                <a className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
+                  <BookOpen className="w-5 h-5" />
+                  Documentacao
+                </a>
+              </Link>
+            </div>
           </div>
           <p className="text-center text-indigo-100 text-lg">
             Galeria de Trabalhos com IA - Explorando o Futuro da Criatividade
