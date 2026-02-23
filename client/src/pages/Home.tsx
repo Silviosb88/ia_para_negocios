@@ -117,18 +117,14 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-3">
               {isAuthenticated && (
-                <Link href="/upload">
-                  <a className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
-                    <span>📤</span>
-                    Enviar Trabalho
-                  </a>
+                <Link href="/upload" className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
+                  <span>📤</span>
+                  Enviar Trabalho
                 </Link>
               )}
-              <Link href="/docs">
-                <a className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
-                  <BookOpen className="w-5 h-5" />
-                  Documentacao
-                </a>
+              <Link href="/docs" className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
+                <BookOpen className="w-5 h-5" />
+                Documentacao
               </Link>
             </div>
           </div>
