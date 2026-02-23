@@ -7,6 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Docs from "./pages/Docs";
 import Upload from "./pages/Upload";
+import Moderation from "./pages/Moderation";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -14,6 +15,7 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/upload"} component={Upload} />
+      <Route path={"/moderation"} component={Moderation} />
       <Route path={"/docs"} component={Docs} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}

@@ -28,19 +28,22 @@
 - [ ] Testar fluxo completo de upload
 - [ ] Implementar tratamento de erros de S3
 
-### ⏳ Fase 4: Implementar sistema de moderação e galeria pública
-- [ ] Criar página de dashboard de moderação (admin only)
-- [ ] Implementar fila de moderação com aprovação/rejeição
+### ✅ Fase 4: Implementar dashboard de moderação
+- [x] Criar página de dashboard de moderação (admin only)
+- [x] Implementar visualização de uploads pendentes em grid
+- [x] Criar modal de visualização detalhada do upload
+- [x] Implementar botões de aprovação e rejeição
+- [x] Adicionar campo de comentários/notas do moderador
+- [x] Implementar filtros por status (pendente, aprovado, rejeitado)
+- [x] Adicionar busca por título/autor
+- [x] Criar testes para dashboard (10 testes)
 - [ ] Integração com GitHub Issues para moderação
-- [ ] Atualizar galeria pública quando aprovado
-- [ ] Adicionar filtros por tipo na galeria
-- [ ] Implementar sistema de visualizações
 
 ### ⏳ Fase 5: Testar fluxo completo e criar testes unitários
-- [x] Testes das APIs (routers-uploads.test.ts)
+- [x] Testes das APIs (routers-uploads.test.ts - 10 testes)
+- [x] Testes do dashboard de moderação (moderation.test.ts - 10 testes)
 - [ ] Testes de integração (upload → S3 → DB → galeria)
 - [ ] Testes da página Upload.tsx
-- [ ] Testes da página de moderação
 - [ ] Testes end-to-end
 
 ### ⏳ Fase 6: Entregar projeto finalizado ao usuário
@@ -60,8 +63,9 @@
 
 ### Frontend
 - `client/src/pages/Upload.tsx` - Página de upload
+- `client/src/pages/Moderation.tsx` - Dashboard de moderação
 - `client/src/pages/Home.tsx` - Adicionado link de upload
-- `client/src/App.tsx` - Adicionada rota /upload
+- `client/src/App.tsx` - Adicionadas rotas /upload e /moderation
 
 ## Recursos Implementados
 
@@ -89,11 +93,20 @@
 - Apenas admin pode moderar
 - Apenas autenticados podem fazer upload
 
+## Recursos do Dashboard de Moderação
+
+- Visualização em Grid com preview de imagem/vídeo
+- Estatísticas (total, pendentes, aprovados, rejeitados)
+- Filtros por status e busca por título/descrição
+- Modal detalhado com visualização completa
+- Ações de aprovação/rejeição com notas do moderador
+- Proteção de acesso (apenas administradores)
+
 ## Próximos Passos
 
 1. Testar upload de arquivo real via S3
-2. Criar dashboard de moderação
-3. Implementar integração com GitHub Issues
-4. Adicionar mais testes de integração
+2. Implementar integração com GitHub Issues
+3. Adicionar notificações por email
+4. Criar página de perfil do usuário
 5. Documentar fluxo completo
 6. Deploy em produção
