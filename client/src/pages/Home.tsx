@@ -116,6 +116,10 @@ export default function Home() {
               <h1 className="text-4xl font-bold">Clube do Foco</h1>
             </div>
             <div className="flex items-center gap-3">
+              <a href="/landing.html" className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors text-white no-underline">
+                <span>🏠</span>
+                Menu Principal
+              </a>
               {isAuthenticated && (
                 <Link href="/upload" className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
                   <span>📤</span>

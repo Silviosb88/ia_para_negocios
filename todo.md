@@ -55,8 +55,12 @@
 - [x] Criar testes para página de perfil (6 testes)
 - [ ] Criar testes end-to-end
 
-### ⏳ Fase 7: Corrigir bugs e entregar projeto finalizado
+### ⏳ Fase 7: Integrar landing page e entregar projeto finalizado
 - [x] Corrigir erro de autenticação (cookie de sessão)
+- [x] Criar landing page estática com novo design
+- [x] Adicionar menu de Moderação (restrito a admins)
+- [x] Integrar links para Validação, Cadastro e Acesso de alunos
+- [x] Adicionar link no Home.tsx para landing page
 - [ ] Documentação de uso
 - [ ] Guia de moderação
 - [ ] Instruções de deployment
@@ -66,6 +70,14 @@
 - [x] Cookie de sessão não era persistido após login OAuth
   - Causa: sameSite="none" sem secure em HTTPS
   - Solução: Ajustar sameSite dinamicamente ("lax" em HTTP, "none" em HTTPS)
+
+## Landing Page Criada
+- [x] Arquivo: `client/public/landing.html`
+- [x] Menu de navegação profissional com Font Awesome
+- [x] Dropdown de Moderação (Validação, Cadastro, Acesso)
+- [x] Autenticação integrada (verifica role de admin)
+- [x] Links para todas as páginas principais
+- [x] Design responsivo e moderno
 
 ## Arquivos Criados/Modificados
 
@@ -79,8 +91,10 @@
 ### Frontend
 - `client/src/pages/Upload.tsx` - Página de upload
 - `client/src/pages/Moderation.tsx` - Dashboard de moderação
-- `client/src/pages/Home.tsx` - Adicionado link de upload
-- `client/src/App.tsx` - Adicionadas rotas /upload e /moderation
+- `client/src/pages/Profile.tsx` - Página de perfil do usuário
+- `client/src/pages/Home.tsx` - Galeria com link para landing page
+- `client/public/landing.html` - Landing page estática com menu profissional
+- `client/src/App.tsx` - Rotas /upload, /moderation, /profile
 
 ## Recursos Implementados
 
