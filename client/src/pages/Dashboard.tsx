@@ -72,6 +72,15 @@ export default function Dashboard() {
       color: "bg-purple-100",
       textColor: "text-purple-600",
     },
+    {
+      icon: BarChart3,
+      label: "Gerenciar Conteúdo",
+      href: "/content-manager",
+      description: "Crie e edite blogs e informações sobre IA",
+      color: "bg-orange-100",
+      textColor: "text-orange-600",
+      adminOnly: true,
+    },
   ];
 
   const filteredMenuItems = menuItems.filter(

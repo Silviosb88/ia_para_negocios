@@ -55,12 +55,16 @@
 - [x] Criar testes para página de perfil (6 testes)
 - [ ] Criar testes end-to-end
 
-### ⏳ Fase 7: Integrar landing page e entregar projeto finalizado
+### ⏳ Fase 7: Reorganizar estrutura de acesso e criar painel de conteúdo
 - [x] Corrigir erro de autenticação (cookie de sessão)
 - [x] Criar landing page estática com novo design
 - [x] Adicionar menu de Moderação (restrito a admins)
 - [x] Integrar links para Validação, Cadastro e Acesso de alunos
-- [x] Adicionar link no Home.tsx para landing page
+- [x] Reorganizar rotas de acesso público vs restrito
+- [x] Botão "Enviar Trabalho" redireciona para login se não autenticado
+- [x] Galeria com acesso público (sem login)
+- [x] Criar página de Gerenciador de Conteúdo para admins
+- [x] Adicionar link no Dashboard
 - [ ] Documentação de uso
 - [ ] Guia de moderação
 - [ ] Instruções de deployment
@@ -89,12 +93,14 @@
 - `server/routers.ts` - Integração do router
 
 ### Frontend
-- `client/src/pages/Upload.tsx` - Página de upload
-- `client/src/pages/Moderation.tsx` - Dashboard de moderação
+- `client/src/pages/Upload.tsx` - Página de upload (restrita a autenticados)
+- `client/src/pages/Moderation.tsx` - Dashboard de moderação (admin only)
 - `client/src/pages/Profile.tsx` - Página de perfil do usuário
-- `client/src/pages/Home.tsx` - Galeria com link para landing page
+- `client/src/pages/ContentManager.tsx` - Gerenciador de conteúdo (admin only)
+- `client/src/pages/Home.tsx` - Galeria com acesso público
 - `client/public/landing.html` - Landing page estática com menu profissional
-- `client/src/App.tsx` - Rotas /upload, /moderation, /profile
+- `client/src/App.tsx` - Rotas /upload, /moderation, /profile, /content-manager
+- `client/src/const.ts` - getLoginUrl com suporte a returnPath
 
 ## Recursos Implementados
 

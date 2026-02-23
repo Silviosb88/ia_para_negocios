@@ -103,6 +103,14 @@ export default function Home() {
     }
   };
 
+  const handleUploadClick = () => {
+    if (isAuthenticated) {
+      window.location.href = "/upload";
+    } else {
+      window.location.href = getLoginUrl("/upload");
+    }
+  };
+
   const selectedTrabalho = selectedIndex !== null ? filtrados[selectedIndex] : null;
 
   return (
@@ -120,12 +128,13 @@ export default function Home() {
                 <span>🏠</span>
                 Menu Principal
               </a>
-              {isAuthenticated && (
-                <Link href="/upload" className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
-                  <span>📤</span>
-                  Enviar Trabalho
-                </Link>
-              )}
+              <button
+                onClick={handleUploadClick}
+                className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors text-white border-0 cursor-pointer font-medium"
+              >
+                <span>📤</span>
+                Enviar Trabalho
+              </button>
               <Link href="/docs" className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
                 <BookOpen className="w-5 h-5" />
                 Documentacao

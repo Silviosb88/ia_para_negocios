@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import Upload from "./pages/Upload";
 import Moderation from "./pages/Moderation";
 import Profile from "./pages/Profile";
+import ContentManager from "./pages/ContentManager";
 
 function Router() {
   // Dashboard and other admin routes require authentication
@@ -21,6 +22,7 @@ function Router() {
       <Route path={"/upload"} component={Upload} />
       <Route path={"/moderation"} component={Moderation} />
       <Route path={"/profile"} component={Profile} />
+      <Route path={"/content-manager"} component={ContentManager} />
       <Route path={"/docs"} component={Docs} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
