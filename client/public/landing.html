@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galeria de trabalhos dos estudantes do Clube do Foco - Explorando o Futuro da Criatividade com IA">
+    <title>Clube do Foco - Galeria de Trabalhos com IA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+
+        /* Navigation Menu Styles */
+        .top-nav {
+            background: #1e293b;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .top-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .top-nav li {
+            position: relative;
+        }
+
+        .top-nav a {
+            display: block;
+            padding: 15px 24px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .top-nav a:hover {
+            background: #6366f1;
+        }
+
+        .top-nav a.active {
+            background: #6366f1;
+            border-bottom: 3px solid #fff;
+        }
+
+        /* Dropdown Menu */
+        .top-nav .dropdown {
+            position: relative;
+        }
+
+        .top-nav .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #2d3748;
+            min-width: 220px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            z-index: 1001;
+        }
+
+        .top-nav .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .top-nav .dropdown-content a {
+            padding: 12px 20px;
+            font-size: 13px;
+            border-bottom: 1px solid #1e293b;
+            display: block;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .top-nav .dropdown-content a:hover {
+            background: #6366f1;
+        }
+
+        .top-nav .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        /* Badge para itens especiais */
+        .badge-new {
+            background: #10b981;
+            color: white;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 5px;
+            font-weight: 700;
+        }
+
+        .badge-restricted {
+            background: #f59e0b;
+            color: white;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 5px;
+            font-weight: 700;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .header .subtitle {
+            font-size: 20px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Controls Section */
+        .controls {
+            background: white;
+            padding: 30px 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 60px;
+            z-index: 999;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: 2px solid #e0e7ff;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #e0e7ff;
+            background: white;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .filter-btn:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .counter {
+            text-align: center;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Gallery */
+        .gallery {
+            padding: 40px 20px;
+            background: linear-gradient(to bottom, #f8f9ff, #fff);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .gallery-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
+        }
+
+        .gallery-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-card-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.9);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .gallery-card-content {
+            padding: 20px;
+        }
+
+        .gallery-card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .gallery-card-student {
+            font-size: 13px;
+            color: #667eea;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .gallery-card-description {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .gallery-card-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 12px;
+        }
+
+        .gallery-card-tool {
+            font-size: 11px;
+            background: #f0f4ff;
+            color: #667eea;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .gallery-card-date {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .no-results i {
+            font-size: 48px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .no-results p {
+            font-size: 18px;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #667eea;
+        }
+
+        .loading i {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            display: flex;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 10;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(0,0,0,0.7);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 10;
+            transition: background 0.3s ease;
+        }
+
+        .modal-nav:hover {
+            background: rgba(0,0,0,0.7);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        .modal-body {
+            display: flex;
+            width: 100%;
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .modal-media {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .modal-media img,
+        .modal-media video {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .modal-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .modal-info h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #1e293b;
+        }
+
+        .modal-student {
+            font-size: 14px;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .modal-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .modal-tool {
+            background: #f0f4ff;
+            color: #667eea;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .modal-date {
+            font-size: 13px;
+            color: #999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .footer a {
+            color: #6366f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #818cf8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .header .subtitle {
+                font-size: 16px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+
+            .modal-body {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .top-nav ul {
+                flex-direction: column;
+            }
+
+            .top-nav .dropdown-content {
+                position: static;
+                display: none;
+            }
+
+            .top-nav .dropdown:hover .dropdown-content {
+                display: block;
+            }
+        }
+
+        /* Auth Links */
+        .auth-links {
+            margin-left: auto;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .auth-links a {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn {
+            background: #6366f1;
+            color: white;
+        }
+
+        .login-btn:hover {
+            background: #4f46e5;
+        }
+
+        .user-menu {
+            position: relative;
+        }
+
+        .user-menu-toggle {
+            padding: 8px 16px;
+            background: #6366f1;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            border: none;
+        }
+
+        .user-menu-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #2d3748;
+            min-width: 180px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            z-index: 1001;
+            margin-top: 5px;
+        }
+
+        .user-menu:hover .user-menu-dropdown {
+            display: block;
+        }
+
+        .user-menu-dropdown a {
+            display: block;
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            border-bottom: 1px solid #1e293b;
+            transition: background 0.3s ease;
+        }
+
+        .user-menu-dropdown a:hover {
+            background: #6366f1;
+        }
+
+        .user-menu-dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .restricted-link {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Professional Navigation Menu -->
+    <nav class="top-nav">
+        <ul>
+            <!-- Home -->
+            <li><a href="/" class="active"><i class="fas fa-home"></i> Home</a></li>
+            
+            <!-- Galeria -->
+            <li><a href="/#gallery"><i class="fas fa-images"></i> Galeria</a></li>
+            
+            <!-- Ferramentas de IA -->
+            <li><a href="/docs/principais-ias.html"><i class="fas fa-robot"></i> Ferramentas de IA</a></li>
+            
+            <!-- Documentação (Dropdown) -->
+            <li class="dropdown">
+                <a href="#"><i class="fas fa-book"></i> Documentação <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="/docs/"><i class="fas fa-home"></i> Início</a>
+                    <a href="/docs/recursos-gratuitos.html"><i class="fas fa-gift"></i> Recursos Gratuitos</a>
+                    <a href="/docs/guia/fundamentos.html"><i class="fas fa-lightbulb"></i> Guia: Fundamentos</a>
+                    <a href="/docs/guia/preparacao.html"><i class="fas fa-tools"></i> Guia: Preparação</a>
+                </div>
+            </li>
+            
+            <!-- Moderação (Dropdown) - Apenas para alunos cadastrados -->
+            <li class="dropdown" id="moderationMenu" style="display: none;">
+                <a href="#"><i class="fas fa-check-circle"></i> Moderação <span class="badge-restricted">RESTRITO</span> <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="/moderation"><i class="fas fa-tasks"></i> Validação de Trabalhos</a>
+                    <a href="/cadastro"><i class="fas fa-user-plus"></i> Cadastro de Alunos</a>
+                    <a href="/profile"><i class="fas fa-user"></i> Acesso de Alunos</a>
+                </div>
+            </li>
+            
+            <!-- Upload -->
+            <li><a href="/upload" id="uploadLink"><i class="fas fa-upload"></i> Upload</a></li>
+            
+            <!-- Manifesto IA -->
+            <li><a href="/manifesto-ia.html"><i class="fas fa-handshake"></i> Manifesto IA <span class="badge-new">NOVO</span></a></li>
+            
+            <!-- Sobre (Dropdown) -->
+            <li class="dropdown">
+                <a href="#"><i class="fas fa-info-circle"></i> Sobre <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="/CONTRIBUTORS.md" target="_blank"><i class="fas fa-users"></i> Contribuidores</a>
+                    <a href="/CHANGELOG.md" target="_blank"><i class="fas fa-history"></i> Changelog</a>
+                    <a href="https://github.com/Silviosb88/ia_para_negocios" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </li>
+
+            <!-- Auth Links -->
+            <li class="auth-links">
+                <a href="#" id="loginBtn" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <button class="user-menu-toggle" id="userMenuToggle">
+                        <i class="fas fa-user"></i> <span id="userName">Usuário</span>
+                    </button>
+                    <div class="user-menu-dropdown">
+                        <a href="/dashboard"><i class="fas fa-th-large"></i> Painel</a>
+                        <a href="/profile"><i class="fas fa-user-circle"></i> Meu Perfil</a>
+                        <a href="/upload"><i class="fas fa-upload"></i> Enviar Trabalho</a>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1><i class="fas fa-brain"></i> Clube do Foco</h1>
+            <p class="subtitle">Galeria de Trabalhos com IA - Explorando o Futuro da Criatividade</p>
+        </div>
+    </header>
+
+    <!-- Controls -->
+    <section class="controls">
+        <div class="container">
+            <!-- Search -->
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar por nome do estudante ou título...">
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <button class="filter-btn active" data-filter="todos">
+                    <i class="fas fa-th"></i> Todos
+                </button>
+                <button class="filter-btn" data-filter="imagem">
+                    <i class="fas fa-image"></i> Imagens
+                </button>
+                <button class="filter-btn" data-filter="video">
+                    <i class="fas fa-video"></i> Vídeos
+                </button>
+                <button class="filter-btn" data-filter="avatar">
+                    <i class="fas fa-user-circle"></i> Avatares
+                </button>
+            </div>
+
+            <!-- Counter -->
+            <div class="counter">
+                <span id="workCounter">0</span> trabalhos encontrados
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div id="galleryGrid" class="gallery-grid">
+                <!-- Cards serão inseridos aqui via React -->
+            </div>
+            <div id="noResults" class="no-results" style="display: none;">
+                <i class="fas fa-search"></i>
+                <p>Nenhum trabalho encontrado</p>
+            </div>
+            <div id="loading" class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Carregando trabalhos...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 - Desenvolvido por: Clube do Foco em IA para Negócios</p>
+            <p>Projeto colaborativo com múltiplas IAs • <a href="/manifesto-ia.html">Ver Manifesto</a></p>
+            <p style="margin-top: 10px;">
+                <a href="/CONTRIBUTORS.md" target="_blank">Contribuidores</a> •
+                <a href="/CHANGELOG.md" target="_blank">Changelog</a> •
+                <a href="https://github.com/Silviosb88/ia_para_negocios" target="_blank">GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Verificar autenticação do usuário
+        async function checkAuth() {
+            try {
+                const response = await fetch('/api/trpc/auth.me', {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data && data.result && data.result.data) {
+                        const user = data.result.data;
+                        // Usuário autenticado
+                        document.getElementById('loginBtn').style.display = 'none';
+                        document.getElementById('userMenu').style.display = 'block';
+                        document.getElementById('userName').textContent = user.name || 'Usuário';
+                        
+                        // Mostrar menu de moderação se for admin
+                        if (user.role === 'admin') {
+                            document.getElementById('moderationMenu').style.display = 'block';
+                        }
+                    }
+                } else {
+                    // Usuário não autenticado
+                    document.getElementById('loginBtn').style.display = 'block';
+                    document.getElementById('userMenu').style.display = 'none';
+                    document.getElementById('moderationMenu').style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Erro ao verificar autenticação:', error);
+            }
+        }
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', async (e) => {
+            e.preventDefault();
+            try {
+                await fetch('/api/trpc/auth.logout', {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+                window.location.href = '/';
+            } catch (error) {
+                console.error('Erro ao fazer logout:', error);
+            }
+        });
+
+        // Login
+        document.getElementById('loginBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            // Redirecionar para página de login do React
+            window.location.href = '/#login';
+        });
+
+        // Verificar autenticação ao carregar a página
+        document.addEventListener('DOMContentLoaded', checkAuth);
+    </script>
+</body>
+</html>
