@@ -55,11 +55,17 @@
 - [x] Criar testes para página de perfil (6 testes)
 - [ ] Criar testes end-to-end
 
-### ⏳ Fase 7: Entregar projeto finalizado ao usuário
+### ⏳ Fase 7: Corrigir bugs e entregar projeto finalizado
+- [x] Corrigir erro de autenticação (cookie de sessão)
 - [ ] Documentação de uso
 - [ ] Guia de moderação
 - [ ] Instruções de deployment
 - [ ] Checkpoint final
+
+## Bugs Corrigidos
+- [x] Cookie de sessão não era persistido após login OAuth
+  - Causa: sameSite="none" sem secure em HTTPS
+  - Solução: Ajustar sameSite dinamicamente ("lax" em HTTP, "none" em HTTPS)
 
 ## Arquivos Criados/Modificados
 
