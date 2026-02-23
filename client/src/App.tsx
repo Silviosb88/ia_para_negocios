@@ -6,15 +6,18 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Docs from "./pages/Docs";
+import Dashboard from "./pages/Dashboard";
 import Upload from "./pages/Upload";
 import Moderation from "./pages/Moderation";
 import Profile from "./pages/Profile";
 
 function Router() {
-  // make sure to consider if you need authentication for certain routes
+  // Dashboard and other admin routes require authentication
+  // Upload, Moderation, and Profile routes are protected by their own components
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/dashboard"} component={Dashboard} />
       <Route path={"/upload"} component={Upload} />
       <Route path={"/moderation"} component={Moderation} />
       <Route path={"/profile"} component={Profile} />
