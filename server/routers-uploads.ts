@@ -13,6 +13,9 @@ import {
   incrementGalleryViews,
   addToModerationQueue,
   getModerationQueue,
+  getUserUploadStats,
+  getUserUploadHistory,
+  getUserApprovedUploads,
 } from "./db-uploads";
 import { storagePut } from "./storage";
 
@@ -29,19 +32,16 @@ export const uploadsRouter = router({
         title: z.string().min(1).max(255),
         description: z.string().optional(),
         type: uploadTypeEnum,
-        aiTools: z.array(z.string()).optional(),
+        file: z.instanceof(File),
+        aiTools: z.array(z.string()).min(1),
         inspirationSource: z.string().optional(),
-        fileData: z.string(), // base64 encoded file
-        fileName: z.string(),
-        mimeType: z.string(),
       })
     )
     .mutation(async ({ input, ctx }) => {
       try {
         // Validar tamanho do arquivo (máximo 100MB)
-        const fileSizeBytes = Math.ceil((input.fileData.length * 3) / 4);
-        const maxSizeBytes = 100 * 1024 * 1024;
-        if (fileSizeBytes > maxSizeBytes) {
+        const maxSize = 100 * 1024 * 1024;
+        if (input.file.size > maxSize) {
           throw new TRPCError({
             code: "BAD_REQUEST",
             message: "Arquivo muito grande (máximo 100MB)",
@@ -49,22 +49,22 @@ export const uploadsRouter = router({
         }
 
         // Fazer upload para S3
-        const fileKey = `uploads/${ctx.user.id}/${Date.now()}-${input.fileName}`;
-        const buffer = Buffer.from(input.fileData, "base64");
-        const { url: fileUrl } = await storagePut(fileKey, buffer, input.mimeType);
+        const buffer = await input.file.arrayBuffer();
+        const fileKey = `uploads/${ctx.user.id}/${Date.now()}-${input.file.name}`;
+        const { url } = await storagePut(fileKey, new Uint8Array(buffer), input.file.type);
 
         // Criar registro no banco de dados
         const upload = await createUpload({
           userId: ctx.user.id,
           title: input.title,
-          description: input.description,
+          description: input.description || "",
           type: input.type,
           fileKey,
-          fileUrl,
-          mimeType: input.mimeType,
-          fileSize: fileSizeBytes,
-          aiTools: input.aiTools ? JSON.stringify(input.aiTools) : null,
-          inspirationSource: input.inspirationSource,
+          fileUrl: url,
+          mimeType: input.file.type,
+          fileSize: input.file.size,
+          aiTools: JSON.stringify(input.aiTools),
+          inspirationSource: input.inspirationSource || "",
           status: "pending",
         });
 
@@ -81,7 +81,7 @@ export const uploadsRouter = router({
           userId: ctx.user.id,
           title: input.title,
           type: input.type,
-          fileUrl,
+          fileUrl: url,
           status: "pending",
         });
 
@@ -91,8 +91,8 @@ export const uploadsRouter = router({
           message: "Upload enviado com sucesso! Aguardando moderação.",
         };
       } catch (error) {
-        console.error("[Upload] Error creating upload:", error);
         if (error instanceof TRPCError) throw error;
+        console.error("[Upload] Error creating upload:", error);
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
           message: "Erro ao fazer upload",
@@ -133,12 +133,14 @@ export const uploadsRouter = router({
             message: "Upload não encontrado",
           });
         }
+
         return {
           ...upload,
           aiTools: upload.aiTools ? JSON.parse(upload.aiTools) : [],
         };
       } catch (error) {
         if (error instanceof TRPCError) throw error;
+        console.error("[Upload] Error getting upload:", error);
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
           message: "Erro ao buscar upload",
@@ -147,7 +149,7 @@ export const uploadsRouter = router({
     }),
 
   /**
-   * Galeria pública - listar trabalhos aprovados
+   * Listar galeria pública com paginação
    */
   gallery: publicProcedure
     .input(
@@ -173,7 +175,7 @@ export const uploadsRouter = router({
     }),
 
   /**
-   * Galeria por tipo
+   * Filtrar galeria por tipo
    */
   galleryByType: publicProcedure
     .input(
@@ -191,10 +193,10 @@ export const uploadsRouter = router({
           aiTools: item.aiTools ? JSON.parse(item.aiTools) : [],
         }));
       } catch (error) {
-        console.error("[Gallery] Error getting gallery by type:", error);
+        console.error("[Gallery] Error filtering gallery:", error);
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: "Erro ao buscar galeria",
+          message: "Erro ao filtrar galeria",
         });
       }
     }),
@@ -273,7 +275,6 @@ export const uploadsRouter = router({
           });
         }
 
-        // Atualizar status
         const updated = await updateUploadStatus(
           input.uploadId,
           "approved",
@@ -359,4 +360,65 @@ export const uploadsRouter = router({
         });
       }
     }),
+
+  /**
+   * Obter estatísticas de upload do usuário (protegido)
+   */
+  userStats: protectedProcedure.query(async ({ ctx }) => {
+    try {
+      const stats = await getUserUploadStats(ctx.user.id);
+      return stats;
+    } catch (error) {
+      console.error("[Profile] Error getting user stats:", error);
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Erro ao buscar estatísticas",
+      });
+    }
+  }),
+
+  /**
+   * Obter histórico de uploads do usuário (protegido)
+   */
+  userHistory: protectedProcedure
+    .input(
+      z.object({
+        limit: z.number().default(20),
+        offset: z.number().default(0),
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      try {
+        const history = await getUserUploadHistory(ctx.user.id, input.limit, input.offset);
+        return history.map((item) => ({
+          ...item,
+          aiTools: item.aiTools ? JSON.parse(item.aiTools) : [],
+        }));
+      } catch (error) {
+        console.error("[Profile] Error getting user history:", error);
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Erro ao buscar histórico",
+        });
+      }
+    }),
+
+  /**
+   * Obter uploads aprovados do usuário (protegido)
+   */
+  userApproved: protectedProcedure.query(async ({ ctx }) => {
+    try {
+      const approved = await getUserApprovedUploads(ctx.user.id);
+      return approved.map((item) => ({
+        ...item,
+        aiTools: item.aiTools ? JSON.parse(item.aiTools) : [],
+      }));
+    } catch (error) {
+      console.error("[Profile] Error getting approved uploads:", error);
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Erro ao buscar uploads aprovados",
+      });
+    }
+  }),
 });

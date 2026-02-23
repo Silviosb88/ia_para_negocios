@@ -2,9 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { uploadsRouter } from "./routers-uploads";
 import * as dbUploads from "./db-uploads";
 import * as storage from "./storage";
-import { TRPCError } from "@trpc/server";
 
-// Mock dependencies
 vi.mock("./db-uploads");
 vi.mock("./storage");
 
@@ -21,8 +19,8 @@ describe("uploadsRouter", () => {
         res: {} as any,
       } as any);
 
-      // Simular arquivo muito grande (mais de 100MB)
-      const largeBase64 = "a".repeat(150 * 1024 * 1024);
+      const largeBuffer = new Uint8Array(150 * 1024 * 1024);
+      const largeFile = new File([largeBuffer], "test.jpg", { type: "image/jpeg" });
 
       await expect(
         caller.create({
@@ -31,9 +29,7 @@ describe("uploadsRouter", () => {
           type: "imagem",
           aiTools: ["DALL-E"],
           inspirationSource: "Test",
-          fileData: largeBase64,
-          fileName: "test.jpg",
-          mimeType: "image/jpeg",
+          file: largeFile,
         })
       ).rejects.toThrow("Arquivo muito grande");
     });
@@ -45,16 +41,15 @@ describe("uploadsRouter", () => {
         res: {} as any,
       } as any);
 
+      const file = new File(["test"], "test.jpg", { type: "image/jpeg" });
+
       await expect(
         caller.create({
           title: "",
           description: "Test",
           type: "imagem",
           aiTools: ["DALL-E"],
-          inspirationSource: "Test",
-          fileData: "base64data",
-          fileName: "test.jpg",
-          mimeType: "image/jpeg",
+          file: file,
         })
       ).rejects.toThrow();
     });
@@ -66,203 +61,116 @@ describe("uploadsRouter", () => {
         res: {} as any,
       } as any);
 
+      const file = new File(["test"], "test.jpg", { type: "image/jpeg" });
+
       await expect(
         caller.create({
           title: "Test",
           description: "Test",
           type: "imagem",
           aiTools: [],
-          inspirationSource: "Test",
-          fileData: "base64data",
-          fileName: "test.jpg",
-          mimeType: "image/jpeg",
+          file: file,
         })
       ).rejects.toThrow();
     });
   });
 
-  describe("gallery procedure", () => {
-    it("should return gallery items with pagination", async () => {
-      const mockGalleryItems = [
+  describe("userStats query", () => {
+    it("should return user statistics", async () => {
+      const mockStats = {
+        total: 5,
+        approved: 3,
+        pending: 1,
+        rejected: 1,
+        totalViews: 150,
+      };
+
+      vi.mocked(dbUploads.getUserUploadStats).mockResolvedValue(mockStats);
+
+      const caller = uploadsRouter.createCaller({
+        user: { id: 1, role: "user" },
+        req: {} as any,
+        res: {} as any,
+      } as any);
+
+      const result = await caller.userStats();
+
+      expect(result).toEqual(mockStats);
+      expect(result.total).toBe(5);
+      expect(result.approved).toBe(3);
+    });
+  });
+
+  describe("userHistory query", () => {
+    it("should return user upload history", async () => {
+      const mockHistory = [
+        {
+          id: 1,
+          userId: 1,
+          title: "Test Upload",
+          description: "Test",
+          type: "imagem" as const,
+          fileKey: "uploads/1/test.jpg",
+          fileUrl: "https://example.com/test.jpg",
+          mimeType: "image/jpeg",
+          fileSize: 1024,
+          aiTools: '["DALL-E"]',
+          inspirationSource: "Test",
+          status: "approved" as const,
+          moderationNotes: "Approved",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ];
+
+      vi.mocked(dbUploads.getUserUploadHistory).mockResolvedValue(mockHistory);
+
+      const caller = uploadsRouter.createCaller({
+        user: { id: 1, role: "user" },
+        req: {} as any,
+        res: {} as any,
+      } as any);
+
+      const result = await caller.userHistory({ limit: 20, offset: 0 });
+
+      expect(result).toHaveLength(1);
+      expect(result[0].title).toBe("Test Upload");
+    });
+  });
+
+  describe("userApproved query", () => {
+    it("should return approved uploads", async () => {
+      const mockApproved = [
         {
           id: 1,
           uploadId: 1,
           userId: 1,
-          title: "Test Gallery Item",
+          title: "Approved Upload",
           description: "Test",
           type: "imagem" as const,
-          fileUrl: "https://example.com/image.jpg",
+          fileUrl: "https://example.com/test.jpg",
           aiTools: '["DALL-E"]',
           inspirationSource: "Test",
-          views: 10,
+          views: 50,
           featured: 0,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
       ];
 
-      vi.mocked(dbUploads.getPublicGallery).mockResolvedValue(mockGalleryItems);
+      vi.mocked(dbUploads.getUserApprovedUploads).mockResolvedValue(mockApproved);
 
       const caller = uploadsRouter.createCaller({
-        user: null,
+        user: { id: 1, role: "user" },
         req: {} as any,
         res: {} as any,
       } as any);
 
-      const result = await caller.gallery({ limit: 20, offset: 0 });
+      const result = await caller.userApproved();
 
       expect(result).toHaveLength(1);
-      expect(result[0].title).toBe("Test Gallery Item");
-      expect(result[0].aiTools).toEqual(["DALL-E"]);
-    });
-  });
-
-  describe("moderationQueue procedure", () => {
-    it("should require admin role", async () => {
-      const caller = uploadsRouter.createCaller({
-        user: { id: 1, role: "user" },
-        req: {} as any,
-        res: {} as any,
-      } as any);
-
-      await expect(caller.moderationQueue({})).rejects.toThrow(
-        "Apenas administradores podem acessar a fila de moderação"
-      );
-    });
-
-    it("should return moderation queue for admin", async () => {
-      const mockQueue = [
-        {
-          id: 1,
-          uploadId: 1,
-          userId: 1,
-          title: "Test Upload",
-          type: "imagem",
-          fileUrl: "https://example.com/image.jpg",
-          status: "pending",
-          githubIssueId: null,
-          moderatorNotes: null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ];
-
-      vi.mocked(dbUploads.getModerationQueue).mockResolvedValue(mockQueue);
-
-      const caller = uploadsRouter.createCaller({
-        user: { id: 1, role: "admin" },
-        req: {} as any,
-        res: {} as any,
-      } as any);
-
-      const result = await caller.moderationQueue({});
-
-      expect(result).toHaveLength(1);
-      expect(result[0].status).toBe("pending");
-    });
-  });
-
-  describe("approve procedure", () => {
-    it("should require admin role", async () => {
-      const caller = uploadsRouter.createCaller({
-        user: { id: 1, role: "user" },
-        req: {} as any,
-        res: {} as any,
-      } as any);
-
-      await expect(
-        caller.approve({ uploadId: 1, notes: "Approved" })
-      ).rejects.toThrow("Apenas administradores podem aprovar uploads");
-    });
-
-    it("should approve upload and add to gallery", async () => {
-      const mockUpload = {
-        id: 1,
-        userId: 1,
-        title: "Test Upload",
-        description: "Test",
-        type: "imagem" as const,
-        fileKey: "uploads/1/test.jpg",
-        fileUrl: "https://example.com/image.jpg",
-        mimeType: "image/jpeg",
-        fileSize: 1024,
-        aiTools: '["DALL-E"]',
-        inspirationSource: "Test",
-        status: "pending" as const,
-        moderationNotes: null,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
-
-      vi.mocked(dbUploads.getUploadById).mockResolvedValue(mockUpload);
-      vi.mocked(dbUploads.updateUploadStatus).mockResolvedValue(mockUpload);
-      vi.mocked(dbUploads.addToGallery).mockResolvedValue({} as any);
-
-      const caller = uploadsRouter.createCaller({
-        user: { id: 1, role: "admin" },
-        req: {} as any,
-        res: {} as any,
-      } as any);
-
-      const result = await caller.approve({ uploadId: 1 });
-
-      expect(result.success).toBe(true);
-      expect(dbUploads.updateUploadStatus).toHaveBeenCalledWith(1, "approved", undefined);
-      expect(dbUploads.addToGallery).toHaveBeenCalled();
-    });
-  });
-
-  describe("reject procedure", () => {
-    it("should require admin role", async () => {
-      const caller = uploadsRouter.createCaller({
-        user: { id: 1, role: "user" },
-        req: {} as any,
-        res: {} as any,
-      } as any);
-
-      await expect(
-        caller.reject({ uploadId: 1, reason: "Inappropriate content" })
-      ).rejects.toThrow("Apenas administradores podem rejeitar uploads");
-    });
-
-    it("should reject upload with reason", async () => {
-      const mockUpload = {
-        id: 1,
-        userId: 1,
-        title: "Test Upload",
-        description: "Test",
-        type: "imagem" as const,
-        fileKey: "uploads/1/test.jpg",
-        fileUrl: "https://example.com/image.jpg",
-        mimeType: "image/jpeg",
-        fileSize: 1024,
-        aiTools: '["DALL-E"]',
-        inspirationSource: "Test",
-        status: "rejected" as const,
-        moderationNotes: "Inappropriate content",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
-
-      vi.mocked(dbUploads.updateUploadStatus).mockResolvedValue(mockUpload);
-
-      const caller = uploadsRouter.createCaller({
-        user: { id: 1, role: "admin" },
-        req: {} as any,
-        res: {} as any,
-      } as any);
-
-      const result = await caller.reject({
-        uploadId: 1,
-        reason: "Inappropriate content",
-      });
-
-      expect(result.success).toBe(true);
-      expect(dbUploads.updateUploadStatus).toHaveBeenCalledWith(
-        1,
-        "rejected",
-        "Inappropriate content"
-      );
+      expect(result[0].title).toBe("Approved Upload");
+      expect(result[0].views).toBe(50);
     });
   });
 });

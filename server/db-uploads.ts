@@ -227,3 +227,113 @@ export async function getModerationQueue(status?: string): Promise<any[]> {
     .from(moderationQueue)
     .orderBy(desc(moderationQueue.createdAt));
 }
+
+
+/**
+ * Obter estatísticas de upload do usuário
+ */
+export async function getUserUploadStats(userId: number): Promise<{
+  total: number;
+  approved: number;
+  pending: number;
+  rejected: number;
+  totalViews: number;
+}> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get user stats: database not available");
+    return { total: 0, approved: 0, pending: 0, rejected: 0, totalViews: 0 };
+  }
+
+  try {
+    const userUploads = await db
+      .select()
+      .from(uploads)
+      .where(eq(uploads.userId, userId));
+
+    const total = userUploads.length;
+    const approved = userUploads.filter((u) => u.status === "approved").length;
+    const pending = userUploads.filter((u) => u.status === "pending").length;
+    const rejected = userUploads.filter((u) => u.status === "rejected").length;
+
+    // Obter total de visualizações dos trabalhos aprovados
+    const galleryItems = await db
+      .select()
+      .from(gallery)
+      .where(eq(gallery.userId, userId));
+
+    const totalViews = galleryItems.reduce((sum, item) => sum + (item.views || 0), 0);
+
+    return { total, approved, pending, rejected, totalViews };
+  } catch (error) {
+    console.error("[Database] Failed to get user stats:", error);
+    return { total: 0, approved: 0, pending: 0, rejected: 0, totalViews: 0 };
+  }
+}
+
+/**
+ * Obter histórico de uploads do usuário com detalhes
+ */
+export async function getUserUploadHistory(userId: number, limit = 20, offset = 0): Promise<any[]> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get user history: database not available");
+    return [];
+  }
+
+  try {
+    const userUploads = await db
+      .select()
+      .from(uploads)
+      .where(eq(uploads.userId, userId))
+      .orderBy(desc(uploads.createdAt))
+      .limit(limit)
+      .offset(offset);
+
+    // Enriquecer com dados da galeria (se aprovado)
+    const enriched = await Promise.all(
+      userUploads.map(async (upload) => {
+        if (upload.status === "approved") {
+          const galleryItem = await db
+            .select()
+            .from(gallery)
+            .where(eq(gallery.uploadId, upload.id))
+            .limit(1);
+
+          return {
+            ...upload,
+            galleryItem: galleryItem.length > 0 ? galleryItem[0] : null,
+          };
+        }
+        return { ...upload, galleryItem: null };
+      })
+    );
+
+    return enriched;
+  } catch (error) {
+    console.error("[Database] Failed to get user history:", error);
+    return [];
+  }
+}
+
+/**
+ * Obter uploads aprovados do usuário (para galeria pessoal)
+ */
+export async function getUserApprovedUploads(userId: number): Promise<Gallery[]> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get approved uploads: database not available");
+    return [];
+  }
+
+  try {
+    return await db
+      .select()
+      .from(gallery)
+      .where(eq(gallery.userId, userId))
+      .orderBy(desc(gallery.createdAt));
+  } catch (error) {
+    console.error("[Database] Failed to get approved uploads:", error);
+    return [];
+  }
+}

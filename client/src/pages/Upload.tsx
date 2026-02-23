@@ -156,9 +156,7 @@ export default function Upload() {
             type: formData.type,
             aiTools: formData.aiTools,
             inspirationSource: formData.inspirationSource,
-            fileData: base64,
-            fileName: file.name,
-            mimeType: file.type,
+            file: file,
           });
 
           if (result.success) {

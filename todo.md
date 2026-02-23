@@ -46,7 +46,16 @@
 - [ ] Testes da página Upload.tsx
 - [ ] Testes end-to-end
 
-### ⏳ Fase 6: Entregar projeto finalizado ao usuário
+### ✅ Fase 6: Desenvolver página de perfil do usuário
+- [x] Criar APIs tRPC para dados de perfil (userStats, userHistory, userApproved)
+- [x] Desenvolver página Profile.tsx com layout completo
+- [x] Implementar seção de estatísticas com cards
+- [x] Implementar histórico de uploads com filtros
+- [x] Adicionar funcionalidades de gerenciamento
+- [x] Criar testes para página de perfil (6 testes)
+- [ ] Criar testes end-to-end
+
+### ⏳ Fase 7: Entregar projeto finalizado ao usuário
 - [ ] Documentação de uso
 - [ ] Guia de moderação
 - [ ] Instruções de deployment
