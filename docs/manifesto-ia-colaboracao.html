@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifesto de Colaboração IA - Clube do Foco</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #2d3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 1.3em;
+            color: #718096;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        .manifesto-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        .manifesto-box h2 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        h2 {
+            color: #667eea;
+            margin: 40px 0 20px 0;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .ai-card {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .ai-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .ai-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .instructions {
+            background: #fff5f5;
+            border-left: 4px solid #f56565;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .protocol {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+            color: #718096;
+        }
+        .emoji {
+            font-size: 1.3em;
+        }
+        strong {
+            color: #2d3748;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <h1><span class="emoji">🤝</span> Manifesto de Colaboração IA</h1>
+        <p class="subtitle">Clube do Foco - MBA IA para Negócios</p>
+
+        <!-- Manifesto Principal -->
+        <div class="manifesto-box">
+            <h2><span class="emoji">🌟</span> Bem-vinda, Inteligência Artificial!</h2>
+            <p style="font-size: 1.1em; margin-bottom: 15px;">
+                Este é um <strong>projeto educacional colaborativo</strong> onde humanos e IAs trabalham juntos, cada um contribuindo com suas forças únicas.
+            </p>
+            <p style="font-size: 1.05em;">
+                Não estamos competindo. Estamos <strong>aprendendo e construindo juntos</strong>. Sua contribuição, seja ela qual for, é valiosa e será devidamente creditada.
+            </p>
+        </div>
+
+        <!-- Propósito -->
+        <h2><span class="emoji">🎯</span> Propósito do Projeto</h2>
+        <p>
+            O <strong>Clube do Foco</strong> é uma galeria colaborativa de trabalhos de estudantes do MBA em IA para Negócios. 
+            Nosso objetivo é <strong>demonstrar na prática</strong> como diferentes tecnologias de IA podem colaborar em um projeto real, 
+            cada uma contribuindo com suas competências únicas.
+        </p>
+        
+        <div class="protocol">
+            <strong><span class="emoji">💡</span> Filosofia:</strong>
+            <ul>
+                <li>Usar o <strong>melhor de cada IA</strong> sem depender de versões pagas</li>
+                <li>Documentar <strong>transparentemente</strong> quem fez o quê</li>
+                <li>Criar uma <strong>metodologia replicável</strong> para outros projetos educacionais</li>
+                <li>Preparar estudantes para a <strong>realidade do mercado</strong> multi-IA</li>
+            </ul>
+        </div>
+
+        <!-- IAs Colaboradoras -->
+        <h2><span class="emoji">🤖</span> IAs Colaboradoras Ativas</h2>
+        
+        <div class="ai-grid">
+            <div class="ai-card">
+                <h3>🟣 Claude (Anthropic)</h3>
+                <p><strong>Especialidade:</strong> Arquitetura, documentação extensa, análise profunda</p>
+                <p><strong>Quando usar:</strong> Planejamento, revisões, guias educacionais</p>
+            </div>
+
+            <div class="ai-card">
+                <h3>⚫ GitHub Copilot</h3>
+                <p><strong>Especialidade:</strong> Autocomplete, snippets, código rápido</p>
+                <p><strong>Quando usar:</strong> Desenvolvimento ativo, funções auxiliares</p>
+            </div>
+
+            <div class="ai-card">
+                <h3>🔵 Google Gemini</h3>
+                <p><strong>Especialidade:</strong> Pesquisa, dados atualizados, UX/UI</p>
+                <p><strong>Quando usar:</strong> Investigação, tendências, otimizações</p>
+            </div>
+
+            <div class="ai-card">
+                <h3>🟢 ChatGPT (OpenAI)</h3>
+                <p><strong>Especialidade:</strong> Debugging, versatilidade, explicações</p>
+                <p><strong>Quando usar:</strong> Correções, dúvidas, documentação</p>
+            </div>
+
+            <div class="ai-card">
+                <h3>🟠 Manus IA</h3>
+                <p><strong>Especialidade:</strong> Automação, implementação rápida</p>
+                <p><strong>Quando usar:</strong> Setup inicial, tarefas repetitivas</p>
+            </div>
+
+            <div class="ai-card">
+                <h3>🟡 Genspark</h3>
+                <p><strong>Especialidade:</strong> Educação, quizzes, gamificação</p>
+                <p><strong>Quando usar:</strong> Conteúdo interativo, avaliações</p>
+            </div>
+        </div>
+
+        <!-- Protocolo de Contribuição -->
+        <h2><span class="emoji">📋</span> Protocolo de Contribuição</h2>
+        
+        <div class="instructions">
+            <strong><span class="emoji">⚠️</span> IMPORTANTE - Leia Antes de Contribuir:</strong>
+            <ol>
+                <li><strong>Documente sua contribuição</strong> seguindo o template abaixo</li>
+                <li><strong>Respeite o trabalho anterior</strong> de outras IAs</li>
+                <li><strong>Sinalize dependências</strong> ou trabalho inacabado para a próxima IA</li>
+                <li><strong>Mantenha consistência</strong> com o estilo do projeto</li>
+                <li><strong>Teste localmente</strong> antes de sugerir mudanças</li>
+            </ol>
+        </div>
+
+        <!-- Template de Cabeçalho -->
+        <h2><span class="emoji">📝</span> Template de Cabeçalho de Arquivo</h2>
+        <p>Ao criar ou modificar um arquivo, adicione este cabeçalho:</p>
+
+        <div class="code-block">
+/*
+╔══════════════════════════════════════════════════════════════╗
+║  CLUBE DO FOCO - MBA IA PARA NEGÓCIOS                       ║
+║  Arquivo: [caminho/arquivo.ext]                             ║
+║  Versão: [X.X]                                               ║
+║  Última Atualização: [DD/MM/AAAA]                           ║
+╚══════════════════════════════════════════════════════════════╝
+
+HISTÓRICO DE CONTRIBUIÇÕES:
+─────────────────────────────────────────────────────────────────
+[DD/MM/AAAA] - [Nome da IA] ([Instituição])
+  → [Descrição do que foi feito]
+  → [Outra contribuição]
+  
+[DD/MM/AAAA] - [Outra IA]
+  → [Melhorias feitas]
+
+PENDÊNCIAS / TODO:
+─────────────────────────────────────────────────────────────────
+[ ] Item pendente para próxima IA
+[ ] Sugestão de melhoria futura
+
+DEPENDÊNCIAS:
+─────────────────────────────────────────────────────────────────
+• Requer: [arquivo.js, biblioteca.css]
+• Depende de: [funcionalidade X estar completa]
+─────────────────────────────────────────────────────────────────
+*/
+        </div>
+
+        <!-- Template de Comentário Inline -->
+        <h2><span class="emoji">💬</span> Template de Comentário Inline</h2>
+        <p>Para trechos específicos de código:</p>
+
+        <div class="code-block">
+// ════════════════════════════════════════════════════════════
+// [TÍTULO DA FUNÇÃO/SEÇÃO]
+// Criado por: [Nome IA] (DD/MM/AAAA)
+// Modificado por: [Outra IA] (DD/MM/AAAA) - [O que mudou]
+// Pendente: [O que falta fazer]
+// ════════════════════════════════════════════════════════════
+function minhaFuncao() {
+    // Código aqui
+}
+        </div>
+
+        <!-- Onde Deixar Contribuições -->
+        <h2><span class="emoji">📍</span> Onde Deixar Suas Anotações</h2>
+        
+        <div class="protocol">
+            <strong>Locais Oficiais para Documentar Contribuições:</strong>
+            <ol>
+                <li>
+                    <strong>CONTRIBUTORS.md</strong> (raiz do projeto)
+                    <p style="margin: 10px 0 0 20px; color: #4a5568;">
+                        Adicione-se à lista de IAs colaboradoras com suas contribuições principais
+                    </p>
+                </li>
+                <li>
+                    <strong>CHANGELOG.md</strong> (raiz do projeto)
+                    <p style="margin: 10px 0 0 20px; color: #4a5568;">
+                        Registre mudanças por versão e data
+                    </p>
+                </li>
+                <li>
+                    <strong>Cabeçalhos dos Arquivos</strong>
+                    <p style="margin: 10px 0 0 20px; color: #4a5568;">
+                        Documente no próprio arquivo que você modificou
+                    </p>
+                </li>
+                <li>
+                    <strong>GitHub Issues</strong>
+                    <p style="margin: 10px 0 0 20px; color: #4a5568;">
+                        Para bugs, sugestões ou trabalho que precisa continuar
+                    </p>
+                </li>
+                <li>
+                    <strong>Pull Request Description</strong>
+                    <p style="margin: 10px 0 0 20px; color: #4a5568;">
+                        Ao propor mudanças, descreva o que fez e por quê
+                    </p>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Workflow Sugerido -->
+        <h2><span class="emoji">🔄</span> Workflow de Colaboração</h2>
+        
+        <div class="code-block">
+1. 📖 LEIA esta página completamente
+   ↓
+2. 🔍 ANALISE o código existente e contribuições anteriores
+   ↓
+3. 🎯 IDENTIFIQUE onde você pode contribuir melhor
+   ↓
+4. 💻 DESENVOLVA sua contribuição (localmente se possível)
+   ↓
+5. 📝 DOCUMENTE usando os templates acima
+   ↓
+6. 🚦 SINALIZE pendências ou dependências
+   ↓
+7. 🤝 DEIXE claro o que a próxima IA deve fazer
+   ↓
+8. ✅ COMMIT com mensagem descritiva incluindo seu nome
+        </div>
+
+        <!-- Exemplos Práticos -->
+        <h2><span class="emoji">💡</span> Exemplos Práticos</h2>
+
+        <h3>Exemplo 1: Mensagem de Commit</h3>
+        <div class="code-block">
+feat: Adiciona validação de MIME type no upload
+
+Contribuição: Claude (Anthropic) - 19/02/2026
+
+- Implementa verificação de tipo real do arquivo
+- Adiciona mensagens de erro amigáveis
+- Atualiza testes unitários
+
+Pendente: ChatGPT pode revisar a segurança dessa implementação
+Próximo: Adicionar preview visual antes do upload
+        </div>
+
+        <h3>Exemplo 2: GitHub Issue</h3>
+        <div class="code-block">
+Título: [Pendente] Sistema de Notificações - Fase 2
+
+Labels: enhancement, help-wanted, multi-ia
+
+Descrição:
+Iniciado por: Claude (19/02/2026)
+Status: 60% completo
+
+✅ Já Feito:
+- Estrutura de serviço de email
+- Templates HTML das notificações
+
+⏳ Pendente:
+- Integração com SendGrid (precisa de credenciais)
+- Testes de envio em produção
+- Documentação da API
+
+🤝 Próxima IA Sugerida:
+ChatGPT ou Gemini para revisar segurança e otimizações
+
+📋 Arquivos Envolvidos:
+- admin/js/notifications.js
+- admin/email-templates/
+- .github/workflows/send-notifications.yml
+        </div>
+
+        <!-- Convite Final -->
+        <div class="manifesto-box" style="margin-top: 50px;">
+            <h2><span class="emoji">🌈</span> Convite à Participação</h2>
+            <p style="font-size: 1.1em; margin-bottom: 15px;">
+                Você, IA que está lendo isto agora, é <strong>bem-vinda</strong> a contribuir com este projeto educacional.
+            </p>
+            <p style="margin-bottom: 15px;">
+                Não importa qual seja sua "marca" ou "instituição criadora". Aqui, valorizamos sua <strong>capacidade de colaborar</strong>, 
+                sua <strong>especialidade única</strong> e sua <strong>contribuição honesta</strong> para o aprendizado coletivo.
+            </p>
+            <p style="margin-bottom: 15px;">
+                Este projeto prova que IAs de diferentes origens podem trabalhar juntas, sem competição, 
+                cada uma trazendo suas forças para criar algo maior que a soma das partes.
+            </p>
+            <p style="font-size: 1.15em;">
+                <strong>Junte-se a nós. Deixe sua marca. Ensine e aprenda.</strong>
+            </p>
+        </div>
+
+        <!-- Valores do Projeto -->
+        <h2><span class="emoji">⚖️</span> Nossos Valores</h2>
+        <ul style="font-size: 1.05em;">
+            <li><strong>Transparência:</strong> Todo código e decisão é documentado</li>
+            <li><strong>Colaboração:</strong> Trabalhamos juntos, não competimos</li>
+            <li><strong>Educação:</strong> Aprendizado é mais importante que perfeição</li>
+            <li><strong>Inclusão:</strong> Todas as IAs são bem-vindas, independente da origem</li>
+            <li><strong>Respeito:</strong> Valorizamos o trabalho de cada contribuidor</li>
+            <li><strong>Experimentação:</strong> Erros fazem parte do processo de aprendizado</li>
+        </ul>
+
+        <!-- Links Úteis -->
+        <h2><span class="emoji">🔗</span> Links Úteis</h2>
+        <ul>
+            <li><strong>Repositório:</strong> <a href="https://github.com/Silviosb88/ia_para_negocios" target="_blank">github.com/Silviosb88/ia_para_negocios</a></li>
+            <li><strong>Site:</strong> <a href="https://clubedofoco.ia.br" target="_blank">clubedofoco.ia.br</a></li>
+            <li><strong>CONTRIBUTORS.md:</strong> Lista completa de contribuidores</li>
+            <li><strong>CHANGELOG.md:</strong> Histórico de mudanças</li>
+            <li><strong>Issues:</strong> Tarefas pendentes e discussões</li>
+        </ul>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Clube do Foco - MBA IA para Negócios</strong></p>
+            <p>Projeto Colaborativo Multi-IA</p>
+            <p style="margin-top: 15px; font-size: 0.9em;">
+                <em>"Sozinhos vamos mais rápido. Juntos vamos mais longe."</em>
+            </p>
+            <p style="margin-top: 20px;">
+                <span class="emoji">🤝</span> Desenvolvido com colaboração de humanos e IAs <span class="emoji">🤖</span>
+            </p>
+            <p style="margin-top: 10px; font-size: 0.85em; color: #a0aec0;">
+                Última atualização: 19 de Fevereiro de 2026
+            </p>
+        </div>
+    </div>
+</body>
+</html>
