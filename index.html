@@ -128,8 +128,8 @@
             </li>
             <li><a href="docs/manifesto-ia-colaboracao.html"> <i class="fas fa-handshake"></i> Manifesto IA
 </a></li>
-            <!-- Upload -->
-            <li><a href="upload/"><i class="fas fa-upload"></i> Upload</a></li>
+            <!-- Upload (Protegido) -->
+            <li><a href="upload.html" data-auth="true"><i class="fas fa-upload"></i> Upload</a></li>
             
             <!-- Manifesto IA ✅ NOVO -->
             <li><a href="manifesto-ia-colaboracao.html"><i class="fas fa-handshake"></i> Manifesto IA <span class="badge-new">NOVO</span></a></li>
@@ -246,7 +246,41 @@
         </div>
     </footer>
 
+    <!-- Scripts de Autenticação e Permissões -->
+    <script src="js/auth.js"></script>
+    <script src="js/permissions.js"></script>
+    <script src="js/database.js"></script>
     <script src="js/app.js"></script>
-    <script src="/js/permissions.js"></script>
+    
+    <script>
+        // Inicializar menu dinâmico baseado em autenticação
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = Permissions.getCurrentUser();
+            const nav = document.querySelector('.top-nav ul');
+            
+            if (user) {
+                // Usuário autenticado
+                const userMenuHTML = `
+                    <li class="dropdown" style="margin-left: auto;">
+                        <a href="#"><i class="fas fa-user-circle"></i> ${user.name} <i class="fas fa-caret-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="perfil.html"><i class="fas fa-id-card"></i> Meu Perfil</a>
+                            ${user.role === 'admin' ? '<a href="admin/"><i class="fas fa-crown"></i> Painel Admin</a>' : ''}
+                            <a href="#" onclick="Permissions.logout(); return false;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </li>
+                `;
+                nav.insertAdjacentHTML('beforeend', userMenuHTML);
+            } else {
+                // Usuário não autenticado
+                const loginHTML = `
+                    <li style="margin-left: auto;">
+                        <a href="login.html" style="background: #0969da;"><i class="fab fa-github"></i> Login com GitHub</a>
+                    </li>
+                `;
+                nav.insertAdjacentHTML('beforeend', loginHTML);
+            }
+        });
+    </script>
 </body>
 </html>
