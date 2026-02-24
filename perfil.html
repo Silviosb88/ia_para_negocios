@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Clube do Foco</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f7;
+            color: #1f2328;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .profile-header {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            overflow: hidden;
+            border: 4px solid #0969da;
+        }
+        
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-info h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: #1f2328;
+        }
+        
+        .profile-info p {
+            color: #666;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+        
+        .profile-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 15px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0969da;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+        
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #0969da;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #0860ca;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(9, 105, 218, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #1f2328;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .btn-danger {
+            background: #da3633;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #ca2c29;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #1f2328;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1f2328;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #0969da;
+            box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .uploads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .upload-card {
+            background: #f5f5f7;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .upload-card:hover {
+            border-color: #0969da;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .upload-image {
+            width: 100%;
+            height: 150px;
+            background: #e0e0e0;
+            overflow: hidden;
+        }
+        
+        .upload-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .upload-info {
+            padding: 15px;
+        }
+        
+        .upload-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #1f2328;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .upload-status {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-approved {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+        
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .empty-state p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            color: #0969da;
+            border-bottom-color: #0969da;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .profile-actions {
+                justify-content: center;
+            }
+            
+            .profile-stats {
+                justify-content: center;
+            }
+            
+            .uploads-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Incluir menu -->
+    <nav id="navbar"></nav>
+    
+    <div class="container">
+        <!-- Perfil Header -->
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <img id="userAvatar" src="" alt="Avatar do usuário">
+            </div>
+            
+            <div class="profile-info">
+                <h1 id="userName">Carregando...</h1>
+                <p id="userEmail"></p>
+                <p id="userRole" style="color: #0969da; font-weight: 600;"></p>
+                
+                <div class="profile-stats">
+                    <div class="stat">
+                        <div class="stat-value" id="uploadCount">0</div>
+                        <div class="stat-label">Uploads</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="approvedCount">0</div>
+                        <div class="stat-label">Aprovados</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="joinDate">-</div>
+                        <div class="stat-label">Membro desde</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-actions">
+                <button class="btn-primary" onclick="editProfile()">✏️ Editar</button>
+                <button class="btn-secondary" onclick="goToDashboard()">📊 Dashboard</button>
+                <button class="btn-danger" onclick="Permissions.logout()">👋 Sair</button>
+            </div>
+        </div>
+        
+        <!-- Abas -->
+        <div class="section">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('uploads')">📁 Meus Uploads</button>
+                <button class="tab" onclick="switchTab('settings')">⚙️ Configurações</button>
+                <button class="tab" onclick="switchTab('activity')">📊 Atividade</button>
+            </div>
+            
+            <!-- Aba: Meus Uploads -->
+            <div id="uploads" class="tab-content active">
+                <div class="uploads-grid" id="uploadsGrid">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📁</div>
+                        <p>Você ainda não tem uploads</p>
+                        <button class="btn-primary" onclick="goToUpload()">Fazer Upload</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aba: Configurações -->
+            <div id="settings" class="tab-content">
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" id="editName" placeholder="Seu nome">
+                </div>
+                
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="editEmail" placeholder="seu@email.com" disabled>
+                </div>
+                
+                <div class="form-group">
+                    <label>Bio</label>
+                    <textarea id="editBio" placeholder="Conte um pouco sobre você..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <button class="btn-primary" onclick="saveSettings()">💾 Salvar Alterações</button>
+                </div>
+            </div>
+            
+            <!-- Aba: Atividade -->
+            <div id="activity" class="tab-content">
+                <div id="activityList">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📊</div>
+                        <p>Nenhuma atividade registrada</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="/js/auth.js"></script>
+    <script src="/js/permissions.js"></script>
+    <script>
+        // Proteger página
+        Permissions.protectPage('user');
+        
+        // Carregar dados do usuário
+        function loadUserProfile() {
+            const user = Permissions.getCurrentUser();
+            
+            if (!user) {
+                Permissions.redirectToLogin();
+                return;
+            }
+            
+            // Preencher dados do perfil
+            document.getElementById('userAvatar').src = user.avatar;
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('userEmail').textContent = user.email;
+            document.getElementById('userRole').textContent = user.role === 'admin' ? '👑 Administrador' : '👤 Usuário';
+            
+            // Calcular data de cadastro
+            const loginDate = new Date(user.loginTime);
+            const today = new Date();
+            const diffTime = Math.abs(today - loginDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('joinDate').textContent = diffDays + 'd';
+            
+            // Preencher formulário de edição
+            document.getElementById('editName').value = user.name;
+            document.getElementById('editEmail').value = user.email;
+            
+            // Carregar dados adicionais do localStorage
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            document.getElementById('editBio').value = userData.bio || '';
+            document.getElementById('uploadCount').textContent = userData.uploads || 0;
+            document.getElementById('approvedCount').textContent = userData.approved || 0;
+            
+            // Carregar uploads (simulado)
+            loadUploads();
+        }
+        
+        // Carregar uploads do usuário
+        function loadUploads() {
+            const uploadsData = JSON.parse(localStorage.getItem('userUploads') || '[]');
+            const uploadsGrid = document.getElementById('uploadsGrid');
+            
+            if (uploadsData.length === 0) {
+                uploadsGrid.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1/-1;">
+                        <div class="empty-state-icon">📁</div>
+                        <p>Você ainda não tem uploads</p>
+                        <button class="btn-primary" onclick="goToUpload()">Fazer Upload</button>
+                    </div>
+                `;
+                return;
+            }
+            
+            uploadsGrid.innerHTML = uploadsData.map(upload => `
+                <div class="upload-card">
+                    <div class="upload-image">
+                        <img src="${upload.url}" alt="${upload.title}">
+                    </div>
+                    <div class="upload-info">
+                        <div class="upload-title">${upload.title}</div>
+                        <span class="upload-status status-${upload.status}">
+                            ${upload.status === 'pending' ? '⏳ Pendente' : 
+                              upload.status === 'approved' ? '✅ Aprovado' : '❌ Rejeitado'}
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Trocar aba
+        function switchTab(tabName) {
+            // Ocultar todas as abas
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remover classe active de todos os botões
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Mostrar aba selecionada
+            document.getElementById(tabName).classList.add('active');
+            
+            // Adicionar classe active ao botão
+            event.target.classList.add('active');
+        }
+        
+        // Editar perfil
+        function editProfile() {
+            switchTab('settings');
+            document.querySelector('.tab:nth-child(2)').click();
+        }
+        
+        // Salvar configurações
+        function saveSettings() {
+            const userData = {
+                bio: document.getElementById('editBio').value
+            };
+            
+            localStorage.setItem('userData', JSON.stringify(userData));
+            alert('✅ Configurações salvas com sucesso!');
+        }
+        
+        // Ir para dashboard
+        function goToDashboard() {
+            window.location.href = '/dashboard.html';
+        }
+        
+        // Ir para upload
+        function goToUpload() {
+            window.location.href = '/upload.html';
+        }
+        
+        // Carregar perfil ao abrir página
+        document.addEventListener('DOMContentLoaded', loadUserProfile);
+    </script>
+</body>
+</html>
