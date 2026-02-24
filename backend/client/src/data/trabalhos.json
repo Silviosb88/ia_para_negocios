@@ -1,0 +1,131 @@
+{
+  "trabalhos": [
+    {
+      "id": 1,
+      "estudante": "Ana Silva",
+      "tipo": "imagem",
+      "titulo": "Paisagem Futurista Gerada por IA",
+      "descricao": "Uma paisagem urbana futurista criada com MidJourney, explorando conceitos de cidades sustentáveis e tecnologia verde.",
+      "url": "https://private-us-east-1.manuscdn.com/sessionFile/4QSQ0wRVnWDRBGeLfjJLz7/sandbox/xqABgNxqYArQbDQZLI8C3y-img-1_1770664280000_na1fn_ZnV0dXJpc3RpYy1sYW5kc2NhcGU.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvNFFTUTB3UlZuV0RSQkdlTGZqSkx6Ny9zYW5kYm94L3hxQUJnTnhxWUFyUWJEUVpMSThDM3ktaW1nLTFfMTc3MDY2NDI4MDAwMF9uYTFmbl9ablYwZFhKcGMzUnBZeTFzWVc1a2MyTmhjR1UuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=k9YQAauiinRNNPr56aaIkmRmIC-kWMQv1ZGrauYPQpD0B5xQv75wk9Lso2s5fyDL68XoZWvOl-W~VIdZ9vlmpJYHWvrFx~kkGa803akzjoO7jskheB7rvJXVjxZSkHiB6SrQ9ywasPzJoFia28~p3InijZtIRCxO682AXDtfIxzz50a5L-FPCdJKoGr3jTE51yUNdhCS0AFQknAk2lJIhlf6HZOUn~CUVff049JLRLbBniwm4kS5zKLX-rzPXHJoHDnjYUuthLJ17alQmdL1dzGcHJD9KE59dno0LWAQAR6aqE4ce-L0fE2thkDV1d05ZobFCAtJlEWNCfb5~DNbXA__",
+      "data": "2026-01-15",
+      "ferramentas": ["MidJourney", "Photoshop"]
+    },
+    {
+      "id": 2,
+      "estudante": "Carlos Mendes",
+      "tipo": "video",
+      "titulo": "Apresentação Corporativa com Avatar IA",
+      "descricao": "Vídeo de apresentação corporativa utilizando avatar digital criado com Synthesia para comunicação interna.",
+      "url": "https://private-us-east-1.manuscdn.com/sessionFile/4QSQ0wRVnWDRBGeLfjJLz7/sandbox/xqABgNxqYArQbDQZLI8C3y-img-2_1770664273000_na1fn_YWktYXZhdGFyLXZpZGVv.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvNFFTUTB3UlZuV0RSQkdlTGZqSkx6Ny9zYW5kYm94L3hxQUJnTnhxWUFyUWJEUVpMSThDM3ktaW1nLTJfMTc3MDY2NDI3MzAwMF9uYTFmbl9ZV2t0WVhaaGRHRnlMWFpwWkdWdi5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=WEmGEzU9kMdHmVtm4bfw647bZwSHnWdv~OCt02l8A9GdM702XYjqiQq1KeBC40R~VvccI5o~SV6FTTZ~c1NFwd1X6E0Yg~d7mMN6DtHbEMocy1uJj4rIkdB3s-2qCZT19RUmVjTBoay~uybjB20-Qg~gONI-A2IcqOjfpMLaiFJ0NoPC2qIel8BshTENHKc4mCUj~3OYvrpVIPZUU5TH0Y9fR5WZXxKSoRWhF07w9nTUmq6YvzAbe5PFaqtFgbEhWLBJDdxp9jUeYwEPQpl-wSrpGRBjAlmDpuB31BXATCI0zAdgR9mnOkdYxK7LgZKYSqyVGtfNpwzHa699qLHyBg__",
+      "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+      "data": "2026-01-20",
+      "ferramentas": ["Synthesia", "ChatGPT"]
+    },
+    {
+      "id": 3,
+      "estudante": "Marina Costa",
+      "tipo": "avatar",
+      "titulo": "Avatar Virtual para Atendimento ao Cliente",
+      "descricao": "Avatar digital realista desenvolvido para sistema de atendimento automatizado, com expressões faciais naturais.",
+      "url": "https://private-us-east-1.manuscdn.com/sessionFile/4QSQ0wRVnWDRBGeLfjJLz7/sandbox/xqABgNxqYArQbDQZLI8C3y-img-4_1770664275000_na1fn_ZGlnaXRhbC1hdmF0YXItcG9ydHJhaXQ.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvNFFTUTB3UlZuV0RSQkdlTGZqSkx6Ny9zYW5kYm94L3hxQUJnTnhxWUFyUWJEUVpMSThDM3ktaW1nLTRfMTc3MDY2NDI3NTAwMF9uYTFmbl9aR2xuYVhSaGJDMWhkbUYwWVhJdGNHOXlkSEpoYVhRLmpwZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=jhL6vuFCReMypQeYJwN6HWMO2VbPdpnktJpobl061sQVTzNwuJz1ejelx~T8AdSEmE60gjDnk~DplqmXtpU5i-P-ZYSWNqgbAIc7pfTlyadW0MhnYDEP-wImBEI9canEodA9lEUzbozTlyOJcI2HNX1ydZZL480l7mvo9XN2qzRLCQWmiRqgrKrWx1dOQLESHuTgB5HoF1NJRzO3QOQr2QzINfdEdzgk3RjtJL3Tr-F17R9WVhQ0BvuU3P~yGA4h2VawVv6PzwR0pDeBrWweGzmE~ZwstzIvf7SFPhNq7KGq4pSRTvX5Ap1DXdEZ838UvLoiufBgP9EzjrwuCT6HYg__",
+      "data": "2026-01-25",
+      "ferramentas": ["D-ID", "HeyGen"]
+    },
+    {
+      "id": 4,
+      "estudante": "Pedro Santos",
+      "tipo": "imagem",
+      "titulo": "Logo Empresarial com IA",
+      "descricao": "Conjunto de propostas de logo para startup de tecnologia, criadas usando DALL-E e refinadas com ferramentas de design.",
+      "url": "https://private-us-east-1.manuscdn.com/sessionFile/4QSQ0wRVnWDRBGeLfjJLz7/sandbox/xqABgNxqYArQbDQZLI8C3y-img-3_1770664273000_na1fn_bG9nby1kZXNpZ24tYWk.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvNFFTUTB3UlZuV0RSQkdlTGZqSkx6Ny9zYW5kYm94L3hxQUJnTnhxWUFyUWJEUVpMSThDM3ktaW1nLTNfMTc3MDY2NDI3MzAwMF9uYTFmbl9iRzluYnkxa1pYTnBaMjR0WVdrLmpwZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=FtMXxYFls5begkm-vj76jYNm4wo6J84dstUia28YFj-Y-CDz27Op~b0MXIsbQuyBJDSpQtEgInby-Y8pvKQoeiEO8coj-oZYUn~iE6JEWLXXIx0Z9e2d7zTDgpNp7yO~X113AMksJ5u5bu8HUcuHwoG3iEpkPwRl02BXckdNggnqrvo1-D1KL3UnSrXOXbQfvEgUz2MBGKCypxDae4UtZ-R6ZgDoDq~pti4KIUg4DmcnqeaaezA8~8wpOW9riyppIJwyA0lkWYFe15rC1zSC6WEPmkvuIQXpywZe5WFFjBh~xpdLIs4~OXBBskBZSAJWSNr-y6QAJjMsYYCdhvNwdQ__",
+      "data": "2026-02-01",
+      "ferramentas": ["DALL-E", "Illustrator", "ChatGPT"]
+    },
+    {
+      "id": 5,
+      "estudante": "Juliana Oliveira",
+      "tipo": "video",
+      "titulo": "Campanha de Marketing Digital",
+      "descricao": "Série de vídeos curtos para redes sociais criados com Runway, explorando diferentes estilos visuais para engajamento.",
+      "url": "https://private-us-east-1.manuscdn.com/sessionFile/4QSQ0wRVnWDRBGeLfjJLz7/sandbox/xqABgNxqYArQbDQZLI8C3y-img-5_1770664283000_na1fn_bWFya2V0aW5nLXZpZGVvLWNhbXBhaWdu.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvNFFTUTB3UlZuV0RSQkdlTGZqSkx6Ny9zYW5kYm94L3hxQUJnTnhxWUFyUWJEUVpMSThDM3ktaW1nLTVfMTc3MDY2NDI4MzAwMF9uYTFmbl9iV0Z5YTJWMGFXNW5MWFpwWkdWdkxXTmhiWEJoYVdkdS5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=YX6eu3A23cH3Urc3wrtnT4eWS~sR4V3IfwAM4Q-utlmOoUTmiPGS9sk26DmRzFryjGAdRHoKM~v3EWTymKFF2cJVy~SiMpCQHs~ZurwpKO7PpNojkvdwbo3fYL3k7jKCDu79ZANOgAQSe4Fc15u5ygbVsG~DWVua8O0~kYHF5p1eBOn9I9Fy4~TusjDzOnjvV4h6aV4owskoFvJMWKwTBDw06jVOMPdnMQ7OzVnwQtIDObeIfvc~ZdI6jvQsSo5BEPo88U1znGxR~8GUWLb9x~b1C88mm00tr6sP5W9CigztjiVSrmZxAU5zTkAzj1fAKVbmALS5S4z3ECYDxbkRUg__",
+      "videoUrl": "https://www.w3schools.com/html/movie.mp4",
+      "data": "2026-02-05",
+      "ferramentas": ["Runway", "CapCut", "ChatGPT"]
+    },
+    {
+      "id": 6,
+      "estudante": "Roberto Lima",
+      "tipo": "avatar",
+      "titulo": "Instrutor Virtual para E-learning",
+      "descricao": "Avatar de instrutor virtual para plataforma de ensino online, com capacidade de apresentar conteúdos de forma interativa.",
+      "url": "https://private-us-east-1.manuscdn.com/sessionFile/4QSQ0wRVnWDRBGeLfjJLz7/sandbox/xqABgNxqYArQbDQZLI8C3y-img-4_1770664275000_na1fn_ZGlnaXRhbC1hdmF0YXItcG9ydHJhaXQ.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvNFFTUTB3UlZuV0RSQkdlTGZqSkx6Ny9zYW5kYm94L3hxQUJnTnhxWUFyUWJEUVpMSThDM3ktaW1nLTRfMTc3MDY2NDI3NTAwMF9uYTFmbl9aR2xuYVhSaGJDMWhkbUYwWVhJdGNHOXlkSEpoYVhRLmpwZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=jhL6vuFCReMypQeYJwN6HWMO2VbPdpnktJpobl061sQVTzNwuJz1ejelx~T8AdSEmE60gjDnk~DplqmXtpU5i-P-ZYSWNqgbAIc7pfTlyadW0MhnYDEP-wImBEI9canEodA9lEUzbozTlyOJcI2HNX1ydZZL480l7mvo9XN2qzRLCQWmiRqgrKrWx1dOQLESHuTgB5HoF1NJRzO3QOQr2QzINfdEdzgk3RjtJL3Tr-F17R9WVhQ0BvuU3P~yGA4h2VawVv6PzwR0pDeBrWweGzmE~ZwstzIvf7SFPhNq7KGq4pSRTvX5Ap1DXdEZ838UvLoiufBgP9EzjrwuCT6HYg__",
+      "data": "2026-02-06",
+      "ferramentas": ["HeyGen", "D-ID", "ElevenLabs"]
+    },
+    {
+      "id": 7,
+      "estudante": "Silvio",
+      "tipo": "imagem",
+      "titulo": "Avatar Digital Pessoal",
+      "descricao": "Avatar digital criado com Google Flow para representação virtual em apresentações e conteúdos online.",
+      "url": "https://images.unsplash.com/photo-1677442d019cecf8f69f4ec4fe723ce65536f9a44?w=800&h=600&fit=crop",
+      "data": "2026-02-03",
+      "ferramentas": ["Google Flow"]
+    },
+    {
+      "id": 8,
+      "estudante": "Silvio",
+      "tipo": "video",
+      "titulo": "Avatar em Vídeo - Demonstração",
+      "descricao": "Demonstração em vídeo do avatar digital criado com Google Flow, mostrando movimentos e expressões naturais.",
+      "url": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=800&h=600&fit=crop",
+      "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+      "data": "2026-02-03",
+      "ferramentas": ["Google Flow"]
+    },
+    {
+      "id": 9,
+      "estudante": "Adriana",
+      "tipo": "video",
+      "titulo": "Avatar Digital Profissional",
+      "descricao": "Avatar digital criado com Google Flow para uso em apresentações corporativas e conteúdos educacionais.",
+      "url": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=800&h=600&fit=crop",
+      "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+      "data": "2026-02-03",
+      "ferramentas": ["Google Flow"]
+    },
+    {
+      "id": 10,
+      "estudante": "Herbert",
+      "tipo": "video",
+      "titulo": "Avatar Animado",
+      "descricao": "Avatar digital animado criado com Google Flow, demonstrando as capacidades de geração de vídeos com IA.",
+      "url": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=800&h=600&fit=crop",
+      "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+      "data": "2026-02-03",
+      "ferramentas": ["Google Flow"]
+    },
+    {
+      "id": 11,
+      "estudante": "Keli",
+      "tipo": "video",
+      "titulo": "Avatar Digital - Versão 01",
+      "descricao": "Primeira versão do avatar digital criado com Google Flow, explorando diferentes expressões e movimentos.",
+      "url": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=800&h=600&fit=crop",
+      "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+      "data": "2026-02-03",
+      "ferramentas": ["Google Flow"]
+    },
+    {
+      "id": 12,
+      "estudante": "Keli",
+      "tipo": "video",
+      "titulo": "Avatar Digital - Versão 02",
+      "descricao": "Segunda versão do avatar digital com melhorias e ajustes, criado com Google Flow.",
+      "url": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=800&h=600&fit=crop",
+      "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+      "data": "2026-02-03",
+      "ferramentas": ["Google Flow"]
+    }
+  ]
+}
