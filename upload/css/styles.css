@@ -731,3 +731,58 @@ body {
 .skip-link:focus {
     top: 0;
 }
+
+
+/* Auth Button */
+.btn-login {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: white;
+    color: var(--primary);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.auth-user {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: white;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.btn-logout {
+    padding: 0.4rem 0.8rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.btn-logout:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}

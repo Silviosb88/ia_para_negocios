@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticando...</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            margin: 0;
+            color: #333;
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin: 0.5rem 0 0;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .error {
+            display: none;
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        .error-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="spinner"></div>
+        <h1>Autenticando...</h1>
+        <p>Aguarde enquanto processamos sua autenticação com GitHub</p>
+        <div class="error" id="error">
+            <div class="error-title">Erro na Autenticação</div>
+            <p id="error-message"></p>
+            <p><a href="/">← Voltar para Home</a></p>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script>
+        // Processar callback do GitHub
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
+        const state = params.get('state');
+        const error = params.get('error');
+        const errorDescription = params.get('error_description');
+
+        if (error) {
+            // Erro na autenticação
+            document.getElementById('error').classList.add('show');
+            document.getElementById('error-message').textContent = 
+                errorDescription || 'Erro desconhecido durante autenticação';
+            document.querySelector('.spinner').style.display = 'none';
+            document.querySelector('h1').textContent = 'Erro na Autenticação';
+            document.querySelector('p').style.display = 'none';
+        } else if (code && state) {
+            // Sucesso - processar callback
+            if (auth.handleCallback(code, state)) {
+                // Redirecionar para página anterior ou home
+                const redirectTo = localStorage.getItem('redirect_after_login') || '/';
+                localStorage.removeItem('redirect_after_login');
+                
+                // Aguardar um pouco para mostrar mensagem de sucesso
+                setTimeout(() => {
+                    window.location.href = redirectTo;
+                }, 1000);
+            } else {
+                // Erro de segurança
+                document.getElementById('error').classList.add('show');
+                document.getElementById('error-message').textContent = 
+                    'Erro de segurança: estado inválido. Tente novamente.';
+                document.querySelector('.spinner').style.display = 'none';
+                document.querySelector('h1').textContent = 'Erro de Segurança';
+                document.querySelector('p').style.display = 'none';
+            }
+        } else {
+            // Sem parâmetros
+            document.getElementById('error').classList.add('show');
+            document.getElementById('error-message').textContent = 
+                'Parâmetros de autenticação não encontrados';
+            document.querySelector('.spinner').style.display = 'none';
+            document.querySelector('h1').textContent = 'Erro na Autenticação';
+            document.querySelector('p').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
