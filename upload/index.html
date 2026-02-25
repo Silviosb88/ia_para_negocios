@@ -225,6 +225,16 @@
     <script src="../js/permissions.js?v=1.0"></script>
     <script src="../js/database.js?v=1.0"></script>
     
+    <!-- Proteção de Página (Requer Autenticação) -->
+    <script>
+      // Proteger página de upload - requer autenticação
+      if (!auth.isAuthenticated()) {
+        console.warn('Acesso negado: página restrita');
+        localStorage.setItem('redirect_after_login', window.location.pathname);
+        window.location.href = auth.getLoginUrl();
+      }
+    </script>
+    
     <!-- Script da Página -->
     <script src="js/app.js?v=1.0"></script>
 </body>
