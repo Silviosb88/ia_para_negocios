@@ -155,7 +155,7 @@ const auth = {
         <div class="auth-user" style="display: flex; align-items: center; gap: 12px; margin-left: 1rem;">
           <img src="${user.avatar_url}" alt="${user.name}" class="user-avatar" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid #fff;">
           <span class="user-name" style="color: white; font-size: 14px; font-weight: 500;">${user.name}</span>
-          <button class="btn-logout" onclick="auth.logout()" style="background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 500; transition: background 0.3s ease;">🚪 Sair</button>
+          <button class="btn-logout" onclick="auth.logout(); location.reload();" style="background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 500; transition: background 0.3s ease;">🚪 Sair</button>
         </div>
       `;
       

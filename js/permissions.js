@@ -433,10 +433,43 @@ window.Permissions = {
   redirectToHome
 };
 
+// ============================================
+// 13. PROTEÇÃO DE LINKS COM DATA-AUTH
+// ============================================
+
+/**
+ * Protege links que requerem autenticação
+ * Redireciona para login se o usuário não estiver autenticado
+ */
+function protectAuthLinks() {
+  const authLinks = document.querySelectorAll('a[data-auth="true"], a[data-auth="admin"]');
+  
+  authLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const requiresAdmin = link.getAttribute('data-auth') === 'admin';
+      
+      if (!isAuthenticated()) {
+        e.preventDefault();
+        console.warn('⚠️ Acesso negado: usuário não autenticado');
+        redirectToLogin();
+        return false;
+      }
+      
+      if (requiresAdmin && !isAdmin()) {
+        e.preventDefault();
+        console.warn('⚠️ Acesso negado: apenas admins podem acessar');
+        redirectToAccessDenied();
+        return false;
+      }
+    });
+  });
+}
+
 // Inicializar automaticamente quando a página carregar
 document.addEventListener('DOMContentLoaded', () => {
   initPermissions();
   updateMenuBasedOnAuth();
+  protectAuthLinks();
 });
 
 console.log('✅ Sistema de permissões carregado com sucesso!');
