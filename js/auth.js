@@ -76,16 +76,18 @@ const auth = {
   },
 
   /**
-   * Fazer logout
+   * Fazer logout com confirmação
    */
   logout: function() {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    localStorage.removeItem('oauth_state');
-    localStorage.removeItem('login_time');
-    // Disparar evento de logout
-    window.dispatchEvent(new CustomEvent('auth:logout'));
-    window.location.href = '/';
+    if (confirm('Tem certeza que deseja sair?')) {
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      localStorage.removeItem('oauth_state');
+      localStorage.removeItem('login_time');
+      // Disparar evento de logout
+      window.dispatchEvent(new CustomEvent('auth:logout'));
+      window.location.href = '/';
+    }
   },
 
   /**
@@ -150,19 +152,41 @@ const auth = {
     if (user) {
       // Usuário autenticado - mostrar logout
       container.innerHTML = `
-        <div class="auth-user">
-          <img src="${user.avatar_url}" alt="${user.name}" class="user-avatar">
-          <span class="user-name">${user.name}</span>
-          <button class="btn-logout" onclick="auth.logout()">Sair</button>
+        <div class="auth-user" style="display: flex; align-items: center; gap: 12px; margin-left: 1rem;">
+          <img src="${user.avatar_url}" alt="${user.name}" class="user-avatar" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid #fff;">
+          <span class="user-name" style="color: white; font-size: 14px; font-weight: 500;">${user.name}</span>
+          <button class="btn-logout" onclick="auth.logout()" style="background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 500; transition: background 0.3s ease;">🚪 Sair</button>
         </div>
       `;
+      
+      // Adicionar hover effect
+      const btn = container.querySelector('.btn-logout');
+      if (btn) {
+        btn.addEventListener('mouseover', function() {
+          this.style.background = '#dc2626';
+        });
+        btn.addEventListener('mouseout', function() {
+          this.style.background = '#ef4444';
+        });
+      }
     } else {
       // Não autenticado - mostrar login
       container.innerHTML = `
-        <a href="${this.getLoginUrl()}" class="btn-login">
+        <a href="${this.getLoginUrl()}" class="btn-login" style="display: inline-block; padding: 8px 16px; background: #6366f1; color: white; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: 500; transition: background 0.3s ease;">
           🔐 Login com GitHub
         </a>
       `;
+      
+      // Adicionar hover effect
+      const link = container.querySelector('.btn-login');
+      if (link) {
+        link.addEventListener('mouseover', function() {
+          this.style.background = '#4f46e5';
+        });
+        link.addEventListener('mouseout', function() {
+          this.style.background = '#6366f1';
+        });
+      }
     }
   },
 
