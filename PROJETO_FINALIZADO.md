@@ -261,14 +261,14 @@ afb6f63 - Integrar cliente tRPC para comunicação com backend
 
 ### Links Úteis
 - **Site:** https://clubedofoco.ia.br
-- **Repositório:** https://github.com/Silviosb88/ia_para_negocios
 - **Railway:** https://railway.app
 - **AWS S3:** https://s3.console.aws.amazon.com
-- **GitHub OAuth:** https://github.com/settings/developers
+
+⚠️ **Nota:** Repositório GitHub mantido privado para segurança
 
 ### Contato
 - **Projeto:** MBA IA para Negócios - Clube do Foco
-- **Idealizador:** Silvio Barbosa
+- **Idealizador:** SILVIO
 - **Implementação:** Manus AI
 - **Mentoria:** Google Search AI
 
@@ -293,7 +293,7 @@ afb6f63 - Integrar cliente tRPC para comunicação com backend
 - Otimização de custos
 
 ### Projeto e Visão
-**Silvio Barbosa** - Project owner and vision
+**SILVIO** - Project owner and vision
 - MBA IA para Negócios
 - Clube do Foco
 - Direcionamento estratégico

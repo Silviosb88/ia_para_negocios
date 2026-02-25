@@ -207,7 +207,7 @@ afb6f63 - Integrar cliente tRPC para comunicação com backend
   - Expertise: Cloud architecture, cost optimization
 
 ### Projeto e Visão
-- **Silvio Barbosa** - Idealizador e Gestor do Projeto
+- **SILVIO** - Idealizador e Gestor do Projeto
   - Projeto: MBA IA para Negócios - Clube do Foco
   - Visão: Criar plataforma colaborativa para experimentos com IA
 
@@ -216,9 +216,8 @@ afb6f63 - Integrar cliente tRPC para comunicação com backend
 ## 🔗 Links Úteis
 
 - **Site:** https://clubedofoco.ia.br
-- **Repositório:** https://github.com/Silviosb88/ia_para_negocios
 - **Backend:** Railway (deploy automático)
-- **AWS S3:** clubedofoco-ia-arquivos
+- **AWS S3:** Configurado e seguro
 
 ---
 
