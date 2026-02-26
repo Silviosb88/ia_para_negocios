@@ -237,14 +237,6 @@ Além de OAuth, você tem acesso a um pacote completo de ferramentas gratuitas!
 
 ---
 
-## 💬 Dúvidas?
 
-Entre em contato com a moderação:
-- **Email:** contato@clubedofoco.ia.br
-- **GitHub Issues:** https://github.com/Silviosb88/ia_para_negocios/issues
-- **Discord:** [Link do servidor]
-
----
-
-**Última atualização:** 24/02/2026
+**Última atualização:** 26/02/2026
 **Mantido por:** Clube do Foco
