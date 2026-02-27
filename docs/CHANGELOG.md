@@ -279,5 +279,5 @@ Pendente: Configurar credenciais em produção
 
 ---
 
-**Mantido por:** Clube do Foco - MBA IA para Negócios  
+**Mantido por:** Clube do Foco - Educação, Tecnologia e IA para Negócios  
 **Última Atualização:** 19 de Fevereiro de 2026
