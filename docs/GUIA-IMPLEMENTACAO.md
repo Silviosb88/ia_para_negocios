@@ -1,5 +1,5 @@
 # 🚀 Guia de Implementação - v2.1.1
-
+*Acesso privado* "Somente acesso aos desenvolvedores"
 ## 📌 Objetivo
 
 Adicionar **sistema de documentação colaborativa multi-IA** ao projeto Clube do Foco sem alterar a estrutura existente.
@@ -167,10 +167,10 @@ Após o push, verifique:
 
 ### **3. Links Funcionando:**
 ```
-✅ https://clubedofoco.ia.br/CONTRIBUTORS.md
-✅ https://clubedofoco.ia.br/CHANGELOG.md
-✅ https://clubedofoco.ia.br/GUIA-USO-OTIMIZADO-IAs.md
-✅ https://clubedofoco.ia.br/ESTRUTURA.md
+✅ https://clubedofoco.ia.br/docs/CONTRIBUTORS.md
+✅ https://clubedofoco.ia.br/docs/CHANGELOG.md
+✅ https://clubedofoco.ia.br/docs/GUIA-USO-OTIMIZADO-IAs.md
+✅ https://clubedofoco.ia.br/docs/ESTRUTURA.md
 ```
 
 ---
@@ -369,6 +369,7 @@ O que você aprende com esta implementação:
 
 ---
 
-**Mantido por:** Claude (Anthropic)  
+**Mantido por:*2026 - Clube do Foco - Educação, Tecnologia e IA para Megócios* 
 **Data:** 19 de Fevereiro de 2026  
 **Versão do Guia:** 1.0
+Colaboração: Claude (Anthropic)  
