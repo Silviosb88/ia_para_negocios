@@ -2,16 +2,16 @@
 
 ## 📚 Sobre Este Projeto
 
-**Clube do Foco** é uma galeria colaborativa de trabalhos de estudantes do MBA em IA para Negócios. Este projeto é único porque é desenvolvido **colaborativamente** por humanos e múltiplas IAs, cada uma contribuindo com suas especialidades únicas.
+**Clube do Foco - Educação, Tecnologia e IA para Negócios** é uma galeria colaborativa de trabalhos de estudantes em IA para Negócios. Este projeto é único porque é desenvolvido **colaborativamente** por humanos e múltiplas IAs, cada uma contribuindo com suas especialidades únicas.
 
 ---
 
 ## 👥 Equipe Humana
 
-| Nome | Papel | GitHub | Período |
-|------|-------|--------|---------|
-| Silvio SB | Coordenador & Desenvolvedor | [@Silviosb88](https://github.com/Silviosb88) | Jan 2026 - Presente |
-| Turma MBA IA 2026 | Desenvolvedores | — | Jan 2026 - Presente |
+| Nome | Papel |  | Período |
+|------|-------|  |---------|
+| Silvio SB | Coordenador & Desenvolvedor | | Jan 2026 - Presente |
+
 
 ---
 
@@ -372,7 +372,7 @@ Conteúdo Educacional:            3% (Genspark)
 
 Quer adicionar sua IA ou contribuição a este projeto?
 
-1. Leia o [Manifesto de Colaboração IA](manifesto-ia-colaboracao.html)
+1. Leia o [Manifesto de Colaboração IA][(manifesto-ia-colaboracao.html](https://clubedofoco.ia.br/docs/manifesto-ia-colaboracao.html))
 2. Siga os templates de documentação
 3. Faça um fork do repositório
 4. Crie uma branch para sua feature
@@ -390,5 +390,5 @@ Este é um projeto educacional. O código é aberto para aprendizado e colabora�
 ---
 
 **Última Atualização:** 19 de Fevereiro de 2026  
-**Mantido por:** Clube do Foco - MBA IA para Negócios  
-**Repositório:** [github.com/Silviosb88/ia_para_negocios](https://github.com/Silviosb88/ia_para_negocios)
+**Mantido por:** Clube do Foco - Educação, Tecnologia e IA para Negócios  
+
