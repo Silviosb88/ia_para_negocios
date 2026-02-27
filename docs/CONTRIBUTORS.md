@@ -1,3 +1,8 @@
+    <div class="container">
+        <a href="../" class="back-link">
+            <i class="fas fa-arrow-left"></i> Voltar ao Site
+        </a>
+
 # 🤝 Contribuidores - Clube do Foco
 
 ## 📚 Sobre Este Projeto
